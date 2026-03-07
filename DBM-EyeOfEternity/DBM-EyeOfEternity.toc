@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Eye of Eternity|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Das Auge der Ewigkeit|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Око Вечности|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Око Вічності|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0永恆之眼|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0永恒之眼|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0영원의 눈|r
@@ -16,7 +16,7 @@
 ## X-DBM-StatTypes: normal,normal25
 ## X-DBM-Mod-Name: Eye of Eternity
 ## X-DBM-Mod-Name-deDE: Das Auge der Ewigkeit
-## X-DBM-Mod-Name-ruRU: Око Вечности
+## X-DBM-Mod-Name-ruRU:Око Вічності
 ## X-DBM-Mod-Name-zhTW: 永恆之眼
 ## X-DBM-Mod-Name-zhCN: 永恒之眼
 ## X-DBM-Mod-Name-koKR: 영원의 눈
@@ -25,7 +25,7 @@
 ## X-DBM-Mod-MapID: 528
 ## X-DBM-Mod-LoadZone: The Eye of Eternity
 ## X-DBM-Mod-LoadZone-zhCN: 永恒之眼
-## X-DBM-Mod-LoadZone-ruRU: Око Вечности
+## X-DBM-Mod-LoadZone-ruRU:Око Вічності
 
 localization.en.lua
 localization.fr.lua

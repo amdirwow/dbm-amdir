@@ -3,7 +3,7 @@
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Eiskronenzitadelle|r
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Citadelle de la Couronne de glace|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0얼음왕관 성채|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Цитадель Ледяной Короны|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Цитадель Крижаної Корони|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0冰冠城塞|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0冰冠堡垒|r
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Ciudadela de la Corona de Hielo|r
@@ -22,14 +22,14 @@
 ## X-DBM-Mod-SubCategories-zhTW: 城塞大門,瘟疫工坊, 赤紅大廳,霜翼大廳, 冰封王座, Trash
 ## X-DBM-Mod-SubCategories-zhCN: 尖塔下层, 瘟疫工厂, 血色大厅, 霜翼之厅, 冰封王座, Trash
 ## X-DBM-Mod-SubCategories-koKR: 성채 하층부, 역병작업장, 진홍빛 전당, 서리날개 전당, 얼어붙은 왕좌, 일반구간
-## X-DBM-Mod-SubCategories-ruRU: Шпиль, Чумодельня, Багровый зал, Зал Ледокрылых, Ледяной Трон, Trash
+## X-DBM-Mod-SubCategories-ruRU: Шпиль, Чумодельня, Багряний зал, Зали Льодокрилих, Крижаний Трон, Треш
 ## X-DBM-Mod-SubCategories-esES: La Ciudadela Inferior, Los Talleres de la Peste, La Sala Carmesí, Las Cámaras de Alaescarcha, El Trono Helado, Enemigos menores
 ## X-DBM-Mod-SubCategories-esMX: La Ciudadela Inferior, Los Talleres de la Peste, La Sala Carmesí, Las Cámaras de Alaescarcha, El Trono Helado, Enemigos menores
 ## X-DBM-Mod-Name: Icecrown Citadel
 ## X-DBM-Mod-Name-deDE: Eiskronenzitadelle
 ## X-DBM-Mod-Name-frFR: Citadelle de la Couronne de glace
 ## X-DBM-Mod-Name-koKR: 얼음왕관 성채
-## X-DBM-Mod-Name-ruRU: Цитадель Ледяной Короны
+## X-DBM-Mod-Name-ruRU: Цитадель Крижаної Корони
 ## X-DBM-Mod-Name-zhCN: 冰冠堡垒
 ## X-DBM-Mod-Name-zhTW: 冰冠城塞
 ## X-DBM-Mod-Name-esES: Ciudadela de la Corona de Hielo
@@ -40,7 +40,7 @@
 ## X-DBM-Mod-LoadZone-deDE: Eiskronenzitadelle
 ## X-DBM-Mod-LoadZone-frFR: Citadelle de la Couronne de glace
 ## X-DBM-Mod-LoadZone-koKR: 얼음왕관 성채
-## X-DBM-Mod-LoadZone-ruRU: Цитадель Ледяной Короны
+## X-DBM-Mod-LoadZone-ruRU: Цитадель Крижаної Корони
 ## X-DBM-Mod-LoadZone-zhTW: 冰冠城塞
 ## X-DBM-Mod-LoadZone-zhCN: 冰冠堡垒
 ## X-DBM-Mod-LoadZone-esES: Ciudadela de la Corona de Hielo

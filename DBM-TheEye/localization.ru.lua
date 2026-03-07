@@ -8,15 +8,15 @@ local L
 L = DBM:GetModLocalization("Alar")
 
 L:SetGeneralLocalization({
-	name = "Ал'ар"
+	name = "Алар"
 })
 
 L:SetTimerLocalization({
-	NextPlatform	= "Следующая платформа"
+	NextPlatform	= "Наступна платформа"
 })
 
 L:SetOptionLocalization({
-	NextPlatform	= "Показывать таймер, когда Ал'ар меняет платформу"
+	NextPlatform	= "Показувати таймер, коли Алар змінює платформу"
 })
 
 ------------------
@@ -25,7 +25,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("VoidReaver")
 
 L:SetGeneralLocalization({
-	name = "Страж Бездны"
+	name = "Страж Безодні"
 })
 
 --------------------------------
@@ -34,21 +34,21 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Solarian")
 
 L:SetGeneralLocalization({
-	name = "Верховный звездочет Солариан"
+	name = "Верховний звіздар Соларіан"
 })
 
 L:SetWarningLocalization({
-	WarnSplit		= "*** Приспешники на подходе ***",
-	WarnSplitSoon	= "*** Разделение через 5 секунд ***",
-	WarnAgent		= "*** Пособники появились ***",
-	WarnPriest		= "*** Жрецы и Солариан появились ***"
+	WarnSplit		= "*** Поплічники на підході ***",
+	WarnSplitSoon	= "*** Поділ через 5 секунд ***",
+	WarnAgent		= "*** Посібники з'явилися ***",
+	WarnPriest		= "*** Жерці та Соларіан з'явилися ***"
 
 })
 
 L:SetTimerLocalization({
-	TimerSplit		= "Разделение",
-	TimerAgent		= "Пособники",
-	TimerPriest		= "Жрецы и Солариан"
+	TimerSplit		= "Поділ",
+	TimerAgent		= "Посібники",
+	TimerPriest		= "Жерці та Соларіан"
 })
 
 L:SetOptionLocalization({--Translate
@@ -59,14 +59,14 @@ L:SetOptionLocalization({--Translate
 	TimerSplit		= "Show timer for Split",
 	TimerAgent		= "Show timer for Agents spawn",
 	TimerPriest		= "Show timer for Priests and Solarian spawn",
-	WrathWhisper	= "Сообщить шепотом цели, если Гнев на нем"
+	WrathWhisper	= "Повідомити пошепки цілі, якщо Гнів на ньому"
 })
 
 L:SetMiscLocalization({
-	WrathWhisper	= "Гнев на вас!",
-	YellSplit1		= "Я навсегда избавлю вас от мании величия!",
-	YellSplit2		= "Вы безнадежно слабы!	",
-	YellPhase2		= "Я сольюсь... с БЕЗДНОЙ!"
+	WrathWhisper	= "Гнів на вас!",
+	YellSplit1		= "Я назавжди позбавлю вас манії величі!",
+	YellSplit2		= "Ви безнадійно слабкі!",
+	YellPhase2		= "Я зіллюся... з БЕЗДНІЙ!"
 })
 
 ---------------------------
@@ -75,22 +75,22 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("KaelThas")
 
 L:SetGeneralLocalization({
-	name = "Кель'тас Солнечный Скиталец"
+	name = "Кель'тас Сонячний Шкілец"
 })
 
 L:SetWarningLocalization({
-	WarnGaze		= "*** Таладред бросает взор на >%s< ***",
+	WarnGaze		= "*** Таладред кидає погляд на >%s< ***",
 	WarnMobDead		= "%s down",--Translate
-	WarnEgg			= "*** Феникс убит - появляется яйцо ***",
-	SpecWarnGaze	= "Бегите!",
-	SpecWarnEgg		= "*** Феникс убит - появляется яйцо ***"
+	WarnEgg			= "*** Фенікс убитий – з'являється яйце ***",
+	SpecWarnGaze	= "Біжіть!",
+	SpecWarnEgg		= "*** Фенікс убитий – з'являється яйце ***"
 })
 
 L:SetTimerLocalization({
-	TimerPhase		= "Следующая Фаза",
+	TimerPhase		= "Наступна Фаза",
 	TimerPhase1mob	= "%s",
-	TimerNextGaze	= "Восстановление взгляда",
-	TimerRebirth	= "Возрождение"
+	TimerNextGaze	= "Відновлення погляду",
+	TimerRebirth	= "Відродження"
 })
 
 L:SetOptionLocalization({--Translate
@@ -103,32 +103,32 @@ L:SetOptionLocalization({--Translate
 	TimerPhase1mob	= "Show time for Phase 1 mob active",
 	TimerNextGaze	= "Show timer for Thaladred's Gaze target changes",
 	TimerRebirth	= "Show timer for Phoenix Egg rebirth remaining",
-	RangeFrame		= "Контрольное окно придельной дистанции",
-	GazeWhisper		= "Сообщить шепотом цели, если Таладред на нем",
-	GazeIcon		= "Установить метку на цель Таладред"
+	RangeFrame		= "Контрольне вікно придільної дистанції",
+	GazeWhisper		= "Повідомити пошепки цілі, якщо Таладред на ньому",
+	GazeIcon		= "Встановити мітку на мету Таладред"
 })
 
 L:SetMiscLocalization({
 --	YellPull1	= "Энергия. Сила. Мои люди без них не могут... Эта зависимость возникла после уничтожения Солнечного Колодца. Добро пожаловать... в будущее. Мне очень жаль, но вы не сможете ничего изменить. Теперь меня никто не остановит! Селама ашаль-аноре!",
-	YellPhase2	= "Как видите, оружия у меня предостаточно...",
-	YellPhase3	= "Возможно, я недооценил вас. Было бы несправедливо заставлять вас драться с четырьмя советниками сразу, но... Мои люди тоже никогда не знали справедливости. Я лишь возвращаю долг.",
-	YellPhase4	= "Увы, иногда приходится брать все в свои руки. Баламоре шаналь!",
-	YellPhase5	= "Я не затем ступил на этот путь, чтобы остановиться на полдороги! Мои планы должны сбыться  и они сбудутся! Узрите же истинную мощь!",
-	YellSang	= "Вы справились с моими лучшими советниками... Но перед мощью Кровавого Молота не устоит никто. Узрите лорда Сангвинара!",
-	YellCaper	= "Каперниан проследит, чтобы вы не задержались здесь надолго.",
-	YellTelo	= "Неплохо, теперь вы можете потягаться с моим главным инженером Телоникусом.",
-	EmoteGaze	= "смотрит на ([^%s]+)!",
-	GazeWhisper	= "Таладред бросает взор на ВАС! Бегите!",
-	Thaladred	= "Таладред Светокрад",
-	Sanguinar	= "Лорд Сангвинар",
-	Capernian	= "Великий Звездочет Каперниан",
-	Telonicus	= "Старший инженер Телоникус",
-	Bow			= "Длинный лук Края Пустоты",
-	Axe			= "Сокрушение",
-	Mace		= "Вселенский вдохновитель",
-	Dagger		= "Клинки Бесконечности",
-	Sword		= "Астральный тесак",
-	Shield		= "Фазовый щит",
-	Staff		= "Посох Распыления",
-	Egg			= "Яйцо феникса"
+	YellPhase2	= "Як бачите, зброї у мене достатньо...",
+	YellPhase3	= "Можливо, я вас недооцінив. Було б несправедливо змушувати вас битися з чотирма радниками одразу, але... Мої люди теж ніколи не знали справедливості. Я лише повертаю борг.",
+	YellPhase4	= "На жаль, іноді доводиться брати все у свої руки. Баламоре шаналь!",
+	YellPhase5	= "Я не потім ступив на цей шлях, щоб зупинитися на півдорозі! Мої плани повинні здійснитися і вони здійсняться! Побачте ж справжню міць!",
+	YellSang	= "Ви впоралися з моїми найкращими радниками... Але перед силою Кривавого Молота ніхто не встоїть. Побачте лорда Сангвінара!",
+	YellCaper	= "Каперніан простежить, щоб ви не затрималися надовго.",
+	YellTelo	= "Непогано, тепер ви можете потягатися з головним інженером Телонікусом.",
+	EmoteGaze	= "дивиться на ([^%s]+)!",
+	GazeWhisper	= "Таладред кидає погляд на ВАС! Біжіть!",
+	Thaladred	= "Таладред Світлорад",
+	Sanguinar	= "Лорд Сангвінар",
+	Capernian	= "Великий Звездочет Каперніан",
+	Telonicus	= "Старший інженер Телонікус",
+	Bow			= "Довга цибуля Краю Порожнечі",
+	Axe			= "Скруха",
+	Mace		= "Вселенський натхненник",
+	Dagger		= "Клинки Нескінченності",
+	Sword		= "Астральний тесак",
+	Shield		= "Фазовий щит",
+	Staff		= "Посох Розпорошення",
+	Egg			= "Яйце фенікса"
 })

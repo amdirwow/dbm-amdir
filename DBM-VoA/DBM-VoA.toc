@@ -19,7 +19,7 @@
 ## X-DBM-StatTypes: normal,normal25
 ## X-DBM-Mod-Name: Vault of Archavon
 ## X-DBM-Mod-Name-deDE: Archavons Kammer
-## X-DBM-Mod-Name-ruRU: Склеп Аркавона
+## X-DBM-Mod-Name-ruRU:Склеп Аркавона
 ## X-DBM-Mod-Name-zhTW: 亞夏梵穹殿
 ## X-DBM-Mod-Name-zhCN: 阿尔卡冯的宝库
 ## X-DBM-Mod-Name-koKR: 아카본 석실
@@ -30,7 +30,7 @@
 ## X-DBM-Mod-MapID: 533
 ## X-DBM-Mod-LoadZone: Vault of Archavon
 ## X-DBM-Mod-LoadZone-zhCN: 阿尔卡冯的宝库
-## X-DBM-Mod-LoadZone-ruRU: Склеп Аркавона
+## X-DBM-Mod-LoadZone-ruRU:Склеп Аркавона
 ## X-DBM-Mod-LoadZone-frFR: Caveau d'Archavon
 
 localization.en.lua

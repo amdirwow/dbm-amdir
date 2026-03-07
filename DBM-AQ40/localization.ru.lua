@@ -17,13 +17,13 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ThreeBugs")
 
 L:SetGeneralLocalization({
-	name = "Семейство жуков"
+	name = "Сімейство жуків"
 })
 
 L:SetMiscLocalization({
-	Yauj = "Принцесса Яудж",
+	Yauj = "Принцеса Яудж",
 	Vem = "Вем",
-	Kri = "Лорд Кри"
+	Kri = "Лорд Крі"
 })
 
 -------------
@@ -32,7 +32,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Sartura")
 
 L:SetGeneralLocalization({
-	name = "Боевой страж Сартура"
+	name = "Бойовий страж Сартура"
 })
 
 --------------
@@ -41,7 +41,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Fankriss")
 
 L:SetGeneralLocalization({
-	name = "Фанкрисс Непреклонный"
+	name = "Фанкріс Непохитний"
 })
 
 --------------
@@ -54,26 +54,26 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarnFreeze	= "Заморожен: %d/3",
-	WarnShatter	= "Расколот: %d/3"
+	WarnFreeze	= "Заморожено: %d/3",
+	WarnShatter	= "Розколотий: %d/3"
 })
 
 L:SetOptionLocalization({
-	WarnFreeze	= "Объявлять статус Заморозки",
-	WarnShatter	= "Объявлять статус Раскола"
+	WarnFreeze	= "Оголошувати статус Заморозки",
+	WarnShatter	= "Оголошувати статус Розколу"
 })
 
 L:SetMiscLocalization({
-	Slow		= "замедляется!",
-	Freezing	= "замораживается!",
-	Frozen		= "застывает!",
-	Phase4		= "начинает раскалываться!",
-	Phase5		= "едва держится!",
-	Phase6		= "взрывается!",
+	Slow		= "уповільнюється!",
+	Freezing	= "заморожується!",
+	Frozen		= "застигає!",
+	Phase4		= "починає розколюватись!",
+	Phase5		= "ледве тримається!",
+	Phase6		= "вибухає!",
 
-	HitsRemain	= "Ударов Осталось",
-	Frost		= "Лёд",
-	Physical	= "Физический урон"
+	HitsRemain	= "Ударів Залишилось",
+	Frost		= "Лід",
+	Physical	= "Фізичні втрати"
 })
 
 -------------
@@ -82,7 +82,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Huhuran")
 
 L:SetGeneralLocalization({
-	name = "Принцесса Хухуран"
+	name = "Принцеса Хухуран"
 })
 
 ---------------
@@ -91,12 +91,12 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TwinEmpsAQ")
 
 L:SetGeneralLocalization({
-	name = "Императоры-близнецы"
+	name = "Імператори-близнюки"
 })
 
 L:SetMiscLocalization({
-	Veklor = "Император Век'лор",
-	Veknil = "Император Век'нилаш"
+	Veklor = "Імператор Век'лор",
+	Veknil = "Імператор Век'нілаш"
 })
 
 ------------
@@ -109,41 +109,41 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarnEyeTentacle	= "Глазной отросток",
+	WarnEyeTentacle	= "Очний відросток",
 	WarnClawTentacle2	= "Когтещупальце",
-	WarnGiantEyeTentacle	= "Огромное глазастое щупальце",
-	WarnGiantClawTentacle	= "Гигантский когтещуп",
-	WarnWeakened		= "К'Тун ослаблен!"
+	WarnGiantEyeTentacle	= "Величезне окулясте щупальце",
+	WarnGiantClawTentacle	= "Гігантський кігтещуп",
+	WarnWeakened		= "К'Тун ослаблений!"
 })
 
 L:SetTimerLocalization({
-	TimerEyeTentacle	= "Глазной отросток",
-	TimerGiantEyeTentacle	= "Огромное глазастое щупальце",
+	TimerEyeTentacle	= "Очний відросток",
+	TimerGiantEyeTentacle	= "Величезне окулясте щупальце",
 	TimerClawTentacle	= "Когтещупальце",
-	TimerGiantClawTentacle	= "Гигантский когтещуп",
-	TimerWeakened		= "Ослаблен закончен"
+	TimerGiantClawTentacle	= "Гігантський кігтещуп",
+	TimerWeakened		= "Ослаблений закінчений"
 })
 
 L:SetOptionLocalization({
-	WarnEyeTentacle			= "Показывать предупреждение для Глазного отростка",
-	WarnClawTentacle2		= "Показывать предупреждение для Когтещупальца",
-	WarnGiantEyeTentacle	= "Показывать предупреждение для Огромного глазастого щупальца",
-	WarnGiantClawTentacle	= "Показывать предупреждение для Гигантского когтещупа",
-	SpecWarnWeakened		= "Показывать специальное предупреждение, когда босс ослаблен",
-	TimerEyeTentacle		= "Показывать таймер до следующего Глазного отростка",
-	TimerClawTentacle		= "Показывать таймер до следующего Когтещупальца",
-	TimerGiantEyeTentacle	= "Показывать таймер до следующего Огромного глазастого щупальца",
-	TimerGiantClawTentacle	= "Показывать таймер до следующего Гигантского когтещупа",
-	TimerWeakened			= "Показывать таймер продолжительности ослабления босса",
-	RangeFrame				= "Показывать индикатор расстояния (10)"
+	WarnEyeTentacle			= "Показувати попередження для Очного відростка",
+	WarnClawTentacle2		= "Показувати попередження для Когтещупальця",
+	WarnGiantEyeTentacle	= "Показувати попередження для Великого очуватого щупальця",
+	WarnGiantClawTentacle	= "Показувати попередження для Гігантського кігтещупу",
+	SpecWarnWeakened		= "Показувати спеціальне попередження, коли бос ослаблений",
+	TimerEyeTentacle		= "Показувати таймер до наступного Очного відростка",
+	TimerClawTentacle		= "Показувати таймер до наступного Когтещупальця",
+	TimerGiantEyeTentacle	= "Показувати таймер до наступного Величезного окулястого щупальця",
+	TimerGiantClawTentacle	= "Показувати таймер до наступного Гігантського кігтещупу",
+	TimerWeakened			= "Показувати таймер тривалості ослаблення боса",
+	RangeFrame				= "Показувати індикатор відстані (10)"
 })
 
 L:SetMiscLocalization({
-	Stomach		= "Живот",
+	Stomach		= "Тварин",
 	Eye			= "Око К'Туна",
-	FleshTent	= "Мясистое щупальце",--Localized so it shows on frame in users language, not senders
-	Weakened	= "ослаблен!",
-	NotValid	= "АК40 частично зачищен. %s необязательные боссы остались."
+	FleshTent	= "М'ясисте щупальце",--Localized so it shows on frame in users language, not senders
+	Weakened	= "ослаблений!",
+	NotValid	= "АК40 частково зачищений. %s необов'язкові боси залишилися."
 })
 
 ----------------
@@ -156,20 +156,20 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarnSubmerge		= "Закапывание",
-	WarnEmerge			= "Появление"
+	WarnSubmerge		= "Закопування",
+	WarnEmerge			= "Поява"
 })
 
 L:SetTimerLocalization({
-	TimerSubmerge		= "Закапывание",
-	TimerEmerge			= "Появление"
+	TimerSubmerge		= "Закопування",
+	TimerEmerge			= "Поява"
 })
 
 L:SetOptionLocalization({
-	WarnSubmerge		= "Показывать предупреждение о закапывании",
-	TimerSubmerge		= "Показывать таймер до закапывания",
-	WarnEmerge			= "Показывать предупреждение о появлении",
-	TimerEmerge			= "Показывать таймер до появления"
+	WarnSubmerge		= "Показувати попередження про закапування",
+	TimerSubmerge		= "Показувати таймер до закапування",
+	WarnEmerge			= "Показувати попередження про появу",
+	TimerEmerge			= "Показувати таймер до появи"
 })
 
 ----------------

@@ -7,19 +7,19 @@ local L
 L = DBM:GetModLocalization("Nalorakk")
 
 L:SetGeneralLocalization({
-	name = "Налоракк"
+	name = "Налорак"
 })
 
 L:SetWarningLocalization({
-	WarnBear		= "Форма медведя",
-	WarnBearSoon	= "Форма медведя через 5 секунд",
-	WarnNormal		= "Обычная форма",
-	WarnNormalSoon	= "Обычная форма через 5 секунд"
+	WarnBear		= "Форма ведмедя",
+	WarnBearSoon	= "Форма ведмедя за 5 секунд",
+	WarnNormal		= "Звичайна форма",
+	WarnNormalSoon	= "Звичайна форма через 5 секунд"
 })
 
 L:SetTimerLocalization({
-	TimerBear		= "Форма медведя",
-	TimerNormal		= "Обычная форма"
+	TimerBear		= "Форма ведмедя",
+	TimerNormal		= "Звичайна форма"
 })
 
 L:SetOptionLocalization({
@@ -32,9 +32,9 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellPull	= "Вперед, стражники! Начнем резню!",
-	YellBear	= "Если вызвать чудовище, то мало не покажется, точно говорю!",
-	YellNormal	= "Пропустите Налоракка!"
+	YellPull	= "Вперед, вартові! Почнемо різанину!",
+	YellBear	= "Якщо викликати чудовисько, то мало не здається, точно кажу!",
+	YellNormal	= "Пропустіть Налорак!"
 })
 
 ---------------
@@ -43,13 +43,13 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Akilzon")
 
 L:SetGeneralLocalization({
-	name = "Акил'зон"
+	name = "Акіл'зон"
 })
 L:SetTimerLocalization({
-    TimerStorm = "электрическая буря"
+    TimerStorm = "електрична буря"
 })
 L:SetMiscLocalization({
-	YellPull	= "Я – охотник! Вы – добыча!",
+	YellPull	= "Я – мисливець! Ви – видобуток!",
 })
 
 ---------------
@@ -58,13 +58,13 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Janalai")
 
 L:SetGeneralLocalization({
-	name = "Джан'алаи"
+	name = "Джан'алаї"
 })
 
 L:SetMiscLocalization({
-	YellPull	= "Духи ветра станут вашей погибелью!",
-	YellBomb	= "Сгиньте в огне!",
-	YellAdds	= "Где мои Наседки? Пора за яйца приниматься!"
+	YellPull	= "Духи вітру стануть вашою смертю!",
+	YellBomb	= "Згиніть у вогні!",
+	YellAdds	= "Де мої квочка? Час за яйця прийматися!"
 })
 
 --------------
@@ -73,12 +73,12 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Halazzi")
 
 L:SetGeneralLocalization({
-	name = "Халаззи"
+	name = "Халаззі"
 })
 
 L:SetWarningLocalization({
-	WarnSpirit	= "Призывает дух",
-	WarnNormal	= "Дух исчезает"
+	WarnSpirit	= "Закликає дух",
+	WarnNormal	= "Дух зникає"
 })
 
 L:SetOptionLocalization({
@@ -87,9 +87,9 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellPull	= "На колени!! Склонитесь пред клыком и когтем!",
-	YellSpirit	= "Со мною дикий дух...",
-	YellNormal	= "О дух, вернись ко мне!"
+	YellPull	= "На коліна!! Схилиться перед іклом і пазуром!",
+	YellSpirit	= "Зі мною дикий дух...",
+	YellNormal	= "О дух, повернися до мене!"
 })
 
 --------------------------
@@ -98,11 +98,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Malacrass")
 
 L:SetGeneralLocalization({
-	name = "Повелитель проклятий Малакрасс"
+	name = "Повелитель прокляття Малакрасс"
 })
 
 L:SetMiscLocalization({
-	YellPull	= "На вас падет тень..."
+	YellPull	= "На вас впаде тінь..."
 })
 
 --------------
@@ -116,8 +116,8 @@ L:SetGeneralLocalization({
 
 L:SetMiscLocalization({
 --	YellPull	= "Nobody badduh dan me!",
-	YellPhase2	= "Выучил новый фокус… прямо как братишка-медведь...",
-	YellPhase3	= "От орла нигде не скрыться!",
-	YellPhase4	= "Позвольте представить моих двух братцев: клык и коготь!",
-	YellPhase5	= "Для того чтобы увидеть дракондора, в небо смотреть необязательно!"
+	YellPhase2	= "Вивчив новий фокус… просто як братик-ведмідь...",
+	YellPhase3	= "Від орла ніде не втекти!",
+	YellPhase4	= "Дозвольте представити моїх двох братиків: ікло і кіготь!",
+	YellPhase5	= "Щоб побачити дракондора, в небо дивитися необов'язково!"
 })

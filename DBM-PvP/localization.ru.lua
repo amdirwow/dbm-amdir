@@ -8,114 +8,114 @@ local L
 L = DBM:GetModLocalization("PvPGeneral")
 
 L:SetGeneralLocalization({
-	name = "Общие параметры"
+	name = "Загальні параметри"
 })
 
 L:SetTimerLocalization({
-	TimerFlag		= "Флаг восстановлен",
-	TimerShadow		= "Сумеречное зрение",
-	TimerStart		= "Битва начнется через",
-	TimerWin		= "Победа в"
+	TimerFlag		= "Прапор відновлено",
+	TimerShadow		= "Сутінковий зір",
+	TimerStart		= "Битва почнеться через",
+	TimerWin		= "Перемога у"
 })
 
 L:SetOptionLocalization({
-	AutoSpirit			= "Автоматически покидать тело",
-	ColorByClass		= "Показывать имена цветом класса в таблице очков",
-	HideBossEmoteFrame	= "Скрыть фрейм эмоций рейдового босса",
-	ShowBasesToWin		= "Отображать базы, которые необходимо захватить",
-	ShowEstimatedPoints	= "Отображать предполагаемые очки оставшиеся до победы/поражения",
-	ShowFlagCarrier		= "Показать флагоносца",
-	ShowGatesHealth		= "Отображать здоровье поврежденых ворот (значение здоровья может быть некорректным после захода в уже начавшееся поле боя!)",
-	ShowRelativeGameTime= "Заполните таймер победы относительно времени начала поля боя (если он отключен, панель всегда выглядит заполненной)",
-	TimerCap			= "Отсчет времени до захвата",
-	TimerFlag			= "Отсчет времени до восстановления флага",
-	TimerShadow			= "Отсчет времени для Сумрачного зрения",
-	TimerStart			= "Отсчет времени до начала битвы",
-	TimerWin			= "Отсчет времени до победы"
+	AutoSpirit			= "Автоматично залишати тіло",
+	ColorByClass		= "Показувати імена кольором класу у таблиці очок",
+	HideBossEmoteFrame	= "Приховати кадр емоцій рейдового боса",
+	ShowBasesToWin		= "Відображати бази, які потрібно захопити",
+	ShowEstimatedPoints	= "Відображати передбачувані очки, що залишилися до перемоги/ураження",
+	ShowFlagCarrier		= "Показати прапороносця",
+	ShowGatesHealth		= "Відображати здоров'я пошкоджених воріт (значення здоров'я може бути некоректним після заходу в поле бою, що вже почалося!)",
+	ShowRelativeGameTime= "Заповніть таймер перемоги щодо часу початку поля бою (якщо він вимкнений, панель завжди виглядає заповненою)",
+	TimerCap			= "Відлік до захоплення",
+	TimerFlag			= "Відлік до відновлення прапора",
+	TimerShadow			= "Відлік для Похмурого зору",
+	TimerStart			= "Відлік до початку битви",
+	TimerWin			= "Відлік до перемоги"
 })
 
 L:SetMiscLocalization({
 	--BG 2 minutes
-	BgStart120TC		= "Битва начнется через 2 минуты!",
+	BgStart120TC		= "Битва розпочнеться за 2 хвилини!",
 	--BG 1 minute
-	BgStart60TC			= "Битва начнется через минуту!",
-	BgStart60OLD		= "Битва начнется через 60 секунд.",
-	BgStart60AlteracTC	= "До начала сражения за Альтеракскую долину остается 1 минута.",
-	BgStart60SotAOLD	= "Сражение за Берег Древних начнется через 1 минуту.",
-	BgStart60SotA2TC	= "Второй раунд сражения за Берег Древних начнется через 1 минуту.",
-	BgStart60WarsongTC	= "Битва за Ущелье Песни Войны начнется через 1 минуту.",
-	BgStart60ArathiOLD	= "Битва за Низину Арати начнется через минуту.",
+	BgStart60TC			= "Битва розпочнеться за хвилину!",
+	BgStart60OLD		= "Битва розпочнеться за 60 секунд.",
+	BgStart60AlteracTC	= "До початку бою за Альтеракську долину залишається 1 хвилина.",
+	BgStart60SotAOLD	= "Бій за Берег Стародавніх розпочнеться за 1 хвилину.",
+	BgStart60SotA2TC	= "Другий раунд бою за Берег Стародавніх розпочнеться за 1 хвилину.",
+	BgStart60WarsongTC	= "Битва за Ущелину Пісні Війни розпочнеться за 1 хвилину.",
+	BgStart60ArathiOLD	= "Битва за Нізину Араті розпочнеться за хвилину.",
 	-- BG 30 seconds
-	BgStart30TC			= "Битва начнется через 30 секунд!",
-	BgStart30OLD		= "Битва начнется через 30 секунд.",
-	BgStart30AlteracTC	= "30 секунд до начала битвы в Альтеракской долине.",
-	BgStart30SotAOLD	= "Сражение за Берег Древних начнется через 30 секунд. Готовьтесь!",
-	BgStart30SotA2TC	= "Второй раунд начинается через 30 секунд. Приготовьтесь!",
-	BgStart30WarsongTC	= "Битва за Ущелье Песни Войны начнется через 30 секунд. Приготовиться!",
-	BgStart30ArathiOLD	= "Битва за Низину Арати начнется через 30 секунд.",
+	BgStart30TC			= "Битва розпочнеться за 30 секунд!",
+	BgStart30OLD		= "Битва розпочнеться за 30 секунд.",
+	BgStart30AlteracTC	= "30 секунд на початок битви в Альтеракській долині.",
+	BgStart30SotAOLD	= "Бій за Берег Стародавніх розпочнеться за 30 секунд. Готуйтесь!",
+	BgStart30SotA2TC	= "Другий раунд починається за 30 секунд. Приготуйтеся!",
+	BgStart30WarsongTC	= "Битва за Ущелину Пісні Війни розпочнеться за 30 секунд. Приготуватись!",
+	BgStart30ArathiOLD	= "Битва за Нізину Араті розпочнеться за 30 секунд.",
 	--
-	ArenaInvite			= "Приглашение на Арену",
-	Start60TC			= "Одна минута до начала боя на арене!",
-	Start30TC			= "Тридцать секунд до начала боя на арене !",
-	Start15TC			= "Пятнадцать секунд до начала боя на арене!",
-	BasesToWin			= "Захвачено баз: %d",
-	WinBarText			= "Победа %s",
+	ArenaInvite			= "Запрошення на Арену",
+	Start60TC			= "Одна хвилина на початок бою на арені!",
+	Start30TC			= "Тридцять секунд до початку бою на арені!",
+	Start15TC			= "П'ятнадцять секунд до початку бою на арені!",
+	BasesToWin			= "Захоплено бази: %d",
+	WinBarText			= "Перемога %s",
 	-- Flag carrying system
-	Flag				= "Флаг",
-	FlagResetTC			= "Флаг возвращен на базу.",
-	FlagTakenTC			= "(.+) захватывает флаг!",
-	FlagCapturedTC		= ".+ захватил.* флаг!",
-	FlagDroppedTC		= "Флаг уронили!",
+	Flag				= "Прапор",
+	FlagResetTC			= "Прапор повернуто на базу.",
+	FlagTakenTC			= "(.+) захоплює прапор!",
+	FlagCapturedTC		= ".+ захопив.* прапор!",
+	FlagDroppedTC		= "Прапор упустили!",
 	--
-	ExprFlagPickUpATC	= "Флаг Альянса у |3-1((.+))!",
-	ExprFlagPickUpHTC	= "(.+) несет флаг Орды!",
-	ExprFlagCapturedTC	= "(.+) захватывает флаг .+!",
-	ExprFlagReturnTC	= "(.+) возвращает на базу флаг .+!",
-	ExprFlagDroppedTC	= "(.+) роняет флаг .+!",
-	Vulnerable1			= "Персонажи, несущие флаг, стали более уязвимы!",
-	Vulnerable2			= "Персонажи, несущие флаг, стали еще более уязвимы!",
+	ExprFlagPickUpATC	= "Прапор Альянсу у |3-1((.+))!",
+	ExprFlagPickUpHTC	= "(.+) несе прапор Орди!",
+	ExprFlagCapturedTC	= "(.+) захоплює прапор .+!",
+	ExprFlagReturnTC	= "(.+) повертає на базу прапор .+!",
+	ExprFlagDroppedTC	= "(.+) упускає прапор .+!",
+	Vulnerable1			= "Персонажі, які несуть прапор, стали вразливішими!",
+	Vulnerable2			= "Персонажі, які несуть прапор, стали ще вразливішими!",
 	-- Alterac/IsleOfConquest bosses
-	InfoFrameHeader		= "Здоровье босса",
-	HordeBoss			= "Босс Орды",
-	AllianceBoss		= "Босс Альянса",
+	InfoFrameHeader		= "Здоров'я боса",
+	HordeBoss			= "Бос Орди",
+	AllianceBoss		= "Бос Альянсу",
 	Galvangar			= "Гальвангар",
-	Balinda				= "Балинда",
-	Ivus				= "Ивус",
+	Balinda				= "Балінда",
+	Ivus				= "Івус",
 	Lokholar			= "Локолар",
 	-- Gates
-	GatesHealthFrame				= "Поврежденные ворота",
-	HordeGateFront					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Главные врата",
-	HordeGateFrontDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Главные врата",
-	HordeGateWest					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Западные врата",
-	HordeGateWestDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Западные врата",
-	HordeGateEast					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Восточные врата",
-	HordeGateEastDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Восточные врата",
-	AllianceGateFront				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Главные врата",
-	AllianceGateFrontDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Главные врата",
-	AllianceGateWest				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Западные врата",
-	AllianceGateWestDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Западные врата",
-	AllianceGateEast				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Восточные врата",
-	AllianceGateEastDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Восточные врата",
+	GatesHealthFrame				= "Пошкоджені ворота",
+	HordeGateFront					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Головна брама",
+	HordeGateFrontDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Головна брама",
+	HordeGateWest					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Західна брама",
+	HordeGateWestDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Західна брама",
+	HordeGateEast					= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:127:143:92:107|t Східна брама",
+	HordeGateEastDestroyedTex		= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:163:179:92:107|t Східна брама",
+	AllianceGateFront				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Головна брама",
+	AllianceGateFrontDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Головна брама",
+	AllianceGateWest				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Західна брама",
+	AllianceGateWestDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Західна брама",
+	AllianceGateEast				= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:181:197:92:107|t Східна брама",
+	AllianceGateEastDestroyedTex	= "|TInterface\\MINIMAP\\POIICONS.BLP:16:16:0:0:256:256:217:233:92:107|t Східна брама",
 	-- Strands of the Ancients Gates emotes
-	GreenEmeraldAttacked			= "Врата Зеленого Изумруда подверглись нападению!",
-	GreenEmeraldDestroyed			= "Врата Зеленого Изумруда разрушены!",
-	BlueSapphireAttacked			= "Врата Синего Сапфира подверглись нападению!",
-	BlueSapphireDestroyed			= "Врата Синего Сапфира разрушены!",
-	PurpleAmethystAttacked			= "Врата Лилового Аметиста подверглись нападению!",
-	PurpleAmethystDestroyed			= "Врата Лилового Аметиста разрушены!",
-	RedSunAttacked					= "Врата Красного Солнца подверглись нападению!",
-	RedSunDestroyed					= "Врата Красного Солнца разрушены!",
-	YellowMoonAttacked				= "Врата Желтой Луны подверглись нападению!",
-	YellowMoonDestroyed				= "Врата Желтой Луны разрушены!",
-	ChamberAncientRelicsAttacked	= "Крепость атакуют!",
-	ChamberAncientRelicsDestroyed	= "В стене пролом! Реликвии грозит опасность!",
+	GreenEmeraldAttacked			= "Брама Зеленого Смарагду зазнала нападу!",
+	GreenEmeraldDestroyed			= "Ворота Зеленого Смарагду зруйновано!",
+	BlueSapphireAttacked			= "Брама Синього Сапфіра зазнала нападу!",
+	BlueSapphireDestroyed			= "Брама Синього Сапфіра зруйнована!",
+	PurpleAmethystAttacked			= "Брама Лілового Аметиста зазнала нападу!",
+	PurpleAmethystDestroyed			= "Брама Лілового Аметиста зруйнована!",
+	RedSunAttacked					= "Брама Червоного Сонця зазнала нападу!",
+	RedSunDestroyed					= "Брама Червоного Сонця зруйнована!",
+	YellowMoonAttacked				= "Брама Жовтого Місяця зазнала нападу!",
+	YellowMoonDestroyed				= "Брама Жовтого Місяця зруйнована!",
+	ChamberAncientRelicsAttacked	= "Фортеця атакують!",
+	ChamberAncientRelicsDestroyed	= "У стіні пролом! Реліквії загрожує небезпека!",
 	-- Isle of Conquest Gates CHAT_MSG_BG_SYSTEM_NEUTRAL messages
-	HordeGateFrontDestroyedTC		= "Главные врата крепости Орды разрушены!",
-	HordeGateWestDestroyedTC		= "Западные врата крепости Орды разрушены!",
-	HordeGateEastDestroyedTC		= "Восточные врата крепости Орды разрушены!",
-	AllianceGateFrontDestroyedTC	= "Главные врата крепости Альянса разрушены!",
-	AllianceGateWestDestroyedTC		= "Западные врата крепости Альянса разрушены!",
-	AllianceGateEastDestroyedTC		= "Восточные врата крепости Альянса разрушены!",
+	HordeGateFrontDestroyedTC		= "Головні ворота фортеці Орди зруйновані!",
+	HordeGateWestDestroyedTC		= "Західні ворота фортеці Орди зруйновані!",
+	HordeGateEastDestroyedTC		= "Східні ворота фортеці Орди зруйновані!",
+	AllianceGateFrontDestroyedTC	= "Головні ворота фортеці Альянсу зруйновані!",
+	AllianceGateWestDestroyedTC		= "Західна брама фортеці Альянсу зруйнована!",
+	AllianceGateEastDestroyedTC		= "Східні ворота фортеці Альянсу зруйновані!",
 })
 
 ----------------------
@@ -124,11 +124,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("AlteracValley")
 
 L:SetGeneralLocalization({
-	name = "Альтеракская долина"
+	name = "Альтеракська долина"
 })
 
 L:SetOptionLocalization({
-	AutoTurnIn	= "Автоматическая сдача заданий"
+	AutoTurnIn	= "Автоматичне здавання завдань"
 })
 
 --------------------
@@ -137,7 +137,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("ArathiBasin")
 
 L:SetGeneralLocalization({
-	name = "Низина Арати"
+	name = "Низина Араті"
 })
 
 ------------------------
@@ -146,7 +146,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("EyeoftheStorm")
 
 L:SetGeneralLocalization({
-	name = "Око Бури"
+	name = "Око Бурі"
 })
 
 ---------------------
@@ -155,7 +155,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("WarsongGulch")
 
 L:SetGeneralLocalization({
-	name = "Ущелье Песни Войны"
+	name = "Ущелина Пісні Війни"
 })
 
 ------------------------------
@@ -164,7 +164,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("StrandoftheAncients")
 
 L:SetGeneralLocalization({
-	name = "Берег Древних"
+	name = "Берег Стародавніх"
 })
 
 ------------------------
@@ -173,32 +173,32 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("IsleofConquest")
 
 L:SetGeneralLocalization({
-	name = "Остров Завоеваний"
+	name = "Острів Завоювань"
 })
 
 L:SetWarningLocalization({
-	WarnSiegeEngine		= "Осадная машина готова!",
-	WarnSiegeEngineSoon	= "Осадная машина через ~10 сек"
+	WarnSiegeEngine		= "Облогова машина готова!",
+	WarnSiegeEngineSoon	= "Облогова машина через ~10 сек"
 })
 
 L:SetTimerLocalization({
-	TimerSiegeEngine	= "Осадная машина готова"
+	TimerSiegeEngine	= "Облогова машина готова"
 })
 
 L:SetOptionLocalization({
-	TimerSiegeEngine	= "Отсчет времени до создания Осадной машины",
-	WarnSiegeEngine		= "Предупреждение, когда создание Осадной машины завершено",
-	WarnSiegeEngineSoon	= "Предупреждение, когда создание Осадной машины почти завершено"
+	TimerSiegeEngine	= "Відлік до створення Облогової машини",
+	WarnSiegeEngine		= "Попередження, коли створення Облогової машини завершено",
+	WarnSiegeEngineSoon	= "Попередження, коли створення Облогової машини майже завершено"
 })
 
 L:SetMiscLocalization({
-	SiegeEngine				= "Осадная машина",
-	GoblinStartAlliance		= "Видите эти взрывчатые бомбы? Используйте их на воротах, пока я ремонтирую осадную машину!",
-	GoblinStartHorde		= "Я буду работать над осадной машиной, я ты меня прикрывай. Вот, можешь пользоваться этими сефориевыми бомбами, если тебе надо взорвать ворота.",
-	GoblinHalfwayAlliance	= "Я на полпути! Держите Орду подальше отсюда. В инженерном училище не учат боевым действиям!",
-	GoblinHalfwayHorde		= "Я примерно на полпути! Держите Альянс подальше - драки не в моем контракте!",
-	GoblinFinishedAlliance	= "Моя лучшая работа на данный момент! Эта осадная машина готова к действию!",
-	GoblinFinishedHorde		= "Осадная машина готова к работе!",
-	GoblinBrokenAlliance	= "Он уже сломан?! Не стоит беспокоиться. Я ничего не могу исправить.",
-	GoblinBrokenHorde		= "Опять сломано?! Я исправлю это ... только не ожидайте, что гарантия покроет это."
+	SiegeEngine				= "Облогова машина",
+	GoblinStartAlliance		= "Бачите ці вибухові бомби? Використовуйте їх на воротах, доки я ремонтую облогову машину!",
+	GoblinStartHorde		= "Я працюватиму над облоговою машиною, я ти мене прикривай. Ось можеш користуватися цими сефорієвими бомбами, якщо тобі треба підірвати ворота.",
+	GoblinHalfwayAlliance	= "Я на півдорозі! Тримайте Орду подалі. В інженерному училищі не вчать бойових дій!",
+	GoblinHalfwayHorde		= "Я приблизно на півдорозі! Тримайте Альянс подалі – бійки не в моєму контракті!",
+	GoblinFinishedAlliance	= "Моя найкраща робота на даний момент! Ця облогова машина готова до дії!",
+	GoblinFinishedHorde		= "Облогова машина готова до роботи!",
+	GoblinBrokenAlliance	= "Він уже зламаний?! Не варто турбуватися. Я нічого не можу виправити.",
+	GoblinBrokenHorde		= "Знову зламано? Я виправлю це ... тільки не чекайте, що гарантія покриє це."
 })

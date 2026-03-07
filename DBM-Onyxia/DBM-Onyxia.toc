@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Onyxia|r
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Repaire d'Onyxia|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Ониксия|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Оніксія|r
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Guarida de Onyxia|r
 ## Title-esMX:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Guarida de Onyxia|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0奧妮克希亞|r
@@ -21,7 +21,7 @@
 ## X-DBM-Mod-BlockRealm: Onyxia
 ## X-DBM-Mod-Name: Onyxia's Lair
 ## X-DBM-Mod-Name-frFR: Repaire d'Onyxia
-## X-DBM-Mod-Name-ruRU: Логово Ониксии
+## X-DBM-Mod-Name-ruRU:Логове Оніксії
 ## X-DBM-Mod-Name-esES: Guarida de Onyxia
 ## X-DBM-Mod-Name-esMX: Guarida de Onyxia
 ## X-DBM-Mod-Name-zhTW: 奧妮克希亞
@@ -30,7 +30,7 @@
 ## X-DBM-Mod-Name-deDE: Onyxias Hort
 ## X-DBM-Mod-LoadZone: Onyxia's Lair
 ## X-DBM-Mod-LoadZone-frFR: Repaire d'Onyxia
-## X-DBM-Mod-LoadZone-ruRU: Логово Ониксии
+## X-DBM-Mod-LoadZone-ruRU:Логове Оніксії
 ## X-DBM-Mod-LoadZone-esES: Guarida de Onyxia
 ## X-DBM-Mod-LoadZone-esMX: Guarida de Onyxia
 ## X-DBM-Mod-LoadZone-zhTW: 奧妮克希亞的巢穴

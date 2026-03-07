@@ -13,7 +13,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Gruul")
 
 L:SetGeneralLocalization({
-	name = "Груул Драконобой"
+	name = "Груул Драконобій"
 })
 
 L:SetWarningLocalization({
@@ -21,8 +21,8 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnGrowth		= "Показывать предупреждение для $spell:36300",
-	RangeDistance	= "Фрейм дистанции для $spell:33654",
-	Smaller			= "Маленькая дистанция (14)",
-	Safe			= "Безопасная дистанция (20)"
+	WarnGrowth		= "Показувати попередження для $spell:36300",
+	RangeDistance	= "Фрейм дистанції для $spell:33654",
+	Smaller			= "Маленька дистанція (14)",
+	Safe			= "Безпечна дистанція (20)"
 })

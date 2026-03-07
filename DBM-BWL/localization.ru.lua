@@ -8,20 +8,20 @@ local L
 L = DBM:GetModLocalization("Razorgore")
 
 L:SetGeneralLocalization({
-	name = "Бритвосмерт Неукротимый"
+	name = "Бритвосмерт Неприборканий"
 })
 
 L:SetTimerLocalization({
-	TimerAddsSpawn	= "Появление аддов"
+	TimerAddsSpawn	= "Поява аддів"
 })
 
 L:SetOptionLocalization({
-	TimerAddsSpawn	= "Показывать таймер до первого появления аддов"
+	TimerAddsSpawn	= "Показувати таймер до першої появи аддів"
 })
 
 L:SetMiscLocalization({
-	Phase2Emote = "убегает, как только сила сферы пошла на спад.",
-	YellPull = "Враги в инкубаторе! Бейте тревогу! Защищайте яйца любой ценой!"
+	Phase2Emote = "тікає, як тільки сила сфери пішла на спад.",
+	YellPull = "Вороги в інкубаторі! Бійте на сполох! Захищайте яйця за всяку ціну!"
 })
 
 -------------------
@@ -30,11 +30,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Vaelastrasz")
 
 L:SetGeneralLocalization({
-	name = "Валестраз Порочный"
+	name = "Валестраз Порочний"
 })
 
 L:SetMiscLocalization({
-	Event = "Умоляю, смертные! Бегите! Бегите, пока я еще могу себя удержать! Черный огонь бушует в моем сердце! Я должен... дать ему волю!"
+	Event = "Благаю, смертні! Біжіть! Біжіть, поки я можу себе втримати! Чорний вогонь вирує у моєму серці! Я мушу... дати йому волю!"
 })
 
 -----------------
@@ -43,11 +43,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Broodlord")
 
 L:SetGeneralLocalization({
-	name = "Предводитель драконов Разящий Бич"
+	name = "Предводитель драконів Розлучаючий Біч"
 })
 
 L:SetMiscLocalization({
-	Pull = "Таких, как вы, здесь быть не должно! Смерть грозит лишь вам!"
+	Pull = "Таких, як ви, тут не повинно бути! Смерть загрожує лише вам!"
 })
 
 ---------------
@@ -56,7 +56,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Firemaw")
 
 L:SetGeneralLocalization({
-	name = "Огнечрев"
+	name = "Огнєчрев"
 })
 
 ---------------
@@ -65,7 +65,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Ebonroc")
 
 L:SetGeneralLocalization({
-	name = "Черноскал"
+	name = "Чорноскел"
 })
 
 ----------------
@@ -84,24 +84,24 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TalonGuards")
 
 L:SetGeneralLocalization({
-	name = "Стражи Когтя Смерти"
+	name = "Вартові Кігтя Смерті"
 })
 
 L:SetWarningLocalization({
-	WarnVulnerable		= "Уязвимость к %s"
+	WarnVulnerable		= "Вразливість до %s"
 })
 
 L:SetOptionLocalization({
-	WarnVulnerable		= "Показывать предупреждение об уязвимости к заклинаниям"
+	WarnVulnerable		= "Показувати попередження про вразливість до заклинань"
 })
 
 L:SetMiscLocalization({
-	Fire		= "Огню",
-	Nature		= "силам Природы",
-	Frost		= "магии Льда",
-	Shadow		= "Темной магии",
-	Arcane		= "Тайной магии",
-	Holy		= "Светлой магии"
+	Fire		= "Вогню",
+	Nature		= "силам Природи",
+	Frost		= "магії Льоду",
+	Shadow		= "Темної магії",
+	Arcane		= "Таємної магії",
+	Holy		= "Світлій магії"
 })
 
 ------------------
@@ -114,39 +114,39 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarnBreathSoon	= "Скоро дыхание",
+	WarnBreathSoon	= "Незабаром дихання",
 	WarnBreath		= "%s",
-	WarnVulnerable	= "Уязвимость к %s",
-	WarnPhase2Soon	= "Скоро 2-ая фаза"
+	WarnVulnerable	= "Вразливість до %s",
+	WarnPhase2Soon	= "Незабаром 2-а фаза"
 })
 
 L:SetTimerLocalization({
-	TimerBreathCD	= "%s восстановление",
-	TimerBreath		= "Применение %s",
-	TimerVulnCD		= "Восстановление уязвимости"
+	TimerBreathCD	= "%s відновлення",
+	TimerBreath		= "Застосування %s",
+	TimerVulnCD		= "Відновлення вразливості"
 })
 
 L:SetOptionLocalization({
-	WarnBreathSoon	= "Предварительное предупреждение Дыхания Хромаггуса",
-	WarnBreath		= "Показывать предупреждение о дыханиях Хромаггуса",
-	WarnVulnerable	= "Показывать предупреждение об уязвимости к заклинаниям",
-	TimerBreathCD	= "Показывать время восстановления дыханий",
-	TimerBreath		= "Показывать применение Дыхания",
-	TimerVulnCD		= "Показывать восстановление уязвимости",
-	WarnPhase2Soon	= "Предупреждать о второй фазе"
+	WarnBreathSoon	= "Попереднє попередження Дихання Хромаггуса",
+	WarnBreath		= "Показувати попередження про дихання Хромаггуса",
+	WarnVulnerable	= "Показувати попередження про вразливість до заклинань",
+	TimerBreathCD	= "Показувати час відновлення дихань",
+	TimerBreath		= "Показувати застосування Дихання",
+	TimerVulnCD		= "Показувати відновлення вразливості",
+	WarnPhase2Soon	= "Попереджати про другу фазу"
 })
 
 L:SetMiscLocalization({
-	Breath1		= "Первое Дыхание",
-	Breath2		= "Второе Дыхание",
-	VulnEmote	= "%s изменяется, мерцая.",
-	Vuln		= "Уязвимость",
-	Fire		= "Огню",
-	Nature		= "силам Природы",
-	Frost		= "магии Льда",
-	Shadow		= "Темной магии",
-	Arcane		= "Тайной магии",
-	Holy		= "Светлой магии"
+	Breath1		= "Перше Дихання",
+	Breath2		= "Друге Дихання",
+	VulnEmote	= "%s змінюється, мерехтить.",
+	Vuln		= "Вразливість",
+	Fire		= "Вогню",
+	Nature		= "силам Природи",
+	Frost		= "магії Льоду",
+	Shadow		= "Темної магії",
+	Arcane		= "Таємної магії",
+	Holy		= "Світлій магії"
 })
 
 ----------------
@@ -155,43 +155,43 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Nefarian-Classic")
 
 L:SetGeneralLocalization({
-	name = "Нефариан"
+	name = "Нефаріан"
 })
 
 L:SetWarningLocalization({
-	WarnAddsLeft		= "Осталось %d убийств",
-	WarnClassCallSoon	= "Скоро вызов класса",
+	WarnAddsLeft		= "Залишилось %d вбивств",
+	WarnClassCallSoon	= "Скоро виклик класу",
 	WarnClassCall		= "Дебафф на %s",
 	WarnPhaseSoon		= "Скоро фаза %s",
 	WarnPhase			= "Фаза %s",
-	specwarnClassCall	= "Классовый зов на тебе!"
+	specwarnClassCall	= "Класовий поклик на тобі!"
 })
 
 L:SetTimerLocalization({
-	TimerClassCall		= "%s зов заканчивается"
+	TimerClassCall		= "%s поклик закінчується"
 })
 
 L:SetOptionLocalization({
-	TimerClassCall		= "Показывать таймер классовых вызовов",
-	WarnClassCallSoon	= "Предупреждение классовых вызовов",
-	WarnClassCall		= "Объявлять классовый вызов",
-	WarnPhaseSoon		= "Объявлять, когда следующая фаза скоро начнется",
-	WarnPhase			= "Объявлять смену фаз",
-	specwarnClassCall	= "Показывать специальное предупреждение, когда вы подвержены классовому зову"
+	TimerClassCall		= "Показувати таймер класових викликів",
+	WarnClassCallSoon	= "Попередження класових викликів",
+	WarnClassCall		= "Оголошувати класовий виклик",
+	WarnPhaseSoon		= "Оголошувати, коли наступна фаза незабаром почнеться",
+	WarnPhase			= "Оголошувати зміну фаз",
+	specwarnClassCall	= "Показувати спеціальне попередження, коли ви схильні до класового поклику"
 })
 
 L:SetMiscLocalization({
-	YellP1		= "Пусть состязания начнутся!",
-	YellP2		= "Браво, слуги мои! Смертные утрачивают мужество! Поглядим же, как они справятся с истинным владыкой Черной горы!!!",
-	YellP3		= "Не может быть! Восстаньте, мои прислужники! Послужите господину еще раз!",
-	YellShaman	= "Шаманы, покажите, на что способны ваши тотемы!",
-	YellPaladin	= "Паладины... Я слышал, у вас несколько жизней. Докажите.",
-	YellDruid	= "Друиды и их дурацкие превращения... Ну что ж, поглядим!",
-	YellPriest	= "Жрецы! Если вы собираетесь продолжать так лечить, то давайте хоть немного разнообразим процесс!",
-	YellWarrior	= "Я знаю, воины, вы можете бить сильнее! Ну-ка, покажите!",
-	YellRogue = "Разбойники? Хватит прятаться, покажитесь!",
-	YellWarlock	= "Чернокнижники, ну не беритесь вы за волшебство, которого сами не понимаете! Видите, что получилось?",
-	YellHunter	= "Охотники со своими жалкими пугачами!",
-	YellMage	= "И маги тоже? Осторожнее надо быть, когда играешь с магией...",
-	YellDK		= "Рыцари смерти! Сюда!"
+	YellP1		= "Нехай змагання розпочнуться!",
+	YellP2		= "Браво, слуги мої! Смертні втрачають мужність! Подивимося ж, як вони впораються із справжнім володарем Чорної гори!!!",
+	YellP3		= "Не може бути! Встаньте, мої прислужники! Послужіть пану ще раз!",
+	YellShaman	= "Шамани, покажіть, на що здатні ваші тотеми!",
+	YellPaladin	= "Паладини... Я чув, у вас кілька життів. Доведіть.",
+	YellDruid	= "Друїди та їхні безглузді перетворення... Ну що ж, подивимося!",
+	YellPriest	= "Жерці! Якщо ви збираєтеся так лікувати, то давайте хоч трохи урізноманітним процес!",
+	YellWarrior	= "Я знаю, воїни, ви можете бити сильніше! Ану, покажіть!",
+	YellRogue = "Розбійники? Досить ховатися, здайтеся!",
+	YellWarlock	= "Чорнокнижники, ну не беріться ви за чаклунство, якого самі не розумієте! Бачите, що вийшло?",
+	YellHunter	= "Мисливці зі своїми жалюгідними пугачами!",
+	YellMage	= "І маги теж? Обережніше треба бути, коли граєш із магією.",
+	YellDK		= "Лицарі смерті! Сюди!"
 })

@@ -7,7 +7,7 @@ local L
 L = DBM:GetModLocalization("Najentus")
 
 L:SetGeneralLocalization({
-	name = "Верховный Полководец Надж'ентус"
+	name = "Верховний Полководець Надджентус"
 })
 
 L:SetOptionLocalization({
@@ -43,9 +43,9 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	PhaseTank		= "в гневе ударяет по земле!",--Check if Backwards
-	PhaseKite		= "Земля начинает раскалываться!",--Check if Backwards
-	ChangeTarget	= "атакует новую цель!",
+	PhaseTank		= "у гніві вдаряє по землі!",--Check if Backwards
+	PhaseKite		= "Земля починає розколюватись!",--Check if Backwards
+	ChangeTarget	= "атакує нову мету!",
 	Kite			= "Kite",--Translate
 	Tank			= "Tank"--Translate
 })
@@ -56,7 +56,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Akama")
 
 L:SetGeneralLocalization({
-	name = "Тень Акамы"
+	name = "Тінь Аками"
 })
 
 -------------------------
@@ -65,7 +65,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TeronGorefiend")
 
 L:SetGeneralLocalization({
-	name = "Терон Кровожад"
+	name = "Терон Кровожер"
 })
 
 L:SetTimerLocalization({
@@ -82,7 +82,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("Bloodboil")
 
 L:SetGeneralLocalization({
-	name = "Гуртогг Кипящая Кровь"
+	name = "Гуртогг Кипляча Кров"
 })
 
 L:SetWarningLocalization({
@@ -104,19 +104,19 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("Souls")
 
 L:SetGeneralLocalization({
-	name = "Воплощение Душ"
+	name = "Втілення Душ"
 })
 
 L:SetWarningLocalization({
-	WarnEnrage		= "Озверение",
-	WarnEnrageSoon	= "Озверение скоро",
-	WarnEnrageEnd	= "Озверение закончилось",
-	WarnMana		= "Ноль маны через 30 сек"
+	WarnEnrage		= "Озвірення",
+	WarnEnrageSoon	= "Озвіріння скоро",
+	WarnEnrageEnd	= "Озвір закінчився",
+	WarnMana		= "Нуль мани через 30 с"
 })
 
 L:SetTimerLocalization({
-	TimerEnrage		= "Озверение",
-	TimerNextEnrage	= "Next Озверение",--Translate
+	TimerEnrage		= "Озвірення",
+	TimerNextEnrage	= "Next Озвірення",--Translate
 	TimerMana		= "Mana 0"--Translate
 })
 
@@ -132,8 +132,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Enrage			= "%s впадает в ярость!",
-	SpiteWhisper	= "Злоба на Вас!",
+	Enrage			= "%s впадає в лють!",
+	SpiteWhisper	= "Злість на Вас!",
 	Suffering		= "Essence of Suffering",--Translate
 	Desire			= "Essence of Desire",--Translate
 	Anger			= "Essence of Anger"--Translate
@@ -145,7 +145,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Shahraz")
 
 L:SetGeneralLocalization({
-	name = "Матушка Шахраз"
+	name = "Матінка Шахраз"
 })
 
 ----------------------
@@ -154,7 +154,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Council")
 
 L:SetGeneralLocalization({
-	name = "Совет Иллидари"
+	name = "Порада Іллідарі"
 })
 
 L:SetWarningLocalization({
@@ -174,10 +174,10 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Gathios			= "Гатиос Изувер",
-	Malande			= "Леди Маланда",
-	Zerevor			= "Верховный пустомант Зеревор",
-	Veras			= "Верас Глубокий Мрак",
+	Gathios			= "Гатіос Ізувер",
+	Malande			= "Леді Маланда",
+	Zerevor			= "Верховний пустомант Зеревор",
+	Veras			= "Верас Глибокий Морок",
 	Melee			= "Melee",--Translate
 	Spell			= "Spell",--Translate
 	PoisonWhisper	= "Deadly Poison on you!"--Translate
@@ -189,20 +189,20 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Illidan")
 
 L:SetGeneralLocalization({
-	name = "Иллидан Ярость Бури"
+	name = "Іллідан Лють Бурі"
 })
 
 L:SetWarningLocalization({
 	WarnPhase2Soon	= "Фаза 2 скоро",
 	WarnPhase4Soon	= "Фаза 4 скоро",
-	WarnHuman		= "Обычная Фаза",
-	WarnHumanSoon	= "Обычная Фаза скоро",
+	WarnHuman		= "Звичайна Фаза",
+	WarnHumanSoon	= "Звичайна Фаза скоро",
 	WarnDemon		= "Демона Фаза",
 	WarnDemonSoon	= "Демона Фаза скоро"
 })
 
 L:SetTimerLocalization({
-	TimerNextHuman		= "Next Обычная Фаза",--Translate
+	TimerNextHuman		= "Next Звичайна Фаза",--Translate
 	TimerNextDemon		= "Next Демона Фаза"--Translate
 })
 
@@ -219,10 +219,10 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull			= "Акама! Твое двуличие меня не удивляет. Мне давным-давно стоило уничтожить тебя и твоих уродливых собратьев.",
-	Eyebeam			= "Посмотри в глаза Предателя!",
-	Demon			= "Узрите мощь демона!",
-	Phase4			= "Это все, смертные? Это и есть вся ваша ярость?",
+	Pull			= "Акама! Твоя байдужість мене не дивує. Мені давно варто було знищити тебе і твоїх потворних побратимів.",
+	Eyebeam			= "Подивися на очі Зрадника!",
+	Demon			= "Побачте міць демона!",
+	Phase4			= "Це все смертні? Це і є вся ваша лють?",
 	S1YouAreNotPrepared	= "Stage One: You Are Not Prepared",
 	S2FlamesOfAzzinoth	= "Stage Two: Flames of Azzinoth",
 	S3TheDemonWithin	= "Stage Three: The Demon Within",

@@ -8,11 +8,11 @@ local L
 L = DBM:GetModLocalization("Archavon")
 
 L:SetGeneralLocalization({
-	name = "Аркавон Страж Камня"
+	name = "Аркавон Страж Каміння"
 })
 
 L:SetWarningLocalization({
-	WarningGrab		= "Аркавон хватает |3-1(>%s<)"
+	WarningGrab		= "Аркавон вистачає |3-1(>%s<)"
 })
 
 L:SetTimerLocalization({
@@ -20,11 +20,11 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningGrab		= "Объявлять о захвате цели"
+	WarningGrab		= "Оголошувати про захоплення мети"
 })
 
 L:SetMiscLocalization({
-	TankSwitch		= "%%s бросается к (%S+)!"
+	TankSwitch		= "%%s кидається до (%S+)!"
 })
 
 --------------------------------
@@ -33,16 +33,16 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Emalon")
 
 L:SetGeneralLocalization({
-	name = "Эмалон Страж Бури"
+	name = "Емалон Страж Бурі"
 })
 
 L:SetTimerLocalization({
-	timerMobOvercharge	= "Взрыв в результате перегрузки",
-	EmalonEnrage		= "Берсерк Эмалона"
+	timerMobOvercharge	= "Вибух внаслідок перевантаження",
+	EmalonEnrage		= "Берсерк Емалона"
 })
 
 L:SetOptionLocalization({
-	timerMobOvercharge	= "Отсчет времени для моба с Перегрузкой (стакающего дебафф)"
+	timerMobOvercharge	= "Відлік для моба з перевантаженням (стачає дебафф)"
 })
 
 ---------------------------------
@@ -51,7 +51,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("Koralon")
 
 L:SetGeneralLocalization({
-	name = "Коралон Страж Огня"
+	name = "Коралон Страж Вогню"
 })
 
 L:SetTimerLocalization({
@@ -64,7 +64,7 @@ L:SetTimerLocalization({
 L = DBM:GetModLocalization("Toravon")
 
 L:SetGeneralLocalization({
-	name = "Торавон Страж Льда"
+	name = "Торавон Страж Льоду"
 })
 
 L:SetTimerLocalization({

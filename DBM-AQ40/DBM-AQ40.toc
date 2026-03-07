@@ -4,7 +4,7 @@
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Templo de Ahn'Qiraj|r
 ## Title-esMX:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Templo de Ahn'Qiraj|r
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Temple d'Ahn'Qiraj|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Храм Ан'Киража|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Храм Ан'Кіражу|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0안퀴라즈 사원|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0安其拉神殿|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0安其拉神廟|r
@@ -20,11 +20,11 @@
 ## X-DBM-Mod-Sort: 1102
 ## X-DBM-Mod-Name: The Temple of Ahn'Qiraj
 ## X-DBM-Mod-Name-zhCN: 安其拉神殿
-## X-DBM-Mod-Name-ruRU: Храм Ан'Киража
+## X-DBM-Mod-Name-ruRU:Храм Ан'Кіража
 ## X-DBM-Mod-Name-frFR: Le Temple d'Ahn'Qiraj
 ## X-DBM-Mod-LoadZone: Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esES: Ahn'Qiraj
-## X-DBM-Mod-LoadZone-ruRU: Ан'Кираж
+## X-DBM-Mod-LoadZone-ruRU:Ан'Кіраж
 ## X-DBM-Mod-LoadZone-frFR: Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esMX: Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-zhTW: 安其拉

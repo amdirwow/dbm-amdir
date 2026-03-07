@@ -6,22 +6,22 @@ local L
 L = DBM:GetModLocalization("Kazzak")
 
 L:SetGeneralLocalization({
-	name = "Владыка судеб Каззак"
+	name = "Владика доль Каззак"
 })
 
 L:SetMiscLocalization({
-	DBM_KAZZAK_EMOTE_ENRAGE		= "%s впадает в бешенство!"--Probalby won't be used, at least not long. Once spellid replaces it
+	DBM_KAZZAK_EMOTE_ENRAGE		= "%s впадає в сказ!"--Probalby won't be used, at least not long. Once spellid replaces it
 })
 
 -- Doomwalker
 L = DBM:GetModLocalization("Doomwalker")
 
 L:SetGeneralLocalization({
-	name = "Судьболом"
+	name = "Долею"
 })
 
 L:SetMiscLocalization({
-	DBM_DOOMW_EMOTE_ENRAGE	= "%s впадает в бешенство!"--Probalby won't be used, at least not long. Once spellid replaces it
+	DBM_DOOMW_EMOTE_ENRAGE	= "%s впадає в сказ!"--Probalby won't be used, at least not long. Once spellid replaces it
 })
 
 -- Quest
@@ -32,5 +32,5 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	Timers = "Показывать таймеры для некоторых квестов сопровождений"
+	Timers = "Показувати таймери для деяких квестів супроводу"
 })

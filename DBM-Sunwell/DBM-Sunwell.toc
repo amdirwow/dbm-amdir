@@ -5,7 +5,7 @@
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Meseta de La Fuente del Sol|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0太阳井|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0太陽之井|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Плато Солнечного Колодца|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Плато Сонячної Криниці|r
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMSunwell_AllSavedVars
@@ -20,10 +20,10 @@
 ## X-DBM-Mod-Name-esES: Meseta de La Fuente del Sol
 ## X-DBM-Mod-Name-zhCN: 太阳之井高地
 ## X-DBM-Mod-Name-zhTW: 太陽之井
-## X-DBM-Mod-Name-ruRU: Плато Солнечного Колодца
+## X-DBM-Mod-Name-ruRU:Плато Сонячної Криниці
 ## X-DBM-Mod-MapID: 790
 ## X-DBM-Mod-LoadZone: Sunwell Plateau
-## X-DBM-Mod-LoadZone-ruRU: Плато Солнечного Колодца
+## X-DBM-Mod-LoadZone-ruRU:Плато Сонячної Криниці
 ## X-DBM-Mod-LoadZone-zhCN: 太阳之井高地
 ## X-DBM-Mod-LoadZone-zhTW: 太陽之井高地
 ## X-DBM-Mod-LoadZone-deDE: Sonnenbrunnenplateau

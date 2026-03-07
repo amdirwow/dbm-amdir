@@ -8,7 +8,7 @@ local L
 L = DBM:GetModLocalization("Rage")
 
 L:SetGeneralLocalization({
-	name = "Лютый Хлад"
+	name = "Лютий Холод"
 })
 
 -----------------
@@ -44,7 +44,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Archimonde")
 
 L:SetGeneralLocalization({
-	name = "Архимонд"
+	name = "Архімонд"
 })
 
 ----------------
@@ -53,16 +53,16 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("HyjalWaveTimers")
 
 L:SetGeneralLocalization({
-	name		= "Треш-мобы"
+	name		= "Треш-моби"
 })
 
 L:SetWarningLocalization({
 	WarnWave	= "%s",
-	WarnWaveSoon= "Скоро следующая волна"
+	WarnWaveSoon= "Незабаром наступна хвиля"
 })
 
 L:SetTimerLocalization({
-	TimerWave	= "Следующая волна"
+	TimerWave	= "Наступна хвиля"
 })
 
 L:SetOptionLocalization({
@@ -73,31 +73,31 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	HyjalZoneName	= "Вершина Хиджала",
-	Thrall			= "Тралл",
-	Jaina			= "Леди Джайна Праудмур",
-	RageWinterchill	= "Лютый Хлад",
+	HyjalZoneName	= "Вершина Хіджала",
+	Thrall			= "Трал",
+	Jaina			= "Леді Джайна Праудмур",
+	RageWinterchill	= "Лютий Холод",
 	Anetheron		= "Анетерон",
 	Kazrogal		= "Каз'рогал",
 	Azgalor			= "Азгалор",
-	WaveCheck		= "Текущая атака: (%d+) из 8",
-	WarnWave_0		= "Волна %s/8",
-	WarnWave_1		= "Волна %s/8 - %s %s",
-	WarnWave_2		= "Волна %s/8 - %s %s и %s %s",
-	WarnWave_3		= "Волна %s/8 - %s %s, %s %s и %s %s",
-	WarnWave_4		= "Волна %s/8 - %s %s, %s %s, %s %s и %s %s",
-	WarnWave_5		= "Волна %s/8 - %s %s, %s %s, %s %s, %s %s и %s %s",
-	RageGossip		= "Мои спутники и я – с вами, леди Праудмур.",
-	AnetheronGossip	= "Мы готовы встретить любого, кого пошлет Архимонд, леди Праудмур.",
-	KazrogalGossip	= "Я с тобой, Тралл.",
-	AzgalorGossip	= "Нам нечего бояться.",
-	Ghoul			= "Вурдалака",
-	Abomination		= "Поганища",
+	WaveCheck		= "Поточна атака: (%d+) з 8",
+	WarnWave_0		= "Хвиля %s/8",
+	WarnWave_1		= "Хвиля %s/8 - %s %s",
+	WarnWave_2		= "Хвиля %s/8 - %s %s та %s %s",
+	WarnWave_3		= "Хвиля %s/8 - %s %s, %s %s та %s %s",
+	WarnWave_4		= "Хвиля %s/8 - %s %s, %s %s, %s %s та %s %s",
+	WarnWave_5		= "Хвиля %s/8 - %s %s, %s %s, %s %s, %s %s та %s %s",
+	RageGossip		= "Мої супутники і я з вами, леді Праудмур.",
+	AnetheronGossip	= "Ми готові зустріти будь-кого, кого надішле Архімонд, леді Праудмур.",
+	KazrogalGossip	= "Я з тобою, Трал.",
+	AzgalorGossip	= "Нам нема чого боятися.",
+	Ghoul			= "Вовкулака",
+	Abomination		= "Поганіща",
 	Necromancer		= "Некроманта",
-	Banshee			= "Банши",
-	Fiend			= "Некрорахнида",
-	Gargoyle		= "Горгульи",
-	Wyrm			= "Ледяной змей",
-	Stalker			= "Ловчих Скверны",
-	Infernal		= "Инфернала"
+	Banshee			= "Банші",
+	Fiend			= "Некрорахніда",
+	Gargoyle		= "Горгульї",
+	Wyrm			= "Крижаний змій",
+	Stalker			= "Ловчих Скверни",
+	Infernal		= "Інферналу"
 })

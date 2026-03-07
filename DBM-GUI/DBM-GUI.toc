@@ -2,7 +2,7 @@
 ## Title:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF Options GUI|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF GUI für Einstellungen|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF 设置界面|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF Параметры GUI|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF Параметри GUI|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF 使用者介面|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF 설정 GUI|r
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff0055FF Interfaz gráfica|r
@@ -11,7 +11,7 @@
 ## Notes: GUI for DBM-Amdir
 ## Notes-deDE: Grafische Benutzeroberfläche für DBM-Amdir
 ## Notes-zhCN: DBM-Amdir的设置界面
-## Notes-ruRU: Графический интерфейс пользователя DBM-Amdir
+## Notes-ruRU: Графічний інтерфейс DBM-Amdir
 ## Notes-zhTW: DBM-Amdir的使用者介面
 ## Notes-koKR: DBM-Amdir의 GUI
 ## Notes-esES: Interfaz gráfica de DBM-Amdir

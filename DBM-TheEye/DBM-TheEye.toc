@@ -22,7 +22,7 @@
 ## X-DBM-Mod-Name-frFR: Donjon de la tempête - L'Œil
 ## X-DBM-Mod-Name-zhCN: 风暴要塞
 ## X-DBM-Mod-Name-zhTW: 風暴要塞
-## X-DBM-Mod-Name-ruRU: Крепость Бурь - Око
+## X-DBM-Mod-Name-ruRU:Фортеця Бур - Око
 ## X-DBM-Mod-MapID: 783
 ## X-DBM-Mod-LoadZone: Tempest Keep
 ## X-DBM-Mod-LoadZone-esES: El Castillo de la Tempestad
@@ -32,7 +32,7 @@
 ## X-DBM-Mod-LoadZone-frFR: Donjon de la tempête
 ## X-DBM-Mod-LoadZone-zhCN: 风暴要塞
 ## X-DBM-Mod-LoadZone-zhTW: 風暴要塞
-## X-DBM-Mod-LoadZone-ruRU: Крепость Бурь
+## X-DBM-Mod-LoadZone-ruRU:Фортеця Бур
 
 localization.en.lua
 localization.de.lua

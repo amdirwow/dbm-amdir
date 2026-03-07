@@ -8,7 +8,7 @@ local L
 L = DBM:GetModLocalization("Venoxis")
 
 L:SetGeneralLocalization({
-	name = "Верховный жрец Веноксис"
+	name = "Верховний жрець Венокіс"
 })
 
 -------------------
@@ -17,7 +17,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Jeklik")
 
 L:SetGeneralLocalization({
-	name = "Верховная жрица Джеклик"
+	name = "Верховна жриця Джеклік"
 })
 
 -------------------
@@ -26,7 +26,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Marli")
 
 L:SetGeneralLocalization({
-	name = "Верховная жрица Мар'ли"
+	name = "Верховна жриця Мар'лі"
 })
 
 -------------------
@@ -35,27 +35,27 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Thekal")
 
 L:SetGeneralLocalization({
-	name = "Верховный жрец Текал"
+	name = "Верховний жрець Текал"
 })
 
 L:SetWarningLocalization({
-	WarnSimulKill	= "Первый адд пал - воскрешение через ~15 сек."
+	WarnSimulKill	= "Перший адд упав - воскресіння через ~15 сек."
 })
 
 L:SetTimerLocalization({
-	TimerSimulKill	= "Воскрешение"
+	TimerSimulKill	= "Воскресіння"
 })
 
 L:SetOptionLocalization({
-	WarnSimulKill	= "Объявлять о смерти первого адда",
-	TimerSimulKill	= "Показывать время до воскрешения жреца"
+	WarnSimulKill	= "Оголошувати про смерть першого пекла",
+	TimerSimulKill	= "Показувати час до воскресіння жерця"
 })
 
 L:SetMiscLocalization({
-	PriestDied	= "%s умирает.",
-	YellPhase2	= "Ширвалла, наполни меня своим ГНЕВОМ!",
-	YellKill	= "Хаккар больше не властен надо мной! Наконец-то я обрел покой!",
-	Thekal		= "Верховный жрец Текал",
+	PriestDied	= "%s вмирає.",
+	YellPhase2	= "Ширвалла, наповни мене своїм гнівом!",
+	YellKill	= "Хаккар більше не владний з мене! Нарешті я знайшов спокій!",
+	Thekal		= "Верховний жрець Текал",
 	Zath		= "Ревнитель Зат",
 	LorKhan		= "Ревнитель Лор'Кхан"
 })
@@ -66,7 +66,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Arlokk")
 
 L:SetGeneralLocalization({
-	name = "Верховная жрица Арлокк"
+	name = "Верховна жриця Арлокк"
 })
 
 -------------------
@@ -84,13 +84,13 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Bloodlord")
 
 L:SetGeneralLocalization({
-	name = "Мандокир Повелитель Крови"
+	name = "Мандокір Володар Крові"
 })
 
 L:SetMiscLocalization({
-	Bloodlord	= "Мандокир Повелитель Крови",
+	Bloodlord	= "Мандокір Володар Крові",
 	Ohgan		= "Охган",
-	GazeYell	= "Я за тобой слежу"
+	GazeYell	= "Я за тобою стежу"
 })
 
 -------------------
@@ -99,14 +99,14 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("EdgeOfMadness")
 
 L:SetGeneralLocalization({
-	name = "Грань Безумия"
+	name = "Грань Безумства"
 })
 
 L:SetMiscLocalization({
 	Hazzarah = "Хазза'рах",
 	Renataki = "Ренатаки",
 	Wushoolay = "Вушулай",
-	Grilek = "Гри'лек"
+	Grilek = "Грилек"
 })
 
 -------------------
@@ -124,5 +124,5 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Jindo")
 
 L:SetGeneralLocalization({
-	name = "Мастер проклятий Джин'до"
+	name = "Майстер прокляття Джин'до"
 })

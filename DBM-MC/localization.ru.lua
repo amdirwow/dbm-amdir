@@ -26,7 +26,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Gehennas")
 
 L:SetGeneralLocalization({
-	name = "Гееннас"
+	name = "Геєнас"
 })
 
 ------------
@@ -35,7 +35,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Garr-Classic")
 
 L:SetGeneralLocalization({
-	name = "Гарр (Classic)"
+	name = "Гар (Classic)"
 })
 
 --------------
@@ -62,7 +62,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Sulfuron")
 
 L:SetGeneralLocalization({
-	name = "Предвестник Сульфурон"
+	name = "Провісник Сульфурон"
 })
 
 ----------------
@@ -71,7 +71,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Golemagg")
 
 L:SetGeneralLocalization({
-	name = "Големагг Испепелитель"
+	name = "Големагг Випіпелювач"
 })
 
 -----------------
@@ -80,15 +80,15 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Majordomo")
 
 L:SetGeneralLocalization({
-	name = "Мажордом Экзекутус"
+	name = "Мажордом Екзекутус"
 })
 
 L:SetTimerLocalization({
-	timerShieldCD		= "Следующий Щит"
+	timerShieldCD		= "Наступний Щит"
 })
 
 L:SetOptionLocalization({
-	timerShieldCD		= "Показывать таймер для следующего Щита (Damage/Reflect)"
+	timerShieldCD		= "Показувати таймер для наступного Щита (Damage/Reflect)"
 })
 
 ----------------
@@ -101,32 +101,32 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarnSubmerge		= "Погружение",
-	WarnSubmergeSoon	= "Скоро погружение",
-	WarnEmerge			= "Появление",
-	WarnEmergeSoon		= "Скоро появление"
+	WarnSubmerge		= "Занурення",
+	WarnSubmergeSoon	= "Скоро занурення",
+	WarnEmerge			= "Поява",
+	WarnEmergeSoon		= "Скоро поява"
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "Начало боя",
-	TimerSubmerge		= "Погружение",
-	TimerEmerge			= "Появление"
+	TimerCombatStart	= "Початок бою",
+	TimerSubmerge		= "Занурення",
+	TimerEmerge			= "Поява"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Показывать время до начала боя",
-	WarnSubmerge		= "Показывать предупреждение о погружении",
-	WarnSubmergeSoon	= "Показывать предварительное предупреждение о погружении",
-	TimerSubmerge		= "Показывать время до погружения",
-	WarnEmerge			= "Показывать предупреждение о появлении",
-	WarnEmergeSoon		= "Показывать предварительное предупреждение о появлении",
-	TimerEmerge			= "Показывать время до появления"
+	TimerCombatStart	= "Показувати час до початку бою",
+	WarnSubmerge		= "Показувати попередження про занурення",
+	WarnSubmergeSoon	= "Показувати попереднє попередження про занурення",
+	TimerSubmerge		= "Показувати час до занурення",
+	WarnEmerge			= "Показувати попередження про появу",
+	WarnEmergeSoon		= "Показувати попереднє попередження про появу",
+	TimerEmerge			= "Показувати час до появи"
 })
 
 L:SetMiscLocalization({
-	Submerge	= "ПРИДИТЕ, МОИ СЛУГИ! ЗАЩИТИТЕ СВОЕГО ХОЗЯИНА!",
-	Submerge2	= "ТЫ НЕ МОЖЕШЬ ПОБЕДИТЬ ЖИВОЙ ЖАР! ПРИДИТЕ, СЛУГИ ОГНЯ! ПРИДИТЕ, ТВОРЕНИЯ НЕНАВИСТИ! ВАШ ГОСПОДИН ПРИЗЫВАЕТ ВАС!",
-	Pull		= "Нахальные щенки! Вы сами обрекли себя на смерть! Узрите же Повелителя в гневе!"
+	Submerge	= "Прийдіть, МОЇ СЛУГИ! ЗАХИСТІТЬ СВОГО ГОСПОДАРЯ!",
+	Submerge2	= "ТИ НЕ МОЖЕШ ПЕРЕМОГТИ ЖИВУ СПЕКУ! ПРИДІТЬ, СЛУГИ ВОГНЮ! ПРИЙДІТЬ, ТВОРЕННЯ НЕНАВИСТИ! ВАШ ПАН ПРИЗИВАЄ ВАС!",
+	Pull		= "Нахабні цуценята! Ви самі прирекли себе на смерть! Побачте ж Повелителя в гніві!"
 })
 
 -----------------
@@ -135,5 +135,5 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("MCTrash")
 
 L:SetGeneralLocalization({
-	name = "ОН: Треш"
+	name = "ВІН: Треш"
 })

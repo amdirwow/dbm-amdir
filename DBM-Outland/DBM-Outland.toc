@@ -7,7 +7,7 @@
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Terrallende|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0外域|r
 ## Title-esMX:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Terrallende|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Запределье|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Позамежжя|r
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMOutland_AllSavedVars
@@ -22,7 +22,7 @@
 ## X-DBM-Mod-Name-esES: Terrallende
 ## X-DBM-Mod-Name-esMX: Terrallende
 ## X-DBM-Mod-Name-frFR: Outreterre
-## X-DBM-Mod-Name-ruRU: Запределье
+## X-DBM-Mod-Name-ruRU:Замежжя
 ## X-DBM-Mod-Name-koKR: 아웃랜드
 ## X-DBM-Mod-Name-zhTW: 外域
 ## X-DBM-Mod-Name-zhCN: 外域

@@ -6,7 +6,7 @@ local L
 L = DBM:GetModLocalization("Attumen")
 
 L:SetGeneralLocalization({
-	name = "Ловчий Аттумен"
+	name = "Ловчий Атумен"
 })
 
 
@@ -19,176 +19,176 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	DBM_MOROES_VANISH_FADED	= "Исчезновение рассеивается"
+	DBM_MOROES_VANISH_FADED	= "Зникнення розсіюється"
 })
 
 L:SetOptionLocalization({
-	DBM_MOROES_VANISH_FADED	= "Показывать предупреждение рассеивания исчезновения"
+	DBM_MOROES_VANISH_FADED	= "Показувати попередження розсіювання зникнення"
 })
 
 -- Maiden of Virtue
 L = DBM:GetModLocalization("Maiden")
 
 L:SetGeneralLocalization({
-	name = "Благочестивая дева"
+	name = "Благочестива діва"
 })
 
 -- Romulo and Julianne
 L = DBM:GetModLocalization("RomuloAndJulianne")
 
 L:SetGeneralLocalization({
-	name = "Ромуло и Джулианна"
+	name = "Ромуло та Джуліанна"
 })
 
 L:SetMiscLocalization({
-	Event				= "Сегодня... мы увидим историю любви!",
-	RJ_Pull				= "Что ты за дьявол, что меня так мучишь?",
-	DBM_RJ_PHASE2_YELL	= "Приди же, ласковая ночь, верни мне моего Ромуло!",
+	Event				= "Сьогодні... ми побачимо історію кохання!",
+	RJ_Pull				= "Що ти за диявол, що мене так мучиш?",
+	DBM_RJ_PHASE2_YELL	= "Прийди ж, ласкава ніч, поверни мені мого Ромуло!",
 	Romulo				= "Ромуло",
-	Julianne			= "Джулианна"
+	Julianne			= "Джуліанна"
 })
 
 -- Big Bad Wolf
 L = DBM:GetModLocalization("BigBadWolf")
 
 L:SetGeneralLocalization({
-	name = "Злой и страшный серый волк"
+	name = "Злий і страшний сірий вовк"
 })
 
 
 
 L:SetMiscLocalization({
-	DBM_BBW_YELL_1			= "Кем бы мне тут закусить?"
+	DBM_BBW_YELL_1			= "Ким би мені тут закусити?"
 })
 
 -- Wizard of Oz
 L = DBM:GetModLocalization("Oz")
 
 L:SetGeneralLocalization({
-	name = "Страна Оз"
+	name = "Країна Оз"
 })
 
 L:SetWarningLocalization({
-	DBM_OZ_WARN_TITO		= "Тито",
-	DBM_OZ_WARN_ROAR		= "Хохотун",
+	DBM_OZ_WARN_TITO		= "Тіто",
+	DBM_OZ_WARN_ROAR		= "Реготун",
 	DBM_OZ_WARN_STRAWMAN	= "Балбес",
-	DBM_OZ_WARN_TINHEAD		= "Медноголовый",
-	DBM_OZ_WARN_CRONE		= "Ведьма"
+	DBM_OZ_WARN_TINHEAD		= "Мідноголовий",
+	DBM_OZ_WARN_CRONE		= "Відьма"
 })
 
 L:SetTimerLocalization({
-	DBM_OZ_WARN_TITO		= "Тито",
-	DBM_OZ_WARN_ROAR		= "Хохотун",
+	DBM_OZ_WARN_TITO		= "Тіто",
+	DBM_OZ_WARN_ROAR		= "Реготун",
 	DBM_OZ_WARN_STRAWMAN	= "Балбес",
-	DBM_OZ_WARN_TINHEAD		= "Медноголовый"
+	DBM_OZ_WARN_TINHEAD		= "Мідноголовий"
 })
 
 L:SetOptionLocalization({
-	AnnounceBosses			= "Показывать предупреждения появления босса",
-	ShowBossTimers			= "Показывать таймер появления босса"
+	AnnounceBosses			= "Показувати попередження появи боса",
+	ShowBossTimers			= "Показувати таймер появи боса"
 })
 
 L:SetMiscLocalization({
-	DBM_OZ_YELL_DOROTHEE	= "Тито, мы просто обязаны найти дорогу домой! Старый волшебник – наша единственная надежда. Пугало, Рычун, Нержавей, вы... ой, к нам кто-то пришел!",
-	DBM_OZ_YELL_ROAR		= "Я вас не боюсь! Совсем! Хотите сражаться? Хотите, да? Ну же! Я буду драться, даже если мне свяжут лапы за спиной!",
-	DBM_OZ_YELL_STRAWMAN	= "И что же мне с вами делать? Никак не соображу.",
-	DBM_OZ_YELL_TINHEAD		= "Мне очень нужно сердце. Может, забрать твое?",
-	DBM_OZ_YELL_CRONE		= "Горе вам, всем и каждому, мои крошки!"
+	DBM_OZ_YELL_DOROTHEE	= "Тіто, ми просто повинні знайти дорогу додому! Старий чарівник – наша єдина надія. Палохало, Ричун, Нержавію, ви... ой, до нас хтось прийшов!",
+	DBM_OZ_YELL_ROAR		= "Я вас не боюсь! Зовсім! Хочете боротися? Бажаєте, так? Ну ж! Я битимуся, навіть якщо мені зв'яжуть лапи за спиною!",
+	DBM_OZ_YELL_STRAWMAN	= "І що мені з вами робити? Ніяк не розумію.",
+	DBM_OZ_YELL_TINHEAD		= "Мені дуже потрібне серце. Може, забрати твоє?",
+	DBM_OZ_YELL_CRONE		= "Горе вам, усім і кожному, мої крихти!"
 })
 
 -- Curator
 L = DBM:GetModLocalization("Curator")
 
 L:SetGeneralLocalization({
-	name = "Смотритель"
+	name = "Доглядач"
 })
 
 L:SetWarningLocalization({
-	warnAdd		= "Адд появился"
+	warnAdd		= "Адд з'явився"
 })
 
 L:SetOptionLocalization({
-	warnAdd		= "Показывать предупреждение когда адд появился"
+	warnAdd		= "Показувати попередження коли адд з'явився"
 })
 
 -- Terestian Illhoof
 L = DBM:GetModLocalization("TerestianIllhoof")
 
 L:SetGeneralLocalization({
-	name = "Терестиан Больное Копыто"
+	name = "Терестіан Хворе Копито"
 })
 
 L:SetMiscLocalization({
-	Kilrek					= "Кил'рек",
-	DChains					= "Демонические цепи"
+	Kilrek					= "Кіл'рек",
+	DChains					= "Демонічні ланцюги"
 })
 
 -- Shade of Aran
 L = DBM:GetModLocalization("Aran")
 
 L:SetGeneralLocalization({
-	name = "Тень Арана"
+	name = "Тінь Арана"
 })
 
 L:SetWarningLocalization({
-	DBM_ARAN_DO_NOT_MOVE	= "Венец пламени - Не двигайтесь!"
+	DBM_ARAN_DO_NOT_MOVE	= "Вінець полум'я - Не рушайте!"
 })
 
 L:SetTimerLocalization({
-	timerSpecial			= "Особая способность КД"
+	timerSpecial			= "Особлива здатність КД"
 })
 
 L:SetOptionLocalization({
-	timerSpecial			= "Показывать таймер перезарядки особой способности",
-	DBM_ARAN_DO_NOT_MOVE	= "Показывать особое предупреждение для $spell:30004"
+	timerSpecial			= "Показувати таймер перезаряджання особливої здатності",
+	DBM_ARAN_DO_NOT_MOVE	= "Показувати особливе попередження $spell:30004"
 })
 
 --Netherspite
 L = DBM:GetModLocalization("Netherspite")
 
 L:SetGeneralLocalization({
-	name = "Гнев Пустоты"
+	name = "Гнів Пустоти"
 })
 
 L:SetWarningLocalization({
-	warningPortal			= "Фаза Порталов",
-	warningBanish			= "Фаза Изгнания"
+	warningPortal			= "Фаза Порталів",
+	warningBanish			= "Фаза Вигнання"
 })
 
 L:SetTimerLocalization({
-	timerPortalPhase	= "Фаза Порталов заканчивается",
-	timerBanishPhase	= "Фаза Изгнания заканчивается"
+	timerPortalPhase	= "Фаза Порталів закінчується",
+	timerBanishPhase	= "Фаза Вигнання закінчується"
 })
 
 L:SetOptionLocalization({
-	warningPortal			= "Показывать предупреждение для Фазы Порталов",
-	warningBanish			= "Показывать предупреждение для Фазы Изгнания",
-	timerPortalPhase		= "Показывать таймер длительности Фазы Порталов",
-	timerBanishPhase		= "Показывать таймер длительности Фазы Изгнания"
+	warningPortal			= "Показувати попередження для Фази Порталів",
+	warningBanish			= "Показувати попередження для Фази Вигнання",
+	timerPortalPhase		= "Показувати таймер тривалості Фази Порталів",
+	timerBanishPhase		= "Показувати таймер тривалості Фази Вигнання"
 })
 
 L:SetMiscLocalization({
-	DBM_NS_EMOTE_PHASE_2	= "%s впадает в предельную ярость!",
-	DBM_NS_EMOTE_PHASE_1	= "%s издает крик, отступая, открывая путь Пустоте."
+	DBM_NS_EMOTE_PHASE_2	= "%s впадає в граничну лють!",
+	DBM_NS_EMOTE_PHASE_1	= "%s видає крик, відступаючи, відкриваючи шлях Порожнечі."
 })
 
 --Chess
 L = DBM:GetModLocalization("Chess")
 
 L:SetGeneralLocalization({
-	name = "Шахматы"
+	name = "Шахи"
 })
 
 L:SetTimerLocalization({
-	timerCheat	= "Жульничество КД"
+	timerCheat	= "Шахрайство КД"
 })
 
 L:SetOptionLocalization({
-	timerCheat	= "Показывать таймер перезарядки Жульничества"
+	timerCheat	= "Показувати таймер перезарядки Шахрайства"
 })
 
 L:SetMiscLocalization({
-	EchoCheats	= "Эхо Медива жульничает!"
+	EchoCheats	= "Відлуння Медіва шахраює!"
 })
 
 --Prince Malchezaar
@@ -199,54 +199,54 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	DBM_PRINCE_YELL_P2		= "Глупцы! Время – это огонь, сжигающий вас!",
-	DBM_PRINCE_YELL_P3		= "Как вы осмелились бросить вызов столь колоссальной мощи?",
-	DBM_PRINCE_YELL_INF1	= "Мне открыты все реальности, все измерения!",
-	DBM_PRINCE_YELL_INF2	= "Вы противостоите не только Малчезару, но и всем подвластным мне легионам!"
+	DBM_PRINCE_YELL_P2		= "Дурні! Час – це вогонь, що спалює вас!",
+	DBM_PRINCE_YELL_P3		= "Як ви наважилися кинути виклик такої колосальної потужності?",
+	DBM_PRINCE_YELL_INF1	= "Мені відкриті всі реальності, всі виміри!",
+	DBM_PRINCE_YELL_INF2	= "Ви протистоїте не лише Малчезару, а й усім підвладним мені легіонам!"
 })
 
 -- Nightbane
 L = DBM:GetModLocalization("NightbaneRaid")
 
 L:SetGeneralLocalization({
-	name = "Ночная Погибель (Рейд)"
+	name = "Нічна Смерть (Рейд)"
 })
 
 L:SetWarningLocalization({
-	DBM_NB_AIR_WARN			= "Воздушная Фаза"
+	DBM_NB_AIR_WARN			= "Повітряна Фаза"
 })
 
 L:SetTimerLocalization({
-	timerAirPhase			= "Воздушная Фаза"
+	timerAirPhase			= "Повітряна Фаза"
 })
 
 L:SetOptionLocalization({
-	DBM_NB_AIR_WARN			= "Показывать предупреждение Воздушной Фазы",
-	timerAirPhase			= "Показывать таймер длительности Воздушной Фазы"
+	DBM_NB_AIR_WARN			= "Показувати попередження Повітряної Фази",
+	timerAirPhase			= "Показувати таймер тривалості Повітряної Фази"
 })
 
 L:SetMiscLocalization({
-	DBM_NB_EMOTE_PULL		= "Древнее существо пробуждается вдалеке...",
-	DBM_NB_YELL_AIR			= "Жалкие букашки! Я изжарю вас с воздуха!",
-	DBM_NB_YELL_GROUND		= "Довольно! Я сойду на землю и сам раздавлю тебя!",
-	DBM_NB_YELL_GROUND2		= "Ничтожества! Я вам покажу мою силу поближе!"
+	DBM_NB_EMOTE_PULL		= "Стародавня істота прокидається вдалині.",
+	DBM_NB_YELL_AIR			= "Жалюгідні комашки! Я засмажу вас з повітря!",
+	DBM_NB_YELL_GROUND		= "Досить! Я зійду на землю і сам роздавлю тебе!",
+	DBM_NB_YELL_GROUND2		= "Нікчеми! Я вам покажу мою силу!"
 })
 
 -- Named Beasts
 L = DBM:GetModLocalization("Shadikith")
 
 L:SetGeneralLocalization({
-	name = "Шадикит Скользящий"
+	name = "Шадикіт Ковзаючий"
 })
 
 L = DBM:GetModLocalization("Hyakiss")
 
 L:SetGeneralLocalization({
-	name = "Хиакисс Скрытень"
+	name = "Хіакісс Скритень"
 })
 
 L = DBM:GetModLocalization("Rokad")
 
 L:SetGeneralLocalization({
-	name = "Рокад Опустошитель"
+	name = "Рокад Спустошник"
 })

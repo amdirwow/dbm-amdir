@@ -9,29 +9,29 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Это место под моей защитой. Тайные мистерии останутся неоскверненными."
+	Pull		= "Це місце під моїм захистом. Таємні містерії залишаться неоскверненими."
 })
 
 -- Taerar (Ashenvale)
 L = DBM:GetModLocalization("Taerar")
 
 L:SetGeneralLocalization({
-	name = "Таэрар"
+	name = "Таерар"
 })
 
 L:SetMiscLocalization({
-	Pull		= "Мир – это всего лишь мимолетный сон. Пусть правит КОШМАР!"
+	Pull		= "Світ – це лише швидкоплинний сон. Нехай править КОШМАР!"
 })
 
 -- Ysondre (Feralas)
 L = DBM:GetModLocalization("Ysondre")
 
 L:SetGeneralLocalization({
-	name = "Исондра"
+	name = "Ісондра"
 })
 
 L:SetMiscLocalization({
-	Pull		= "Нити ЖИЗНИ разорваны! Отомстим за Спящих!"
+	Pull		= "Нитки ЖИТТЯ розірвані! Помстимося за Сплячих!"
 })
 
 -- Lethon (Hinterlands)
@@ -42,16 +42,16 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Я чувствую ТЕНЬ, нависшую над вашими сердцами. Нечестивцам не будет покоя!"
+	Pull		= "Я відчуваю ТІНЬ, що нависла над вашими серцями. Нечестивцям не буде спокою!"
 })
 
 -- Emeriss (Duskwood)
 L = DBM:GetModLocalization("Emeriss")
 
 L:SetGeneralLocalization({
-	name = "Эмерисс"
+	name = "Емеріс"
 })
 
 L:SetMiscLocalization({
-	Pull		= "Надежда – это БОЛЕЗНЬ души! Эта земля зачахнет и умрет!"
+	Pull		= "Надія – це ХВОРОБА душі! Ця земля зачахне та помре!"
 })

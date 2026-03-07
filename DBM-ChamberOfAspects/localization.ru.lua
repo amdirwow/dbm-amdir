@@ -14,7 +14,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	YellShadronPull	= "Я не боюсь ничего! Тем более – вас!",
+	YellShadronPull	= "Я не боюся нічого! Тим більше – вас!",
 })
 
 ----------------
@@ -27,7 +27,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	YellTenebronPull	= "Вам здесь не место! Ваше место среди усопших!",
+	YellTenebronPull	= "Вам тут не місце! Ваше місце серед покійних!",
 })
 
 ----------------
@@ -40,7 +40,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	YellVesperonPull	= "Вы безобидны, ничтожные создания. Покажите, на что вы способны!",
+	YellVesperonPull	= "Ви нешкідливі, нікчемні створіння. Покажіть, на що ви здатні!",
 })
 
 ------------------
@@ -49,64 +49,64 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Sartharion")
 
 L:SetGeneralLocalization({
-	name = "Сартарион"
+	name = "Сартаріон"
 })
 
 L:SetWarningLocalization({
-	WarningTenebron			= "Прибытие Тенеброна",
-	WarningShadron			= "Прибытие Шадрона",
-	WarningVesperon			= "Прибытие Весперона",
-	WarningFireWall			= "Огненная стена",
-	WarningWhelpsSoon		= "Скоро дракончики тенеброна",
-	WarningPortalSoon		= "Скоро портал Шадрон",
-	WarningReflectSoon		= "Весперон: Скоро отражение",
+	WarningTenebron			= "Прибуття Тенеброна",
+	WarningShadron			= "Прибуття Шадрона",
+	WarningVesperon			= "Прибуття Весперона",
+	WarningFireWall			= "Вогняна стіна",
+	WarningWhelpsSoon		= "Незабаром дракончики тенеброна",
+	WarningPortalSoon		= "Незабаром портал Шадрон",
+	WarningReflectSoon		= "Весперон: Незабаром відображення",
 	WarningVesperonPortal	= "Портал Весперона",
 	WarningTenebronPortal	= "Портал Тенеброна",
 	WarningShadronPortal	= "Портал Шадрона"
 })
 
 L:SetTimerLocalization({
-	TimerTenebron			= "Прибытие Тенеброна",
-	TimerShadron			= "Прибытие Шадрона",
-	TimerVesperon			= "Прибытие Весперона",
-	TimerTenebronWhelps		= "Тенебронские дракончики",
+	TimerTenebron			= "Прибуття Тенеброна",
+	TimerShadron			= "Прибуття Шадрона",
+	TimerVesperon			= "Прибуття Весперона",
+	TimerTenebronWhelps		= "Тенебронські дракончики",
 	TimerShadronPortal		= "Портал Шадрона",
 	TimerVesperonPortal		= "Портал Весперона",
 	TimerVesperonPortal2	= "Портал Весперона 2"
 })
 
 L:SetOptionLocalization({
-	AnnounceFails			= "Объявлять игроков, потерпевших неудачу в Огненной стене и Расщелине тьмы<br/>(требуются права лидера или помощника)",
-	TimerTenebron			= "Отсчет времени до прибытия Тенеброна",
-	TimerShadron			= "Отсчет времени до прибытия Шадрона",
-	TimerVesperon			= "Отсчет времени до прибытия Весперона",
-	TimerTenebronWhelps		= "Показать таймер для тенебронских дракончиков",
-	TimerShadronPortal		= "Показать таймер для портала Шадрона",
-	TimerVesperonPortal		= "Показать таймер для портала Весперон",
-	TimerVesperonPortal2	= "Показать таймер для портала Весперон 2",
-	WarningFireWall			= "Cпец-предупреждение для Огненной стены",
-	WarningTenebron			= "Объявлять прибытие Тенеброна",
-	WarningShadron			= "Объявлять прибытие Шадрона",
-	WarningVesperon			= "Объявлять прибытие Весперона",
-	WarningWhelpsSoon		= "Скоро анонсируйте тенебронских дракончиков",
-	WarningPortalSoon		= "Анонсируйте портал Шадрон в ближайшее время",
-	WarningReflectSoon		= "Анонсировать Весперон, размышлять в ближайшее время",
-	WarningTenebronPortal	= "Cпец-предупреждение для порталов Тенеброна",
-	WarningShadronPortal	= "Cпец-предупреждение для порталов Шадрона",
-	WarningVesperonPortal	= "Cпец-предупреждение для порталов Весперона"
+	AnnounceFails			= "Оголошувати гравців, які зазнали невдачі у Вогняній стіні та Ущелині темряви<br/>(потрібні права лідера або помічника)",
+	TimerTenebron			= "Відлік до прибуття Тенеброна",
+	TimerShadron			= "Відлік до прибуття Шадрона",
+	TimerVesperon			= "Відлік до прибуття Весперона",
+	TimerTenebronWhelps		= "Показати таймер для тенебронських дракончиків",
+	TimerShadronPortal		= "Показати таймер для порталу Шадрона",
+	TimerVesperonPortal		= "Показати таймер для порталу Весперон",
+	TimerVesperonPortal2	= "Показати таймер для порталу Весперон 2",
+	WarningFireWall			= "Спец-попередження для Вогняної стіни",
+	WarningTenebron			= "Оголошувати прибуття Тенеброна",
+	WarningShadron			= "Оголошувати прибуття Шадрона",
+	WarningVesperon			= "Оголошувати прибуття Весперона",
+	WarningWhelpsSoon		= "Попереджати заздалегідь про тенебронських дракончиків",
+	WarningPortalSoon		= "Попереджати заздалегідь про портал Шадрона",
+	WarningReflectSoon		= "Попереджати заздалегідь про відбиття Весперона",
+	WarningTenebronPortal	= "Спец-попередження для порталів Тенеброна",
+	WarningShadronPortal	= "Спец-попередження для порталів Шадрона",
+	WarningVesperonPortal	= "Спец-попередження для порталів Весперона"
 })
 
 L:SetMiscLocalization({
-	YellSarthPull	= "Моя обязанность – оберегать эти яйца, и вы сгорите, прежде чем хоть пальцем тронете их!",
-	Wall			= "Лава вокруг %s начинает бурлить!",
-	Portal			= "%s открывает сумрачный портал!",
+	YellSarthPull	= "Мій обов'язок - оберігати ці яйця, і ви згорите, перш ніж хоч пальцем торкнетеся їх!",
+	Wall			= "Лава навколо %s починає кипіти!",
+	Portal			= "%s відкриває похмурий портал!",
 	NameTenebron	= "Тенеброн",
 	NameShadron		= "Шадрон",
 	NameVesperon	= "Весперон",
-	FireWallOn		= "Огненная стена: %s",
-	VoidZoneOn		= "Расщелина тьмы: %s",
-	VoidZones		= "Потерпели неудачу в Расщелине тьмы (за эту попытку): %s",
-	FireWalls		= "Потерпели неудачу в Огненной стене (за эту попытку): %s"
+	FireWallOn		= "Вогняна стіна: %s",
+	VoidZoneOn		= "Ущелина темряви: %s",
+	VoidZones		= "Зазнали невдачі в Розщелині пітьми (за цю спробу): %s",
+	FireWalls		= "Зазнали невдачі в Вогняній стіні (за цю спробу): %s"
 })
 
 ------------------------
@@ -117,15 +117,15 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Baltharus")
 
 L:SetGeneralLocalization({
-	name = "Балтар Рожденный в Битве"
+	name = "Балтар Народжений у Битві"
 })
 
 L:SetWarningLocalization({
-	WarningSplitSoon	= "Скоро разделение"
+	WarningSplitSoon	= "Скоро поділ"
 })
 
 L:SetOptionLocalization({
-	WarningSplitSoon	= "Предупреждать заранее о разделении"
+	WarningSplitSoon	= "Попереджати заздалегідь про поділ"
 })
 
 -------------------------
@@ -134,7 +134,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("Saviana")
 
 L:SetGeneralLocalization({
-	name = "Савиана Огненная Пропасть"
+	name = "Савіана Вогненна Прірва"
 })
 
 --------------------------
@@ -143,28 +143,28 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Zarithrian")
 
 L:SetGeneralLocalization({
-	name = "Генерал Заритриан"
+	name = "Генерал Зарітріан"
 })
 
 L:SetWarningLocalization({
-	WarnAdds	= "Новые помощники",
+	WarnAdds	= "Нові помічники",
 	warnCleaveArmor	= "%s на |3-5(>%s<) (%s)"		-- Cleave Armor on >args.destName< (args.amount)
 })
 
 L:SetTimerLocalization({
-	TimerAdds	= "Новые помощники",
-	AddsArrive	= "Прибытие помощников"
+	TimerAdds	= "Нові помічники",
+	AddsArrive	= "Прибуття помічників"
 })
 
 L:SetOptionLocalization({
-	WarnAdds		= "Объявлять новых помощников",
-	TimerAdds		= "Отсчет времени до новых помощников",
-	CancelBuff		= "Удалить $spell:10278 и $spell:642, если используется для удаления $spell:74367",
-	AddsArrive		= "Отсчет времени до прибытия помощников"
+	WarnAdds		= "Оголошувати нових помічників",
+	TimerAdds		= "Відлік до нових помічників",
+	CancelBuff		= "Видалити $spell:10278 та $spell:642, якщо використовується для видалення $spell:74367",
+	AddsArrive		= "Відлік до прибуття помічників"
 })
 
 L:SetMiscLocalization({
-	SummonMinions	= "Слуги! Обратите их в пепел!"
+	SummonMinions	= "Слуги! Зверніть їх у попіл!"
 })
 
 -------------------------------------
@@ -173,25 +173,25 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Halion")
 
 L:SetGeneralLocalization({
-	name = "Халион Сумеречный Разрушитель"
+	name = "Халіон Сутінковий Руйнівник"
 })
 
 L:SetWarningLocalization({
-	TwilightCutterCast	= "Применение заклинания Лезвие сумерек: 5 сек"
+	TwilightCutterCast	= "Застосування заклинання Лезо сутінків: 5 сек"
 })
 
 L:SetOptionLocalization({
-	TwilightCutterCast		= "Предупреждать о применении заклинания $spell:77844",
-	AnnounceAlternatePhase	= "Показывать предупреждения и таймеры для обоих миров",
-	SetIconOnConsumption	= "Устанавливать метки на цели заклинаний $spell:74562 или $spell:74792"--So we can use single functions for both versions of spell.
+	TwilightCutterCast		= "Попереджати про застосування заклинання $spell:77844",
+	AnnounceAlternatePhase	= "Показувати попередження та таймери для обох світів",
+	SetIconOnConsumption	= "Встановлювати мітки на цілі заклинань $spell:74562 або $spell:74792"--So we can use single functions for both versions of spell.
 })
 
 L:SetMiscLocalization({
-	Halion					= "Халион",
-	PhysicalRealm			= "Реальный мир",
-	MeteorCast				= "Небеса в огне!",
-	Phase2					= "В мире сумерек вы найдете лишь страдания! Входите, если посмеете!",
-	Phase3					= "Я есть свет и я есть тьма! Трепещите, ничтожные, перед посланником Смертокрыла!",
-	twilightcutter			= "Остерегайтесь теней!", --"Во вращающихся сферах пульсирует темная энергия!",
-	Kill					= "Это ваша последняя победа. Насладитесь сполна ее вкусом. Ибо когда вернется мой господин, этот мир сгинет в огне!"
+	Halion					= "Халіон",
+	PhysicalRealm			= "Реальний світ",
+	MeteorCast				= "Небеса у вогні!",
+	Phase2					= "У світі сутінків ви знайдете лише страждання! Заходьте, якщо посмієте!",
+	Phase3					= "Я є світло, і я є темрява! Тремтіть, нікчемні, перед посланцем Смертокрила!",
+	twilightcutter			= "Стережіться тіней!", --"У сферах, що обертаються, пульсує темна енергія!",
+	Kill					= "Це ваша остання перемога. Насолоджуйтеся сповна її смаком. Бо коли повернеться мій пан, цей світ згине у вогні!"
 })

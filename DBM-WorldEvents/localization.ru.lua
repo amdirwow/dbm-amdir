@@ -8,21 +8,21 @@ local L
 L = DBM:GetModLocalization("ApothecaryTrio")
 
 L:SetGeneralLocalization({
-	name = "Трое аптекарей"
+	name = "Троє аптекарів"
 })
 
 L:SetTimerLocalization({
-	HummelActive		= "Хаммел вступает в бой",
-	BaxterActive		= "Бакстер вступает в бой",
-	FryeActive			= "Фрай вступает в бой"
+	HummelActive		= "Хаммел вступає у бій",
+	BaxterActive		= "Бакстер вступає у бій",
+	FryeActive			= "Фрай вступає у бій"
 })
 
 L:SetOptionLocalization({
-	TrioActiveTimer		= "Отсчет времени до вступления Троих аптекарей в бой"
+	TrioActiveTimer		= "Відлік до вступу Трьох аптекарів у бій"
 })
 
 L:SetMiscLocalization({
-	SayCombatStart		= "Тебе хоть сказали, кто я и чем занимаюсь?"
+	SayCombatStart		= "Хоч тобі сказали, хто я і чим займаюся?"
 })
 
 ----------------------------
@@ -36,27 +36,27 @@ L:SetGeneralLocalization({
 
 L:SetWarningLocalization({
 --	Submerged		= "Ахун исчез",
-	Emerged			= "Ахун появился",
-	specWarnAttack	= "Ахун уязвим - атакуйте сейчас!"
+	Emerged			= "Ахун з'явився",
+	specWarnAttack	= "Ахун вразливий - атакуйте зараз!"
 })
 
 L:SetTimerLocalization({
-	SubmergeTimer	= "Исчезновение",
-	EmergeTimer		= "Появление",
-	TimerCombat		= "Начало боя"
+	SubmergeTimer	= "Зникнення",
+	EmergeTimer		= "Поява",
+	TimerCombat		= "Початок бою"
 })
 
 L:SetOptionLocalization({
 --	Submerged		= "Предупреждение, когда Ахун исчезает",
-	Emerged			= "Предупреждение, когда Ахун появляется",
-	specWarnAttack	= "Спец-предупреждение, когда Ахун становится уязвим",
-	SubmergeTimer	= "Отсчет времени до исчезновения",
-	EmergeTimer		= "Отсчет времени до появления",
-	TimerCombat		= "Отсчет времени до начала боя",
+	Emerged			= "Попередження, коли Ахун з'являється",
+	specWarnAttack	= "Спец-попередження, коли Ахун стає вразливим",
+	SubmergeTimer	= "Відлік до зникнення",
+	EmergeTimer		= "Відлік до появи",
+	TimerCombat		= "Відлік до початку бою",
 })
 
 L:SetMiscLocalization({
-	Pull			= "Камень Льда растаял!"
+	Pull			= "Камінь Льоду розтанув!"
 })
 
 ----------------------
@@ -69,17 +69,17 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	specWarnBrew		= "Избавьтесь от варева прежде, чем она бросит вам другое!",
-	specWarnBrewStun	= "СОВЕТ: Вы получили удар, не забудьте выпить варево в следующий раз!"
+	specWarnBrew		= "Позбудьтеся варити, перш ніж вона кине вам інше!",
+	specWarnBrewStun	= "ПОРАДА: Ви отримали удар, не забудьте випити варево наступного разу!"
 })
 
 L:SetOptionLocalization({
-	specWarnBrew		= "Спец-предупреждение для $spell:47376",
-	specWarnBrewStun	= "Спец-предупреждение для $spell:47340",
+	specWarnBrew		= "Спец-попередження для $spell:47376",
+	specWarnBrewStun	= "Спец-попередження для $spell:47340",
 })
 
 L:SetMiscLocalization({
-	YellBarrel			= "Бочка на мне!"
+	YellBarrel			= "Бочка на мені!"
 })
 
 -----------------------------
@@ -88,26 +88,26 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("HeadlessHorseman")
 
 L:SetGeneralLocalization({
-	name = "Всадник без головы"
+	name = "Вершник без голови"
 })
 
 L:SetWarningLocalization({
 	WarnPhase				= "Фаза %d",
-	warnHorsemanSoldiers	= "Призыв Пульсирующих тыкв",
-	warnHorsemanHead		= "Появилась голова всадника!",
-	specWarnHorsemanHead	= "Вихрь - переключитесь на голову"
+	warnHorsemanSoldiers	= "Заклик Пульсуючих гарбузів",
+	warnHorsemanHead		= "З'явилась голова вершника!",
+	specWarnHorsemanHead	= "Вихор - перейдіть на голову"
 })
 
 L:SetOptionLocalization({
-	WarnPhase				= "Предупреждение о смене фаз",
-	warnHorsemanSoldiers	= "Предупреждать о призыве Пульсирующих тыкв",
-	warnHorsemanHead		= "Спец-предупрежение о появлении головы всадника",
-	specWarnHorsemanHead	= "Спец-предупреждение для Вихря (призыв 2ой и следующей головы)"
+	WarnPhase				= "Попередження про зміну фаз",
+	warnHorsemanSoldiers	= "Попереджати про заклик Пульсуючих гарбузів",
+	warnHorsemanHead		= "Спец-попередження про появу голови вершника",
+	specWarnHorsemanHead	= "Спец-попередження для Вихря (заклик 2-ої та наступної голови)"
 })
 
 L:SetMiscLocalization({
-	HorsemanSummon			= "Всадник встает…", -- CONFIRM! local SQL has different string: Всадник встает...
-	HorsemanHead			= "Не надоело еще убегать?",
-	HorsemanSoldiers		= "Восстаньте слуги, устремитесь в бой! Пусть павший рыцарь обретет покой!",
-	SayCombatEnd			= "Со смертью мы давно уже друзья...Что ждет теперь на пустоши меня?"
+	HorsemanSummon			= "Вершник встає.", -- CONFIRM! local SQL has different string: Всадник встает...
+	HorsemanHead			= "Не набридло ще тікати?",
+	HorsemanSoldiers		= "Встаньте слуги, прямуйте в бій! Нехай полеглий лицар знаходить спокій!",
+	SayCombatEnd			= "Зі смертю ми давно вже друзі ... Що чекає тепер на пустки мене?"
 })

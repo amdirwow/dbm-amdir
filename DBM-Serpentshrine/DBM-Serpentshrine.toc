@@ -6,7 +6,7 @@
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Caverne du sanctuaire du Serpent|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0毒蛇神殿|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0毒蛇神殿洞穴|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Змеиное святилище|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Зміїне святилище|r
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMSerpentshrine_AllSavedVars
@@ -25,7 +25,7 @@
 ## X-DBM-Mod-Name-frFR: Caverne du sanctuaire du Serpent
 ## X-DBM-Mod-Name-zhCN: 毒蛇神殿
 ## X-DBM-Mod-Name-zhCN: 毒蛇神殿洞穴
-## X-DBM-Mod-Name-ruRU: Змеиное святилище
+## X-DBM-Mod-Name-ruRU:Зміїне святилище
 ## X-DBM-Mod-LoadZone: Serpentshrine Cavern
 ## X-DBM-Mod-LoadZone-koKR: 불뱀 제단
 ## X-DBM-Mod-LoadZone-deDE: Höhle des Schlangenschreins
@@ -34,7 +34,7 @@
 ## X-DBM-Mod-LoadZone-frFR: Caverne du sanctuaire du Serpent
 ## X-DBM-Mod-LoadZone-zhCN: 毒蛇神殿
 ## X-DBM-Mod-LoadZone-zhTW: 毒蛇神殿洞穴
-## X-DBM-Mod-LoadZone-ruRU: Змеиное святилище
+## X-DBM-Mod-LoadZone-ruRU:Зміїне святилище
 
 localization.en.lua
 localization.cn.lua

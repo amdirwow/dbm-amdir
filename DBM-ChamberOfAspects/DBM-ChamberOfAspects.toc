@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Chamber of Aspects|r
 ## Title-deDE:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Kammer der Aspekte|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Палата Аспектов|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Палата Аспектів|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0守護巨龍之間|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0龙神之厅|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0흑요석 성소|r
@@ -17,7 +17,7 @@
 ## X-DBM-StatTypes: normal,normal25,heroic,heroic25
 ## X-DBM-Mod-SubCategories: The Obsidian Sanctum, The Ruby Sanctum
 ## X-DBM-Mod-SubCategories-deDE: Das Obsidiansanktum, Das Rubinsanktum
-## X-DBM-Mod-SubCategories-ruRU: Обсидиановое святилище, Рубиновое святилище
+## X-DBM-Mod-SubCategories-ruRU: Обсидіанове святилище, Рубінове святилище
 ## X-DBM-Mod-SubCategories-zhTW: 黑曜聖所, 晶紅聖所
 ## X-DBM-Mod-SubCategories-zhCN: 黑曜石圣殿, 红玉圣殿
 ## X-DBM-Mod-SubCategories-koKR: 흑요석 성소, 루비 성소
@@ -26,7 +26,7 @@
 ## X-DBM-Mod-SubCategories-esMX: El Sagrario Obsidiana, El Sagrario Rubí
 ## X-DBM-Mod-Name: Chamber of Aspects
 ## X-DBM-Mod-Name-deDE: Kammer der Aspekte
-## X-DBM-Mod-Name-ruRU: Палата Аспектов
+## X-DBM-Mod-Name-ruRU: Палата Аспектів
 ## X-DBM-Mod-Name-zhTW: 守護巨龍之間
 ## X-DBM-Mod-Name-zhCN: 龙神之厅
 ## X-DBM-Mod-Name-koKR: 고룡쉼터 사원
@@ -37,7 +37,7 @@
 ## X-DBM-Mod-MapID: 532,610
 ## X-DBM-Mod-LoadZone: The Obsidian Sanctum,The Ruby Sanctum
 ## X-DBM-Mod-LoadZone-deDE: Das Obsidiansanktum,Das Rubinsanktum
-## X-DBM-Mod-LoadZone-ruRU: Обсидиановое святилище,Рубиновое святилище
+## X-DBM-Mod-LoadZone-ruRU: Обсидіанове святилище, Рубінове святилище
 ## X-DBM-Mod-LoadZone-zhTW: 黑曜聖所, 晶紅聖所
 ## X-DBM-Mod-LoadZone-zhCN: 黑曜石圣殿, 红玉圣殿
 ## X-DBM-Mod-LoadZone-koKR: 흑요석 성소,루비 성소

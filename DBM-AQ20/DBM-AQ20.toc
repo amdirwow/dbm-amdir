@@ -4,7 +4,7 @@
 ## Title-esES:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Ruinas de Ahn'Qiraj|r
 ## Title-esMX:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Ruinas de Ahn'Qiraj|r
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Ruines d'Ahn'Qiraj|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Руины Ан'Киража|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Руїни Ан'Кіража|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0안퀴라즈 폐허|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0安其拉废墟|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0安其拉廢墟|r
@@ -18,13 +18,13 @@
 ## X-DBM-StatTypes: normal
 ## X-DBM-Mod-Name: The Ruins of Ahn'Qiraj
 ## X-DBM-Mod-Name-zhCN: 安其拉废墟
-## X-DBM-Mod-Name-ruRU: Руины Ан'Киража
+## X-DBM-Mod-Name-ruRU:Руїни Ан'Кіражу
 ## X-DBM-Mod-Name-esES: Ruinas de Ahn'Qiraj
 ## X-DBM-Mod-MapID: 718
 ## X-DBM-Mod-Sort: 1103
 ## X-DBM-Mod-LoadZone: Ruins of Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esES: Ruinas de Ahn'Qiraj
-## X-DBM-Mod-LoadZone-ruRU: Руины Ан'Киража
+## X-DBM-Mod-LoadZone-ruRU:Руїни Ан'Кіражу
 ## X-DBM-Mod-LoadZone-frFR: Ruines d'Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esMX: Ruinas de Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-zhTW: 安其拉廢墟

@@ -14,11 +14,11 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	timerP2	= "Показывать таймер начала Фазы 2"
+	timerP2	= "Показувати таймер початку Фази 2"
 })
 
 L:SetMiscLocalization({
-	DBM_MAG_EMOTE_PULL		= "Сдерживающая сила %sа начинает ослабевать!",
-	DBM_MAG_YELL_PHASE2		= "Я... свободен!",
-	DBM_MAG_YELL_PHASE3		= "Пусть стены темницы содрогнутся... и падут!"
+	DBM_MAG_EMOTE_PULL		= "Стримуюча сила %sа починає слабшати!",
+	DBM_MAG_YELL_PHASE2		= "Я... вільний!",
+	DBM_MAG_YELL_PHASE3		= "Нехай стіни в'язниці здригнуться... і впадуть!"
 })

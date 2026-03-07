@@ -19,7 +19,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Nadox")
 
 L:SetGeneralLocalization({
-	name = "Старейшина Надокс"
+	name = "Старійшина Надокс"
 })
 
 ---------------------------
@@ -28,7 +28,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("JedogaShadowseeker")
 
 L:SetGeneralLocalization({
-	name = "Джедога Искательница Теней"
+	name = "Джедога Шукальниця Тіней"
 })
 
 ---------------------
@@ -46,7 +46,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Amanitar")
 
 L:SetGeneralLocalization({
-	name = "Аманитар"
+	name = "Аманітар"
 })
 
 -------------------
@@ -57,7 +57,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Krikthir")
 
 L:SetGeneralLocalization({
-	name = "Крик'тир Хранитель Врат"
+	name = "Крик'тир Охоронець Брам"
 })
 
 ----------------
@@ -75,7 +75,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Anubarak")
 
 L:SetGeneralLocalization({
-	name = "Ануб'арак (группа)"
+	name = "Ануб'арак (група)"
 })
 
 ---------------------------------------
@@ -86,7 +86,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Meathook")
 
 L:SetGeneralLocalization({
-	name = "Мясной Крюк"
+	name = "М'ясний Крюк"
 })
 
 --------------------------------
@@ -95,7 +95,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("SalrammTheFleshcrafter")
 
 L:SetGeneralLocalization({
-	name = "Салрамм Плоторез"
+	name = "Салрамм Плоторіз"
 })
 
 -------------------------
@@ -104,7 +104,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ChronoLordEpoch")
 
 L:SetGeneralLocalization({
-	name = "Хронолорд Эпох"
+	name = "Хронолорд Епох"
 })
 
 -----------------
@@ -113,11 +113,11 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MalGanis")
 
 L:SetGeneralLocalization({
-	name = "Мал'Ганис"
+	name = "Мал'Ганіс"
 })
 
 L:SetMiscLocalization({
-	Outro	= "Твое путешествие начинается, юный принц. Собирай свои войска и отправляйся в царство вечных снегов, в Нордскол. Там мы и уладим все наши дела, там ты узнаешь свою судьбу."
+	Outro	= "Твоя подорож починається, молодий принц. Збирай свої війська і вирушай у царство вічних снігів, до Нордсколу. Там ми й залагодимо всі наші справи, там ти дізнаєшся про свою долю."
 })
 
 -------------------
@@ -126,42 +126,42 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("StratWaves")
 
 L:SetGeneralLocalization({
-	name = "Волны Стратхольма"
+	name = "Хвилі Стратхольму"
 })
 
 L:SetWarningLocalization({
-	WarningWaveNow = "Волна %d: призыв %s"
+	WarningWaveNow = "Хвиля %d: заклик %s"
 })
 
 L:SetTimerLocalization({
-	TimerWaveIn		= "Следующая волна (6)",
-	TimerRoleplay	= "Вступительное представление"
+	TimerWaveIn		= "Наступна хвиля (6)",
+	TimerRoleplay	= "Вступна вистава"
 })
 
 L:SetOptionLocalization({
-	WarningWaveNow	= "Предупреждение о новой волне",
-	TimerWaveIn		= "Отсчет времени до cледующей волны (после босса 5-ой волны)",
-	TimerRoleplay	= "Отсчет времени для вступительного представления"
+	WarningWaveNow	= "Попередження про нову хвилю",
+	TimerWaveIn		= "Відлік до наступної хвилі (після боса 5-ої хвилі)",
+	TimerRoleplay	= "Відлік для вступного подання"
 })
 
 L:SetMiscLocalization({
-	Meathook	= "Мясной Крюк",
-	Salramm		= "Салрамм Плоторез",
-	Devouring	= "Всепожирающий вурдалак",
-	Enraged		= "Разъярившийся вурдалак",
+	Meathook	= "М'ясний Крюк",
+	Salramm		= "Салрамм Плоторіз",
+	Devouring	= "Всепожираючий вовкул",
+	Enraged		= "Вурдалак, що розлютився.",
 	Necro		= "Некромант",
-	Fiend		= "Некрорахнид",
-	Stalker		= "Кладбищенский ловец",
-	Abom		= "Лоскутное создание",
+	Fiend		= "Некрорахнід",
+	Stalker		= "Цвинтарний ловець",
+	Abom		= "Шматкове створення",
 	Acolyte		= "Послушник",
 	Wave1		= "%d %s",
-	Wave2		= "%d %s и %d %s",
-	Wave3		= "%d %s, %d %s и %d %s",
-	Wave4		= "%d %s, %d %s, %d %s и %d %s",
+	Wave2		= "%d %s та %d %s",
+	Wave3		= "%d %s, %d %s та %d %s",
+	Wave4		= "%d %s, %d %s, %d %s та %d %s",
 	WaveBoss	= "%s",
-	WaveCheck	= "Атаки Плети: (%d+)/10",
-	Roleplay	= "Я рад, что ты пришел, Утер!",
-	Roleplay2	= "Похоже, все готовы. Помните, эти люди заражены чумой и скоро умрут. Мы должны очистить Стратхольм и защитить Лордерон от Плети. Вперед."
+	WaveCheck	= "Атаки Плеті: (%d+)/10",
+	Roleplay	= "Я радий, що ти прийшов, Утере!",
+	Roleplay2	= "Схоже, всі готові. Пам'ятайте, ці люди заражені чумою і скоро помруть. Ми повинні очистити Стратхольм і захистити Лордерон від Плеті. Уперед."
 })
 
 ------------------------
@@ -176,7 +176,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	YellExplosion = "Труп бдыжь!"
+	YellExplosion = "Труп будить!"
 })
 
 --------------------------
@@ -185,27 +185,27 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("NovosTheSummoner")
 
 L:SetGeneralLocalization({
-	name = "Новос Призыватель"
+	name = "Новос Закличник"
 })
 
 L:SetWarningLocalization({
-	WarnCrystalHandler	= "Хрустальный укротитель (%d осталось)"
+	WarnCrystalHandler	= "Кришталевий приборкувач (%d залишилося)"
 })
 
 L:SetTimerLocalization({
-	timerCrystalHandler	= "Хрустальный укротитель"
+	timerCrystalHandler	= "Кришталевий приборкувач"
 })
 
 L:SetOptionLocalization({
-	WarnCrystalHandler	= "Предупреждение при появлении Хрустального укротителя",
-	timerCrystalHandler	= "Отсчет времени до появления следующего Хрустального укротителя"
+	WarnCrystalHandler	= "Попередження з появою Кришталевого приборкувача",
+	timerCrystalHandler	= "Відлік до появи наступного Кришталевого приборкувача"
 })
 
 L:SetMiscLocalization({
-	YellPull		= "Вам холодно? Это дыхание скорой смерти.",
-	HandlerYell		= "Защищайте меня! Быстрее, будьте вы прокляты!",
-	Phase2			= "Неужели вы не понимаете всей бесполезности происходящего?",
-	YellKill		= "Ваши усилия… напрасны."
+	YellPull		= "Вам холодно? Це подих швидкої смерті.",
+	HandlerYell		= "Захищайте мене! Швидше, будьте ви прокляті!",
+	Phase2			= "Невже ви не розумієте всієї марності того, що відбувається?",
+	YellKill		= "Ваші зусилля... марні."
 })
 
 -----------------
@@ -234,7 +234,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Sladran")
 
 L:SetGeneralLocalization({
-	name = "Слад'ран"
+	name = "Сладран"
 })
 
 ---------------
@@ -243,7 +243,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Moorabi")
 
 L:SetGeneralLocalization({
-	name = "Мураби"
+	name = "Мурабі"
 })
 
 -------------------------
@@ -252,17 +252,17 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BloodstoneAnnihilator")
 
 L:SetGeneralLocalization({
-	name = "Колосс Драккари"
+	name = "Колос Драккарі"
 })
 
 L:SetWarningLocalization({
-	WarningElemental	= "Фаза 2. Элементаль",
-	WarningStone		= "Фаза 1. Колосс"
+	WarningElemental	= "Фаза 2. Елементаль",
+	WarningStone		= "Фаза 1. Колос"
 })
 
 L:SetOptionLocalization({
-	WarningElemental	= "Предупреждение для Фаза 2. Элементаль",
-	WarningStone		= "Предупреждение для Фаза 1. Колосс"
+	WarningElemental	= "Попередження Фазу 2. Елементаль",
+	WarningStone		= "Попередження для Фаза 1. Колос"
 })
 
 -----------------
@@ -275,23 +275,23 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	TimerPhase2		= "Фаза 2: Аватара Акали",
-	TimerPhase1		= "Фаза 1: Верховный пророк Акали"
+	TimerPhase2		= "Фаза 2: Аватар Акалі",
+	TimerPhase1		= "Фаза 1: Верховний пророк Акалі"
 })
 
 L:SetTimerLocalization({
-	TimerPhase2		= "Фаза 2: Аватара Акали",
-	TimerPhase1		= "Фаза 1: Верховный пророк Акали"
+	TimerPhase2		= "Фаза 2: Аватар Акалі",
+	TimerPhase1		= "Фаза 1: Верховний пророк Акалі"
 })
 
 L:SetOptionLocalization({
-	TimerPhase2		= "Предупреждение для Фаза 2: Аватара Акали",
-	TimerPhase1		= "Предупреждение для Фаза 1: Верховный пророк Акали"
+	TimerPhase2		= "Попередження для Фаза 2: Аватара Акалі",
+	TimerPhase1		= "Попередження Фазі 1: Верховний пророк Акалі"
 })
 
 L:SetMiscLocalization({
-	YellPhase2_1	= "После этого ничего не останется!",
-	YellPhase2_2	= "Хотите увидеть cилу? Я покажу вам... силу!"
+	YellPhase2_1	= "Після цього нічого не лишиться!",
+	YellPhase2_2	= "Хочете побачити силу? Я покажу вам... силу!"
 })
 
 -------------------------
@@ -300,7 +300,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Eck")
 
 L:SetGeneralLocalization({
-	name = "Эк Свирепый"
+	name = "Ек Лютий"
 })
 
 --------------------------
@@ -311,7 +311,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Bjarngrin")
 
 L:SetGeneralLocalization({
-	name = "Генерал Бьярнгрин"
+	name = "Генерал Б'ярнгрін"
 })
 
 -------------
@@ -320,7 +320,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Ionar")
 
 L:SetGeneralLocalization({
-	name = "Ионар"
+	name = "Іонар"
 })
 
 ---------------
@@ -349,7 +349,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MaidenOfGrief")
 
 L:SetGeneralLocalization({
-	name = "Дева Скорби"
+	name = "Діва Скорботи"
 })
 
 ------------------
@@ -358,7 +358,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Krystallus")
 
 L:SetGeneralLocalization({
-	name = "Кристаллус"
+	name = "Кристалус"
 })
 
 ------------------------------
@@ -367,7 +367,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("SjonnirTheIronshaper")
 
 L:SetGeneralLocalization({
-	name = "Сьоннир Литейщик"
+	name = "Сьоннір Ливарник"
 })
 
 --------------------------------------
@@ -376,7 +376,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BrannBronzebeard")
 
 L:SetGeneralLocalization({
-	name = "Эскорт Бранна"
+	name = "Ескорт Брана"
 })
 
 L:SetWarningLocalization({
@@ -384,20 +384,20 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	timerEvent	= "Оставшееся время"
+	timerEvent	= "Час, що залишився"
 })
 
 L:SetOptionLocalization({
-	WarningPhase	= "Предупреждение о смене фазы",
-	timerEvent		= "Отсчет времени продолжительности события"
+	WarningPhase	= "Попередження про зміну фази",
+	timerEvent		= "Відлік тривалості події"
 })
 
 L:SetMiscLocalization({
-	Pull	= "Теперь будьте внимательны! Не успеете и глазом моргнуть, как…",
-	Phase1	= "Обнаружено вторжение в систему. Приоритетность работ по анализу исторических архивов понижена. Ответные меры инициированы.",
-	Phase2	= "Порог допустимой угрозы превышен. Астрономический архив отключен. Уровень безопасности повышен.",
-	Phase3	= "Критическое значение уровня угрозы. Перенаправление анализа Бездны. Инициирование протокола очищения.",
-	Kill	= "Внимание: меры предосторожности деактивированы. Начинаю стирание памяти и…"
+	Pull	= "Тепер будьте уважні! Не встигнете й оком моргнути, як…",
+	Phase1	= "Виявлено вторгнення до системи. Пріоритетність робіт з аналізу історичних архівів знижено. Заходи у відповідь ініційовані.",
+	Phase2	= "Порог допустимої загрози перевищено. Астрономічний архів вимкнено. Рівень безпеки підвищено.",
+	Phase3	= "Критичне значення рівня небезпеки. Перенаправлення аналізу Безодні. Ініціювання протоколу очищення.",
+	Kill	= "Увага: запобіжні заходи деактивовані. Починаю стирання пам'яті та…"
 })
 
 -----------------
@@ -417,7 +417,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("OrmorokTheTreeShaper")
 
 L:SetGeneralLocalization({
-	name = "Орморок Воспитатель Дерев"
+	name = "Орморок Вихователь Дерев"
 })
 
 ----------------------------
@@ -426,24 +426,24 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("GrandMagusTelestra")
 
 L:SetGeneralLocalization({
-	name = "Великая ведунья Телестра"
+	name = "Велика ведуня Телестра"
 })
 
 L:SetWarningLocalization({
-	WarningSplitSoon	= "Скоро Разделение",
-	WarningSplitNow		= "Разделение",
-	WarningMerge		= "Слияние"
+	WarningSplitSoon	= "Скоро Поділ",
+	WarningSplitNow		= "Поділ",
+	WarningMerge		= "Злиття"
 })
 L:SetOptionLocalization({
-	WarningSplitSoon	= "Предупреждать заранее о Разделении",
-	WarningSplitNow		= "Предупреждать о Разделении",
-	WarningMerge		= "Предупреждать о Слиянии"
+	WarningSplitSoon	= "Попереджати заздалегідь про Поділ",
+	WarningSplitNow		= "Попереджати про Поділ",
+	WarningMerge		= "Попереджати про злиття"
 })
 
 L:SetMiscLocalization({
-	SplitTrigger1		= "Меня на вас хватит!",
-	SplitTrigger2		= "Вы получите больше, чем заслуживаете!",
-	MergeTrigger		= "Ну а теперь, покончим с этим!"
+	SplitTrigger1		= "Мене вистачить на вас!",
+	SplitTrigger2		= "Ви отримаєте більше, ніж заслуговуєте!",
+	MergeTrigger		= "Ну а тепер, покінчимо з цим!"
 })
 
 -------------------
@@ -452,7 +452,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Keristrasza")
 
 L:SetGeneralLocalization({
-	name = "Керистраза"
+	name = "Керістраза"
 })
 
 -----------------------------------
@@ -460,7 +460,7 @@ L:SetGeneralLocalization({
 -----------------------------------
 L = DBM:GetModLocalization("Commander")
 
-local commander = "Неизвестный"
+local commander = "Невідомий"
 if UnitFactionGroup("player") == "Alliance" then
 	commander = "Командир Колург"
 elseif UnitFactionGroup("player") == "Horde" then
@@ -479,16 +479,16 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DrakosTheInterrogator")
 
 L:SetGeneralLocalization({
-	name = "Дракос Дознаватель"
+	name = "Дракос Дізнавач"
 })
 
 
 L:SetOptionLocalization({
-	MakeitCountTimer	= "Отсчет времени для Вам всем зачтется (достижение)"
+	MakeitCountTimer	= "Відлік для Вас всім зарахується (досягнення)"
 })
 
 L:SetMiscLocalization({
-	MakeitCountTimer	= "Вам всем зачтется"
+	MakeitCountTimer	= "Вам усім зарахується"
 })
 
 ----------------------
@@ -501,7 +501,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	CombatStart		= "Несчастные слепые глупцы!"
+	CombatStart		= "Нещасні сліпі дурні!"
 })
 
 --------------------------
@@ -510,7 +510,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("VarosCloudstrider")
 
 L:SetGeneralLocalization({
-	name = "Варос Заоблачный Странник"
+	name = "Варос Захмарний Мандрівник"
 })
 
 ---------------------------
@@ -519,11 +519,11 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LeyGuardianEregos")
 
 L:SetGeneralLocalization({
-	name = "Хранитель энергии Эрегос"
+	name = "Зберігач енергії Ерегос"
 })
 
 L:SetMiscLocalization({
-	MakeitCountTimer	= "Вам всем зачтется"
+	MakeitCountTimer	= "Вам усім зарахується"
 })
 
 --------------------
@@ -544,7 +544,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ConstructorAndController")
 
 L:SetGeneralLocalization({
-	name = "Скарвальд и Далронн"
+	name = "Скарвальд і Далрон"
 })
 
 ----------------------------
@@ -553,12 +553,12 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("IngvarThePlunderer")
 
 L:SetGeneralLocalization({
-	name = "Ингвар Расхититель"
+	name = "Інгвар Розкрадач"
 })
 
 L:SetMiscLocalization({
-	YellIngvarPhase2	= "Я вернулся! Еще один шанс раскроить вам головы!",
-	YellCombatEnd		= "Нет! Я смогу это сделать… я смогу…"
+	YellIngvarPhase2	= "Я повернувся! Ще один шанс розкроїти вам голови!",
+	YellCombatEnd		= "Ні! Я зможу це зробити… я зможу…"
 })
 
 ------------------------
@@ -569,12 +569,12 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("SkadiTheRuthless")
 
 L:SetGeneralLocalization({
-	name = "Скади Безжалостный"
+	name = "Скаді Безжальний"
 })
 
 L:SetMiscLocalization({
-	CombatStart		= "Что за недоноски осмелились вторгнуться сюда? Поживее, братья мои! Угощение тому, кто принесет мне их головы!",
-	Phase2			= "Ничтожные лакеи! Ваши трупы послужат хорошей закуской для моего нового дракона!"
+	CombatStart		= "Що за недоноски наважилися вторгнутися сюди? Скоріше, брати мої! Частування тому, хто принесе мені їхні голови!",
+	Phase2			= "Нікчемні лакеї! Ваші трупи стануть гарною закускою для мого нового дракона!"
 })
 
 -------------------
@@ -583,7 +583,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Ymiron")
 
 L:SetGeneralLocalization({
-	name = "Король Имирон"
+	name = "Король Імірон"
 })
 
 -------------------------
@@ -592,19 +592,19 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("SvalaSorrowgrave")
 
 L:SetGeneralLocalization({
-	name = "Свала Вечноскорбящая"
+	name = "Свала Вічноскорботна"
 })
 
 L:SetTimerLocalization({
-	timerRoleplay		= "Свала Вечноскорбящая активируется"
+	timerRoleplay		= "Свала Вічноскорботна активується"
 })
 
 L:SetOptionLocalization({
-	timerRoleplay		= "Отсчет времени для представления перед активацией Свалы Вечноскорбящей"
+	timerRoleplay		= "Відлік для подання перед активацією Свали Вічноскорбящей"
 })
 
 L:SetMiscLocalization({
-	SvalaRoleplayStart	= "Мой господин! Я сделала, как вы велели, и теперь молю вас о благословении!"
+	SvalaRoleplayStart	= "Мій пане! Я зробила, як ви наказали, і тепер благаю вас про благословення!"
 })
 
 -----------------------
@@ -613,7 +613,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("GortokPalehoof")
 
 L:SetGeneralLocalization({
-	name = "Горток Бледное Копыто"
+	name = "Горток Бліде Копито"
 })
 
 -----------------------
@@ -624,11 +624,11 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Cyanigosa")
 
 L:SetGeneralLocalization({
-	name = "Синигоса"
+	name = "Сінігоса"
 })
 
 L:SetMiscLocalization({
-	CyanArrived	= "Вы доблестно обороняетесь, но этот город должен быть стерт с лица земли, и я лично исполню волю Малигоса!"
+	CyanArrived	= "Ви доблесно обороняєтеся, але це місто має бути стерте з лиця землі, і я особисто виконаю волю Малігоса!"
 })
 
 --------------
@@ -637,7 +637,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Erekem")
 
 L:SetGeneralLocalization({
-	name = "Эрекем"
+	name = "Ерекем"
 })
 
 ---------------
@@ -664,7 +664,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Moragg")
 
 L:SetGeneralLocalization({
-	name = "Морагг"
+	name = "Мораґг"
 })
 
 --------------
@@ -682,7 +682,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Zuramat")
 
 L:SetGeneralLocalization({
-	name = "Зурамат Уничтожитель"
+	name = "Зурамат Знищувач"
 })
 
 ---------------------
@@ -691,13 +691,13 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("PortalTimers")
 
 L:SetGeneralLocalization({
-	name = "Таймеры порталов"
+	name = "Таймери порталів"
 })
 
 L:SetWarningLocalization({
-	WarningPortalSoon	= "Скоро новый портал",
+	WarningPortalSoon	= "Незабаром новий портал",
 	WarningPortalNow	= "Портал #%d",
-	WarningBossNow		= "Прибытие Босса"
+	WarningBossNow		= "Прибуття Боса"
 })
 
 L:SetTimerLocalization({
@@ -705,17 +705,17 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningPortalNow		= "Предупреждение для нового портала",
-	WarningPortalSoon		= "Предварительное предупреждение для нового портала",
-	WarningBossNow			= "Предупреждение о появлении босса",
-	TimerPortalIn			= "Отсчет времени до следующего портала (после босса)",
-	ShowAllPortalTimers		= "Отсчет времени для всех порталов (неточный)"
+	WarningPortalNow		= "Попередження для нового порталу",
+	WarningPortalSoon		= "Попереднє попередження для нового порталу",
+	WarningBossNow			= "Попередження про появу боса",
+	TimerPortalIn			= "Відлік до наступного порталу (після боса)",
+	ShowAllPortalTimers		= "Відлік для всіх порталів (неточний)"
 })
 
 L:SetMiscLocalization({
-	yell1		= "Эй, стражи! Уходим! Славные герои обо всем позаботятся. За мной!",
-	Sealbroken	= "Мы прорвались через тюремные ворота! Дорога в Даларан открыта! Теперь мы наконец прекратим войну Нексуса!",
-	WavePortal	= "Открыто порталов: (%d+)/18"
+	yell1		= "Гей, вартові! Ідемо! Славні герої про все подбають. За мною!",
+	Sealbroken	= "Ми прорвалися через тюремні ворота! Дорога до Даларану відкрита! Тепер ми нарешті припинимо війну Нексуса!",
+	WavePortal	= "Відкрито порталів: (%d+)/18"
 })
 
 -----------------------------
@@ -726,17 +726,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("BlackKnight")
 
 L:SetGeneralLocalization({
-	name = "Черный рыцарь"
+	name = "Чорний лицар"
 })
 
 L:SetOptionLocalization({
-	AchievementCheck		= "Объявлять о провале достижения 'Бывало и хуже' в чат группы"
+	AchievementCheck		= "Оголошувати про провал досягнення 'Бувало і гірше' в чат гурту"
 })
 
 L:SetMiscLocalization({
-	Pull				= "Великолепно. Сегодня вы в честной борьбе заслужили…",
-	AchievementFailed	= ">> ДОСТИЖЕНИЕ ПРОВАЛЕНО: %s получил урон от Взрыва вурдалака <<",
-	YellCombatEnd		= "Нет! Я не могу... снова... проиграть."
+	Pull				= "Чудово. Сьогодні ви в чесній боротьбі заслужили…",
+	AchievementFailed	= ">> ДОСЯГНЕННЯ ПРОВАЛЕНО: %s отримав шкоду від Вибуху вурдалаку <<",
+	YellCombatEnd		= "Ні! Я не можу… знову… програти."
 })
 
 -----------------------
@@ -745,11 +745,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("GrandChampions")
 
 L:SetGeneralLocalization({
-	name = "Абсолютные чемпионы"
+	name = "Абсолютні чемпіони"
 })
 
 L:SetMiscLocalization({
-	YellCombatEnd	= "Вы отлично сражались! Следующим испытанием станет битва с одним из членов Авангарда. Вы проверите свои силы в схватке с достойным соперником."
+	YellCombatEnd	= "Ви чудово боролися! Наступним випробуванням стане битва з одним із членів Авангарду. Ви перевірите свої сили у сутичці з гідним суперником."
 })
 
 ----------------------------------
@@ -758,11 +758,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Confessor")
 
 L:SetGeneralLocalization({
-	name = "Исповедница Пейлтресс"
+	name = "Сповідниця Пейлтресс"
 })
 
 L:SetMiscLocalization({
-	YellCombatEnd	= "Превосходно!"
+	YellCombatEnd	= "Чудово!"
 })
 
 -----------------------
@@ -771,11 +771,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("EadricthePure")
 
 L:SetGeneralLocalization({
-	name = "Эдрик Чистый"
+	name = "Едрік Чистий"
 })
 
 L:SetMiscLocalization({
-	YellCombatEnd	= "Я сдаюсь! Я побежден. Отличная работа. Можно теперь убегать?"
+	YellCombatEnd	= "Я здаюсь! Я переможений. Чудова робота. Чи можна тепер тікати?"
 })
 
 --------------------
@@ -786,7 +786,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Ick")
 
 L:SetGeneralLocalization({
-	name = "Ик и Крик"
+	name = "Ік та Крик"
 })
 
 ----------------------------
@@ -795,17 +795,17 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ForgemasterGarfrost")
 
 L:SetGeneralLocalization({
-	name = "Начальник кузни Гархлад"
+	name = "Начальник кузні Гархлад"
 })
 
 L:SetOptionLocalization({
-	AchievementCheck			= "Объявлять предупреждения о достижении 'Не жди до одиннадцати!' в чат группы"
+	AchievementCheck			= "Оголошувати попередження про досягнення 'Не чекай до одинадцяти!' у чат групи"
 })
 
 L:SetMiscLocalization({
-	SaroniteRockThrow	= "%s швыряет в вас глыбой саронита!",
-	AchievementWarning	= "Предупреждение: %s получил %d стаков Вечной мерзлоты",
-	AchievementFailed	= ">> ДОСТИЖЕНИЕ ПРОВАЛЕНО: %s получил %d стаков Вечной мерзлоты <<"
+	SaroniteRockThrow	= "%s шпурляє в вас глибою сароніту!",
+	AchievementWarning	= "Попередження: %s отримав %d стаків Вічної мерзлоти",
+	AchievementFailed	= ">> ДОСЯГНЕННЯ ПРОВАЛЕНО: %s отримав %d стаків Вічної мерзлоти <<"
 })
 
 ----------------------------
@@ -814,13 +814,13 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("ScourgelordTyrannus")
 
 L:SetGeneralLocalization({
-	name = "Повелитель Плети Тираний"
+	name = "Король Плеті Тираній"
 })
 
 L:SetMiscLocalization({
-	CombatStart	= "Увы, бесстрашные герои, ваша навязчивость ускорила развязку. Вы слышите громыхание костей и скрежет стали за вашими спинами? Это предвестники скорой погибели.",
-	HoarfrostTarget	= "Ледяной змей Иней смотрит на (%S+), готовя морозную атаку!",
-	YellCombatEnd	= "Не может быть... Иней... Предупреди..."
+	CombatStart	= "На жаль, безстрашні герої ваша нав'язливість прискорила розв'язку. Ви чуєте гуркіт кісток і скрегіт стали за вашими спинами? Це провісники швидкої смерті.",
+	HoarfrostTarget	= "Крижаний змій Іней дивиться на (%S+), готуючи морозну атаку!",
+	YellCombatEnd	= "Не може бути... Інею... Попередь..."
 })
 
 ----------------------
@@ -840,7 +840,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DevourerofSouls")
 
 L:SetGeneralLocalization({
-	name = "Пожиратель Душ"
+	name = "Пожирач Душ"
 })
 
 ---------------------------
@@ -851,29 +851,29 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("HoRWaveTimer")
 
 L:SetGeneralLocalization({
-	name = "Таймеры волн"
+	name = "Таймери хвиль"
 })
 
 L:SetWarningLocalization({
-	WarnNewWaveSoon	= "Скоро новая волна",
-	WarnNewWave		= "%s вступает в бой"
+	WarnNewWaveSoon	= "Скоро нова хвиля",
+	WarnNewWave		= "%s входить у бій"
 })
 
 L:SetTimerLocalization({
-	TimerNextWave	= "Следующая волна"
+	TimerNextWave	= "Наступна хвиля"
 })
 
 L:SetOptionLocalization({
-	WarnNewWave			= "Предупреждение о вступлении босса в бой",
-	WarnNewWaveSoon		= "Предупреждать заранее о новой волне (после босса 5-ой волны)",
-	ShowAllWaveWarnings	= "Предупреждения для всех волн",
-	TimerNextWave		= "Отсчет времени до следующей волны (после босса 5-ой волны)",
-	ShowAllWaveTimers	= "Предупреждения и отсчет времени для всех волн (неточный)"
+	WarnNewWave			= "Попередження про вступ боса до бою",
+	WarnNewWaveSoon		= "Попереджати заздалегідь про нову хвилю (після боса 5-ої хвилі)",
+	ShowAllWaveWarnings	= "Попередження для всіх хвиль",
+	TimerNextWave		= "Відлік до наступної хвилі (після боса 5-ої хвилі)",
+	ShowAllWaveTimers	= "Попередження та відлік для всіх хвиль (неточний)"
 })
 
 L:SetMiscLocalization({
-	Falric		= "Фалрик",
-	WaveCheck	= "Отражено атак призраков = (%d+)/10"
+	Falric		= "Фалрік",
+	WaveCheck	= "Відображено атаки привидів = (%d+)/10"
 })
 
 --------------
@@ -882,7 +882,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Falric")
 
 L:SetGeneralLocalization({
-	name = "Фалрик"
+	name = "Фалрік"
 })
 
 --------------
@@ -891,7 +891,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Marwyn")
 
 L:SetGeneralLocalization({
-	name = "Марвин"
+	name = "Марвін"
 })
 
 -----------------------
@@ -900,24 +900,24 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Побег от Артаса"
+	name = "Втеча від Артаса"
 })
 
 L:SetTimerLocalization({
-	achievementEscape	= "Время для побега"
+	achievementEscape	= "Час для втечі"
 })
 
 L:SetOptionLocalization({
-	WarnWave	= "Предупреждение для прибывающих волн"
+	WarnWave	= "Попередження для хвиль, що прибувають"
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "ОГОНЬ! ОГОНЬ!",
-	Ghoul			= "Гневный вурдалак",		--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
-	Abom			= "Неуклюжее поганище",		--creature id 37069
-	WitchDoctor		= "Воскрешенный ведьмак",	--creature id 36941
-	Wave1			= "^Бежать некуда.$",
-	Wave2			= "Покоритесь леденящей смерти!",
-	Wave3			= "Вы в ловушке!",
-	Wave4			= "Как долго вы сможете сопротивляться?"
+	ArthasYellKill	= "ВОГОНЬ! ВОГОНЬ!",
+	Ghoul			= "Гнівна вовка",		--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
+	Abom			= "Незграбне поганище",		--creature id 37069
+	WitchDoctor		= "Воскресений відьмак",	--creature id 36941
+	Wave1			= "^ Бігти нікуди.",
+	Wave2			= "Підкоріться смерті, що леденить!",
+	Wave3			= "Ви у пастці!",
+	Wave4			= "Як довго ви зможете чинити опір?"
 })

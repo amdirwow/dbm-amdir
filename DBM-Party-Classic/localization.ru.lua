@@ -18,7 +18,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LadySerevess")
 
 L:SetGeneralLocalization({
-	name		= "Леди Саревесс"
+	name		= "Леді Саревес"
 })
 
 -----------------------------
@@ -27,7 +27,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Gelihast")
 
 L:SetGeneralLocalization({
-	name		= "Гелихаст"
+	name		= "Геліхаст"
 })
 
 -----------------------------
@@ -36,7 +36,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("OldSerrakis")
 
 L:SetGeneralLocalization({
-	name		= "Старина Серракис"
+	name		= "Старовина Серракіс"
 })
 
 -----------------------------
@@ -45,7 +45,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TwilightLordKelris")
 
 L:SetGeneralLocalization({
-	name		= "Повелитель сумрака Келрис"
+	name		= "Володар сутінку Келріс"
 })
 
 -----------------------------
@@ -65,7 +65,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(369)
 
 L:SetGeneralLocalization({
-	name		= "Верховный дознаватель Герштан"
+	name		= "Верховний дізнавач Герштан"
 })
 
 -----------------
@@ -83,7 +83,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(371)
 
 L:SetGeneralLocalization({
-	name		= "Псарь Гребмар"
+	name		= "Псар Гребмар"
 })
 
 ---------------------------------------------------------
@@ -92,7 +92,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(372)
 
 L:SetGeneralLocalization({
-	name		= "Зал Правосудия"
+	name		= "Зал Правосуддя"
 })
 
 ---------------------------------
@@ -101,7 +101,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(373)
 
 L:SetGeneralLocalization({
-	name		= "Пироман Зерно Мудрости"
+	name		= "Піроман Зерно Мудрості"
 })
 
 --------------------
@@ -110,7 +110,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(374)
 
 L:SetGeneralLocalization({
-	name		= "Лорд Опалитель"
+	name		= "Лорд Опалювач"
 })
 
 --------------------------
@@ -119,7 +119,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(375)
 
 L:SetGeneralLocalization({
-	name		= "Тюремщик Стилгисс"
+	name		= "Тюремник Стілгісс"
 })
 
 ----------------------
@@ -128,7 +128,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(376)
 
 L:SetGeneralLocalization({
-	name		= "Точень Темнострой"
+	name		= "Точний Темнобуд"
 })
 
 --------------
@@ -146,7 +146,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(378)
 
 L:SetGeneralLocalization({
-	name		= "Генерал Кузня Гнева"
+	name		= "Генерал Кузня Гніву"
 })
 
 ---------------------------
@@ -155,7 +155,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(379)
 
 L:SetGeneralLocalization({
-	name		= "Повелитель големов Аргелмах"
+	name		= "Король големів Аргелмах"
 })
 
 ----------------------
@@ -164,7 +164,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(380)
 
 L:SetGeneralLocalization({
-	name		= "Харли Пьянодых"
+	name		= "Харлі П'янодих"
 })
 
 -------------
@@ -182,7 +182,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(383)
 
 L:SetGeneralLocalization({
-	name		= "Штоппор Наливалс"
+	name		= "Штоппор Налівалс"
 })
 
 -------------------------
@@ -191,7 +191,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(384)
 
 L:SetGeneralLocalization({
-	name		= "Посол Огнехлыст"
+	name		= "Посол Вогнехлист"
 })
 
 ---------------
@@ -200,7 +200,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(385)
 
 L:SetGeneralLocalization({
-	name		= "Гробница Семерых"
+	name		= "Гробниця Сімих"
 })
 
 ------------
@@ -218,7 +218,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(387)
 
 L:SetGeneralLocalization({
-	name		= "Император Дагран Тауриссан"
+	name		= "Імператор Дагран Тауріссан"
 })
 
 -------------------------
@@ -228,7 +228,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(388)
 
 L:SetGeneralLocalization({
-	name		= "Вождь Омокк"
+	name		= "Вождь Омок"
 })
 
 -----------------------------
@@ -237,7 +237,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(389)
 
 L:SetGeneralLocalization({
-	name		= "Темная охотница Вос'гаджин"
+	name		= "Темна мисливця Вос'гаджин"
 })
 
 -----------------------------
@@ -246,7 +246,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(390)
 
 L:SetGeneralLocalization({
-	name		= "Воевода Вун"
+	name		= "Воєвода Вун"
 })
 
 -----------------------------
@@ -255,7 +255,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(391)
 
 L:SetGeneralLocalization({
-	name		= "Мать Дымная Паутина"
+	name		= "Мати Димна Павутина"
 })
 
 -----------------------------
@@ -264,7 +264,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(392)
 
 L:SetGeneralLocalization({
-	name		= "Аррок Смертный Вопль"
+	name		= "Аррок Смертний Крик"
 })
 
 -----------------------------
@@ -273,7 +273,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(393)
 
 L:SetGeneralLocalization({
-	name		= "Интендант Зигрис"
+	name		= "Інтендант Зігріс"
 })
 
 -----------------------------
@@ -282,7 +282,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(394)
 
 L:SetGeneralLocalization({
-	name		= "Халикон"
+	name		= "Халікон"
 })
 
 -----------------------------
@@ -291,7 +291,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(395)
 
 L:SetGeneralLocalization({
-	name		= "Гизрул Поработитель"
+	name		= "Гізрул Поневолювач"
 })
 
 -----------------------------
@@ -300,7 +300,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(396)
 
 L:SetGeneralLocalization({
-	name		= "Властитель Змейталак"
+	name		= "Володар Змейталак"
 })
 
 -------------------------
@@ -311,11 +311,11 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("PyroguardEmberseer")
 
 L:SetGeneralLocalization({
-	name		= "Пиростраж Углевзор"
+	name		= "Піростраж Вуглезор"
 })
 
 L:SetMiscLocalization({
-	Pull		= "%s начинает восстанавливать прежнюю силу!"
+	Pull		= "%s починає відновлювати колишню силу!"
 })
 
 -----------------------------
@@ -324,7 +324,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("SolakarFlamewreath")
 
 L:SetGeneralLocalization({
-	name		= "Солакар Пламя Гнева"
+	name		= "Солакар Полум'я Гніву"
 })
 
 -----------------------------
@@ -333,7 +333,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("GoralukAnvilcrack")
 
 L:SetGeneralLocalization({
-	name		= "Горалук Треснувшая Наковальня"
+	name		= "Горалук Трісла ковадло"
 })
 
 -----------------------------
@@ -342,7 +342,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("JedRunewatcher")
 
 L:SetGeneralLocalization({
-	name		= "Джед Руновед"
+	name		= "Джед Рунознавець"
 })
 
 -----------------------------
@@ -351,7 +351,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("WarchiefRendBlackhand")
 
 L:SetGeneralLocalization({
-	name		= "Вождь Ренд Чернорук"
+	name		= "Вождь Ренд Чорнорук"
 })
 
 -----------------------------
@@ -360,7 +360,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TheBeast")
 
 L:SetGeneralLocalization({
-	name		= "Зверь"
+	name		= "Звір"
 })
 
 -----------------------------
@@ -369,7 +369,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("GeneralDrakkisath")
 
 L:SetGeneralLocalization({
-	name		= "Генерал Драккисат"
+	name		= "Генерал Драккісат"
 })
 
 -------------------------
@@ -389,7 +389,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MinerJohnson")
 
 L:SetGeneralLocalization({
-	name		= "Шахтер Джонсон"
+	name		= "Шахтар Джонсон"
 })
 
 -----------------------------
@@ -398,7 +398,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("SneedsShredder")
 
 L:SetGeneralLocalization({
-	name		= "Крошшер Снида"
+	name		= "Крошшер сніда"
 })
 
 -----------------------------
@@ -407,7 +407,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Gilnid")
 
 L:SetGeneralLocalization({
-	name		= "Гилнид"
+	name		= "Гілнід"
 })
 
 -----------------------------
@@ -416,7 +416,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MrSmite")
 
 L:SetGeneralLocalization({
-	name		= "Мистер Каюк"
+	name		= "Містер Каюк"
 })
 
 -----------------------------
@@ -425,7 +425,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("CaptainGreenskin")
 
 L:SetGeneralLocalization({
-	name		= "Капитан Зеленямс"
+	name		= "Капітан Зеленямс"
 })
 
 -----------------------------
@@ -434,7 +434,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("EdwinVanCleef")
 
 L:SetGeneralLocalization({
-	name		= "Эдвин ван Клиф"
+	name		= "Едвін ван Кліф"
 })
 
 -----------------------------
@@ -443,7 +443,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Cookie")
 
 L:SetGeneralLocalization({
-	name		= "Пирожок"
+	name		= "Пиріжок"
 })
 
 --------------------------------
@@ -454,7 +454,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(402)
 
 L:SetGeneralLocalization({
-	name		= "Зеврим Терновое Копыто"
+	name		= "Зеврим Тернове Копито"
 })
 
 ------------------
@@ -463,7 +463,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(403)
 
 L:SetGeneralLocalization({
-	name		= "Гидротварь"
+	name		= "Гідротвар"
 })
 
 -----------------
@@ -472,7 +472,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(404)
 
 L:SetGeneralLocalization({
-	name		= "Лефтендрис"
+	name		= "Лефтендріс"
 })
 
 --------------------------
@@ -481,7 +481,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(405)
 
 L:SetGeneralLocalization({
-	name		= "Алззин Перевертень"
+	name		= "Алззін Перевертень"
 })
 
 --------------------
@@ -490,7 +490,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(406)
 
 L:SetGeneralLocalization({
-	name		= "Тендрис Криводрев"
+	name		= "Тендріс Кріводрєв"
 })
 
 --------------------------
@@ -499,7 +499,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(407)
 
 L:SetGeneralLocalization({
-	name		= "Иллиана Воронья Ольха"
+	name		= "Ілліана Вороння Вільха"
 })
 
 ------------------------
@@ -508,7 +508,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(408)
 
 L:SetGeneralLocalization({
-	name		= "Магистр Календрис"
+	name		= "Магістр Календріс"
 })
 
 ----------------
@@ -517,7 +517,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(409)
 
 L:SetGeneralLocalization({
-	name		= "Бессмер'тер"
+	name		= "Безсмертник"
 })
 
 --------------------------
@@ -526,7 +526,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(410)
 
 L:SetGeneralLocalization({
-	name		= "Принц Тортелдрин"
+	name		= "Принц Тортелдрін"
 })
 
 ---------------------
@@ -544,7 +544,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(412)
 
 L:SetGeneralLocalization({
-	name		= "Топотун Криг"
+	name		= "Топотун Кріг"
 })
 
 --------------------
@@ -562,7 +562,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(414)
 
 L:SetGeneralLocalization({
-	name		= "Стражник Слип'кик"
+	name		= "Стражник Сліп'кік"
 })
 
 -----------------------
@@ -571,7 +571,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(415)
 
 L:SetGeneralLocalization({
-	name		= "Капитан Давигром"
+	name		= "Капітан Давігром"
 })
 
 ----------------------------
@@ -580,11 +580,11 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(416)
 
 L:SetGeneralLocalization({
-	name		= "Чо'Раш Наблюдатель"
+	name		= "Чо'Раш Спостерігач"
 })
 
 L:SetMiscLocalization({
-	Defeat	= "Король мертв – О НЕТ! Зови Миззла Хитрюгу! Он знает, что делать!"
+	Defeat	= "Король мертвий – ПРО НІ! Клич Міззла Хитрюгу! Він знає, що робити!"
 })
 
 ----------------
@@ -613,7 +613,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(420)
 
 L:SetGeneralLocalization({
-	name		= "Липкая муть"
+	name		= "Липка каламут"
 })
 
 -----------------------------
@@ -622,7 +622,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(421)
 
 L:SetGeneralLocalization({
-	name		= "Электрошокер 6000"
+	name		= "Електрошокер 6000"
 })
 
 -----------------------------
@@ -631,7 +631,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(418)
 
 L:SetGeneralLocalization({
-	name		= "Толпогон 9-60"
+	name		= "Натовп 9-60"
 })
 
 -----------------------------
@@ -644,7 +644,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	YellBomb	= "Взрывы! Больше взрывов! Еще больше взрывов!"
+	YellBomb	= "Вибухи! Більше вибухів! Ще більше вибухів!"
 })
 
 -------------------------
@@ -655,7 +655,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(423)
 
 L:SetGeneralLocalization({
-	name		= "Ноксион"
+	name		= "Ноксіон"
 })
 
 -----------------------------
@@ -664,7 +664,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(424)
 
 L:SetGeneralLocalization({
-	name		= "Бритвохлест"
+	name		= "Бритвохльост"
 })
 
 -----------------------------
@@ -673,7 +673,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(425)
 
 L:SetGeneralLocalization({
-	name		= "Ремонтник Гизлок"
+	name		= "Ремонтник Гізлок"
 })
 
 -----------------------------
@@ -682,7 +682,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(427)
 
 L:SetGeneralLocalization({
-	name		= "Лорд Злоязыкий"
+	name		= "Лорд Зломовний"
 })
 
 -----------------------------
@@ -691,7 +691,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(428)
 
 L:SetGeneralLocalization({
-	name		= "Келебрас Проклятый"
+	name		= "Келебрас Проклятий"
 })
 
 -----------------------------
@@ -700,7 +700,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(429)
 
 L:SetGeneralLocalization({
-	name		= "Сель"
+	name		= "Сіль"
 })
 
 -----------------------------
@@ -709,7 +709,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(430)
 
 L:SetGeneralLocalization({
-	name		= "Гнилопасть"
+	name		= "Гнилопість"
 })
 
 -----------------------------
@@ -718,7 +718,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(431)
 
 L:SetGeneralLocalization({
-	name		= "Принцесса Терадрас"
+	name		= "Принцеса Терадрас"
 })
 
 -------------------------
@@ -729,7 +729,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Oggleflint")
 
 L:SetGeneralLocalization({
-	name		= "Огглфлинт"
+	name		= "Огглфлінт"
 })
 
 -----------------------------
@@ -738,7 +738,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Taragaman")
 
 L:SetGeneralLocalization({
-	name		= "Тарагаман Ненасытный"
+	name		= "Тарагаман Ненаситний"
 })
 
 -----------------------------
@@ -747,7 +747,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Jergosh")
 
 L:SetGeneralLocalization({
-	name		= "Жергош Призыватель Духов"
+	name		= "Жергош Закличник Духів"
 })
 
 -----------------------------
@@ -767,7 +767,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Tutenkash")
 
 L:SetGeneralLocalization({
-	name		= "Тутен'каш"
+	name		= "Тутенкаш"
 })
 
 -----------------------------
@@ -776,7 +776,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MordreshFireEye")
 
 L:SetGeneralLocalization({
-	name		= "Мордреш Огненный Глаз"
+	name		= "Мордреш Вогняне Око"
 })
 
 -----------------------------
@@ -785,7 +785,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Glutton")
 
 L:SetGeneralLocalization({
-	name		= "Обжора"
+	name		= "Ненажера"
 })
 
 -----------------------------
@@ -794,7 +794,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Ragglesnout")
 
 L:SetGeneralLocalization({
-	name		= "Круглорыл"
+	name		= "Круглорил"
 })
 
 -----------------------------
@@ -812,7 +812,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("PlaguemawtheRotting")
 
 L:SetGeneralLocalization({
-	name		= "Чумобрюх Гнилой"
+	name		= "Чумобрюх Гнилою"
 })
 
 -------------------------
@@ -832,7 +832,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("AggemThorncurse")
 
 L:SetGeneralLocalization({
-	name		= "Аггем Терновое Проклятие"
+	name		= "Аггем Тернове Прокляття"
 })
 
 -----------------------------
@@ -841,7 +841,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DeathSpeakerJargba")
 
 L:SetGeneralLocalization({
-	name		= "Вестник смерти Джаргба"
+	name		= "Вісник смерті Джаргба"
 })
 
 -----------------------------
@@ -850,7 +850,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("OverlordRamtusk")
 
 L:SetGeneralLocalization({
-	name		= "Властитель Таранный Клык"
+	name		= "Володар Таранний Ікло"
 })
 
 -----------------------------
@@ -859,7 +859,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("AgathelostheRaging")
 
 L:SetGeneralLocalization({
-	name		= "Агателос Свирепый"
+	name		= "Агателос Лютий"
 })
 
 -----------------------------
@@ -868,7 +868,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BlindHunter")
 
 L:SetGeneralLocalization({
-	name		= "Слепой охотник"
+	name		= "Сліпий мисливець"
 })
 
 -----------------------------
@@ -877,7 +877,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("EarthcallerHalmgar")
 
 L:SetGeneralLocalization({
-	name		= "Заклинательница земли Халмгар"
+	name		= "Заклиначка землі Халмгар"
 })
 
 -----------------------------
@@ -897,7 +897,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("InterrogatorVishas")
 
 L:SetGeneralLocalization({
-	name		= "Дознаватель Вишас"
+	name		= "Дізнавач Вишас"
 })
 
 -----------------------------
@@ -906,7 +906,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BloodmageThalnos")
 
 L:SetGeneralLocalization({
-	name		= "Волшебник Крови Талнос"
+	name		= "Чарівник Крові Талнос"
 })
 
 -----------------------------
@@ -915,7 +915,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("HoundmasterLoksey")
 
 L:SetGeneralLocalization({
-	name		= "Псарь Локси"
+	name		= "Псар Локсі"
 })
 
 -----------------------------
@@ -924,7 +924,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ArcanistDoan")
 
 L:SetGeneralLocalization({
-	name		= "Чародей Доан"
+	name		= "Чарівник Доан"
 })
 
 -----------------------------
@@ -942,7 +942,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Mograine_and_Whitemane")
 
 L:SetGeneralLocalization({
-	name		= "Могрейн и Melenablanca"
+	name		= "Могрейн та Melenablanca"
 })
 
 -----------------------------
@@ -951,7 +951,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Fairbanks")
 
 L:SetGeneralLocalization({
-	name		= "Верховный инквизитор Фэйрбанкс"
+	name		= "Верховний інквізитор Фейрбанкс"
 })
 
 -------------------------
@@ -962,7 +962,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("KirtonostheHerald")
 
 L:SetGeneralLocalization({
-	name		= "Киртонос Глашатай"
+	name		= "Кіртонос Глашатай"
 })
 
 -----------------------------
@@ -971,7 +971,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("JandiceBarov")
 
 L:SetGeneralLocalization({
-	name		= "Джандис Барова"
+	name		= "Джандіс Барова"
 })
 
 -----------------------------
@@ -980,7 +980,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Rattlegore")
 
 L:SetGeneralLocalization({
-	name		= "Громоклин"
+	name		= "Громоклін"
 })
 
 -----------------------------
@@ -989,7 +989,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("MardukBlackpool")
 
 L:SetGeneralLocalization({
-	name		= "Мардук Блэкпул"
+	name		= "Мардук Блекпул"
 })
 
 -----------------------------
@@ -1007,7 +1007,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("RasFrostwhisper")
 
 L:SetGeneralLocalization({
-	name		= "Рас Ледяной Шепот"
+	name		= "Рас Крижаний Шепіт"
 })
 
 -----------------------------
@@ -1016,7 +1016,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("InstructorMalicia")
 
 L:SetGeneralLocalization({
-	name		= "Инструктор Коварница"
+	name		= "Інструктор Коварниця"
 })
 
 -----------------------------
@@ -1025,7 +1025,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DoctorTheolenKrastinov")
 
 L:SetGeneralLocalization({
-	name		= "Доктор Теолен Крастинов"
+	name		= "Лікар Теолен Крастінов"
 })
 
 -----------------------------
@@ -1034,7 +1034,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LorekeeperPolkelt")
 
 L:SetGeneralLocalization({
-	name		= "Сказитель Полкелт"
+	name		= "Оповідач Полкелт"
 })
 
 -----------------------------
@@ -1043,7 +1043,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("TheRavenian")
 
 L:SetGeneralLocalization({
-	name		= "Равениан"
+	name		= "Равеніан"
 })
 
 -----------------------------
@@ -1052,7 +1052,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LordAlexeiBarov")
 
 L:SetGeneralLocalization({
-	name		= "Лорд Алексей Баров"
+	name		= "Лорд Олексій Баров"
 })
 
 -----------------------------
@@ -1061,7 +1061,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LadyIlluciaBarov")
 
 L:SetGeneralLocalization({
-	name		= "Леди Иллюсия Барова"
+	name		= "Леді Ілюсія Барова"
 })
 
 -----------------------------
@@ -1070,7 +1070,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DarkmasterGandling")
 
 L:SetGeneralLocalization({
-	name		= "Темный магистр Гандлинг"
+	name		= "Темний магістр Гандлінг"
 })
 
 -------------------------
@@ -1081,7 +1081,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Rethilgore")
 
 L:SetGeneralLocalization({
-	name		= "Ретилгор"
+	name		= "Ретілгор"
 })
 
 -----------------------------
@@ -1090,7 +1090,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("RazorclawtheButcher")
 
 L:SetGeneralLocalization({
-	name		= "Остроклык Мясник"
+	name		= "Остроклик М'ясник"
 })
 
 -----------------------------
@@ -1099,7 +1099,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BaronSilverlaine")
 
 L:SetGeneralLocalization({
-	name		= "Барон Сребролен"
+	name		= "Барон Сріблолен"
 })
 
 -----------------------------
@@ -1108,7 +1108,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("CommanderSpringvale")
 
 L:SetGeneralLocalization({
-	name		= "Командир Ручьедол"
+	name		= "Командир Руччедол"
 })
 
 -----------------------------
@@ -1117,7 +1117,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("OdotheBlindwatcher")
 
 L:SetGeneralLocalization({
-	name		= "Одо Слепой Страж"
+	name		= "Одо Сліпий Страж"
 })
 
 -----------------------------
@@ -1126,7 +1126,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DeathswornCaptain")
 
 L:SetGeneralLocalization({
-	name		= "Капитан служителей Смерти"
+	name		= "Капітан служителів смерті"
 })
 
 -----------------------------
@@ -1144,7 +1144,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("WolfMasterNandos")
 
 L:SetGeneralLocalization({
-	name		= "Командир воргенов Нандос"
+	name		= "Командир воргенів Нандос"
 })
 
 -----------------------------
@@ -1153,7 +1153,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("ArchmageArugal")
 
 L:SetGeneralLocalization({
-	name		= "Верховный маг Аругал"
+	name		= "Верховний маг Аругал"
 })
 
 -------------------------
@@ -1164,7 +1164,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Targorr")
 
 L:SetGeneralLocalization({
-	name		= "Таргорр Ужасный"
+	name		= "Таргорр Жахливий"
 })
 
 -----------------------------
@@ -1173,7 +1173,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("KamDeepfury")
 
 L:SetGeneralLocalization({
-	name		= "Кам Гневливый"
+	name		= "Кам Гнівливий"
 })
 
 -----------------------------
@@ -1182,7 +1182,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Hamhock")
 
 L:SetGeneralLocalization({
-	name		= "Хрупконог"
+	name		= "Тендітний"
 })
 
 -----------------------------
@@ -1209,7 +1209,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("BruegalIronknuckle")
 
 L:SetGeneralLocalization({
-	name		= "Бругал Железный Кулак"
+	name		= "Бругал Залізний Кулак"
 })
 
 -------------------------
@@ -1220,7 +1220,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(443)
 
 L:SetGeneralLocalization({
-	name		= "Певчий Форрестен"
+	name		= "Співочий Форрестен"
 })
 
 -----------------------------
@@ -1229,7 +1229,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(445)
 
 L:SetGeneralLocalization({
-	name		= "Тимми Жестокий"
+	name		= "Тіммі Жорстокий"
 })
 
 -----------------------------
@@ -1238,7 +1238,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(749)
 
 L:SetGeneralLocalization({
-	name		= "Малор Ревностный"
+	name		= "Малор Ревний"
 })
 
 -----------------------------
@@ -1247,7 +1247,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(446)
 
 L:SetGeneralLocalization({
-	name		= "Мастер-канонир Вилли"
+	name		= "Майстер-канонір Віллі"
 })
 
 -----------------------------
@@ -1256,7 +1256,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(448)
 
 L:SetGeneralLocalization({
-	name		= "Архивариус Галфорд"
+	name		= "Архіваріус Галфорд"
 })
 
 -----------------------------
@@ -1274,7 +1274,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(450)
 
 L:SetGeneralLocalization({
-	name		= "Непрощенный"
+	name		= "Непрощений"
 })
 
 -----------------------------
@@ -1283,7 +1283,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(451)
 
 L:SetGeneralLocalization({
-	name		= "Баронесса Анастари"
+	name		= "Баронеса Анастарі"
 })
 
 -----------------------------
@@ -1292,7 +1292,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(452)
 
 L:SetGeneralLocalization({
-	name		= "Неруб'энкан"
+	name		= "Неруб'енкан"
 })
 
 -----------------------------
@@ -1301,7 +1301,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(453)
 
 L:SetGeneralLocalization({
-	name		= "Малекай Бледный"
+	name		= "Малекай Блідий"
 })
 
 -----------------------------
@@ -1310,7 +1310,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(454)
 
 L:SetGeneralLocalization({
-	name		= "Мировой судья Бартилас"
+	name		= "Світовий суддя Бартілас"
 })
 
 -----------------------------
@@ -1319,15 +1319,15 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(455)
 
 L:SetGeneralLocalization({
-	name		= "Рамштайн Ненасытный"
+	name		= "Рамштайн Ненаситний"
 })
 
 L:SetTimerLocalization({
-	TimerGuards	= "Появление Караульных"
+	TimerGuards	= "Поява Караульних"
 })
 
 L:SetOptionLocalization({
-	TimerGuards	= "Показывать таймер до прибытия Караульных Черной Стражи после победы над боссом"
+	TimerGuards	= "Показувати таймер до прибуття Караульних Чорної Охорони після перемоги над босом"
 })
 
 -----------------------------
@@ -1336,7 +1336,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization(456)
 
 L:SetGeneralLocalization({
-	name		= "Барон Ривендер"
+	name		= "Барон Рівендер"
 })
 
 -------------------------
@@ -1347,7 +1347,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(457)
 
 L:SetGeneralLocalization({
-	name		= "Аватара Хаккара"
+	name		= "Аватар Хаккара"
 })
 
 -----------------------------
@@ -1366,7 +1366,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("Dreamscythe")
 
 L:SetGeneralLocalization({
-	name		= "Жнец Снов"
+	name		= "Жнець Снів"
 })
 
 L = DBM:GetModLocalization("Weaver")
@@ -1393,7 +1393,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(463)
 
 L:SetGeneralLocalization({
-	name		= "Тень Эраникуса"
+	name		= "Тінь Еранікуса"
 })
 
 -------------------------
@@ -1413,7 +1413,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(468)
 
 L:SetGeneralLocalization({
-	name		= "Потерянные дворфы"
+	name		= "Втрачені дворфи"
 })
 
 -----------------------------
@@ -1422,7 +1422,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(469)
 
 L:SetGeneralLocalization({
-	name		= "Иронайя"
+	name		= "Іронайя"
 })
 
 -----------------------------
@@ -1431,7 +1431,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(748)
 
 L:SetGeneralLocalization({
-	name		= "Обсидиановый часовой"
+	name		= "Обсидіановий вартовий"
 })
 
 -----------------------------
@@ -1440,7 +1440,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(470)
 
 L:SetGeneralLocalization({
-	name		= "Древний Хранитель Камня"
+	name		= "Стародавній Охоронець Каміння"
 })
 
 -----------------------------
@@ -1449,7 +1449,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(471)
 
 L:SetGeneralLocalization({
-	name		= "Галганн Огнемолот"
+	name		= "Галган Огнемолот"
 })
 
 -----------------------------
@@ -1478,7 +1478,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(474)
 
 L:SetGeneralLocalization({
-	name		= "Повелительница Анакондра"
+	name		= "Повелителька Анакондра"
 })
 
 -----------------------------
@@ -1487,7 +1487,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(476)
 
 L:SetGeneralLocalization({
-	name		= "Лорд Питонас"
+	name		= "Лорд Пітонас"
 })
 
 -----------------------------
@@ -1523,7 +1523,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(479)
 
 L:SetGeneralLocalization({
-	name		= "Лорд Серпентис"
+	name		= "Лорд Серпентіс"
 })
 
 -----------------------------
@@ -1532,7 +1532,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(480)
 
 L:SetGeneralLocalization({
-	name		= "Вердан Бессмертный"
+	name		= "Вердан Безсмертний"
 })
 
 -----------------------------
@@ -1550,7 +1550,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("DeviateFaerie")
 
 L:SetGeneralLocalization({
-	name		= "Загадочный волшебный дракон"
+	name		= "Загадковий чарівний дракон"
 })
 
 -------------------------
@@ -1561,7 +1561,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(483)
 
 L:SetGeneralLocalization({
-	name		= "Газ'рилла"
+	name		= "Газ'рілла"
 })
 
 -----------------------------
@@ -1588,7 +1588,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(486)
 
 L:SetGeneralLocalization({
-	name		= "Знахарь Зум'рах"
+	name		= "Знахар Зум'рах"
 })
 
 -----------------------------
@@ -1597,7 +1597,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("HydromancerVelrath")
 
 L:SetGeneralLocalization({
-	name		= "Гидромант Велрата"
+	name		= "Гідромант Велрата"
 })
 
 -----------------------------
@@ -1606,7 +1606,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(487)
 
 L:SetGeneralLocalization({
-	name		= "Некрум и Шезз'зиз"
+	name		= "Некрум та Шезз'зіз"
 })
 
 -----------------------------
@@ -1615,5 +1615,5 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(489)
 
 L:SetGeneralLocalization({
-	name		= "Вождь Укорз Песчаная Плешь"
+	name		= "Вождь Докорз Піщана Плеш"
 })

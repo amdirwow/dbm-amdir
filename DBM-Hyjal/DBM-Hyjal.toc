@@ -6,7 +6,7 @@
 ## Title-frFR:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Bataille du mont Hyjal|r
 ## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0海加尔山之战|r
 ## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0海加爾山之戰|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Битва за гору Хиджал|r
+## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM-Amdir|r|cffffe00a>|r |cff69ccf0Битва за гору Хіджал|r
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMHyjal_AllSavedVars
@@ -22,7 +22,7 @@
 ## X-DBM-Mod-Name-frFR: La bataille du mont Hyjal
 ## X-DBM-Mod-Name-zhCN: 海加尔之战
 ## X-DBM-Mod-Name-zhTW: 海加爾山之戰
-## X-DBM-Mod-Name-ruRU: Битва за гору Хиджал
+## X-DBM-Mod-Name-ruRU:Битва за гору Хіджал
 ## X-DBM-Mod-MapID: 776
 ## X-DBM-Mod-LoadZone: Hyjal Summit
 ## X-DBM-Mod-LoadZone-deDE: Hyjalgipfel
@@ -32,7 +32,7 @@
 ## X-DBM-Mod-LoadZone-zhCN: 海加尔峰
 ## X-DBM-Mod-LoadZone-zhTW: 海加爾山巔
 ## X-DBM-Mod-LoadZone-koKR: 하이잘 정상
-## X-DBM-Mod-LoadZone-ruRU: Вершина Хиджала
+## X-DBM-Mod-LoadZone-ruRU:Вершина Хіджала
 
 localization.en.lua
 localization.de.lua
