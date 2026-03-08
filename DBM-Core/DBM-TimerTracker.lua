@@ -534,6 +534,8 @@ function TT:CreateTimer(timerType, timeSeconds, totalTime)
 		if not timer.StartNumbers:IsPlaying() then
 			timer.time = timeSeconds
 			timer.endTime = GetTime() + timeSeconds
+			timer.lastShownMinutes = nil
+			timer.lastShownSeconds = nil
 		end
 	else
 		for _, frame in ipairs(self.timerList) do
@@ -560,6 +562,8 @@ function TT:CreateTimer(timerType, timeSeconds, totalTime)
 		timer.time = timeSeconds
 		timer.endTime = GetTime() + timeSeconds
 		timer.totalTime = totalTime
+		timer.lastShownMinutes = nil
+		timer.lastShownSeconds = nil
 		timer.StatusBar:SetMinMaxValues(0, totalTime)
 		timer.style = TIMER_NUMBERS_SETS["BigGold"]
 
@@ -615,7 +619,11 @@ function TT:BigNumberOnUpdate(elapsed)
 
 	self.StatusBar:SetValue(self.time)
 	local minutes, seconds = floor(self.time / 60), floor(fmod(self.time, 60))
-	self.StatusBar.Text:SetFormattedText(TIMER_MINUTES_DISPLAY, minutes, seconds)
+	if self.lastShownMinutes ~= minutes or self.lastShownSeconds ~= seconds then
+		self.lastShownMinutes = minutes
+		self.lastShownSeconds = seconds
+		self.StatusBar.Text:SetFormattedText(TIMER_MINUTES_DISPLAY, minutes, seconds)
+	end
 
 	local r, g, b = TT:ColorGradient((self.time - 10) / self.totalTime, 1,0,0, 1,1,0, 0,1,0)
 	self.StatusBar:SetStatusBarColor(r, g, b)
@@ -723,6 +731,8 @@ function TT:FreeTimerTrackerTimer(timer)
 	timer.type = nil
 	timer.isFree = true
 	timer.barShowing = false
+	timer.lastShownMinutes = nil
+	timer.lastShownSeconds = nil
 	timer:SetScript("OnUpdate", nil)
 	timer.FadeBarOut:Stop()
 	timer.FadeBarIn:Stop()

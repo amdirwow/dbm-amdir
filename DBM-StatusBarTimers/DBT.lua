@@ -206,15 +206,16 @@ function DBT:AddDefaultOptions(t1, t2)
 end
 
 do
-	local CreateFrame, GetTime, IsShiftKeyDown = CreateFrame, GetTime, IsShiftKeyDown
+	local CreateFrame, IsShiftKeyDown = CreateFrame, IsShiftKeyDown
 
-	local function onUpdate(self)
+	local function onUpdate(self, elapsed)
 		if self.obj then
-			self.obj.curTime = GetTime()
-			self.obj.delta = self.obj.curTime - self.obj.lastUpdate
-			if barIsAnimating and self.obj.delta >= 0.01 or self.obj.delta >= 0.02 then
-				self.obj.lastUpdate = self.obj.curTime
-				self.obj:Update(self.obj.delta)
+			local updateElapsed = (self.obj.updateElapsed or 0) + elapsed
+			if (barIsAnimating and updateElapsed >= 0.01) or updateElapsed >= 0.02 then
+				self.obj.updateElapsed = 0
+				self.obj:Update(updateElapsed)
+			else
+				self.obj.updateElapsed = updateElapsed
 			end
 		end
 	end
@@ -353,7 +354,8 @@ do
 		end
 		local newBar = self:GetBar(id)
 		if newBar then -- Update an existing bar
-			newBar.lastUpdate = GetTime()
+			newBar.updateElapsed = 0
+			newBar.lastTimerText = nil
 			newBar.huge = huge or nil
 			newBar.paused = nil
 			newBar.minTimer = varianceMinTimer or nil
@@ -374,7 +376,8 @@ do
 		else -- Create a new bar
 			newBar = next(unusedBarObjects)
 			if newBar then
-				newBar.lastUpdate = GetTime()
+				newBar.updateElapsed = 0
+				newBar.lastTimerText = nil
 				unusedBarObjects[newBar] = nil
 				newBar.dead = nil -- Resurrected it :)
 				newBar.id = id
@@ -418,7 +421,8 @@ do
 					minTimer = varianceMinTimer or nil,
 					varianceDuration = varianceDuration or 0,
 					hasVariance = varianceMinTimer and true or false,
-					lastUpdate = GetTime()
+					updateElapsed = 0,
+					lastTimerText = nil
 				}, mt)
 				newFrame.obj = newBar
 			end
@@ -834,13 +838,20 @@ function barPrototype:SetText(text, inlineIcon)
 		inlineIcon = nil
 	end
 	-- Force change color type 7 to custom inlineIcon
-	_G[self.frame:GetName().."BarName"]:SetText(((self.colorType and self.colorType == 7 and DBT.Options.Bar7CustomInline) and DBM_COMMON_L.IMPORTANT_ICON or inlineIcon or "") .. text)
+	local newText = ((self.colorType and self.colorType == 7 and DBT.Options.Bar7CustomInline) and DBM_COMMON_L.IMPORTANT_ICON or inlineIcon or "") .. text
+	if self.lastBarText ~= newText then
+		self.lastBarText = newText
+		_G[self.frame:GetName().."BarName"]:SetText(newText)
+	end
 end
 
 function barPrototype:SetIcon(icon)
-	local frame_name = self.frame:GetName()
-	_G[frame_name.."BarIcon1"]:SetTexture(icon)
-	_G[frame_name.."BarIcon2"]:SetTexture(icon)
+	if self.lastIcon ~= icon then
+		self.lastIcon = icon
+		local frame_name = self.frame:GetName()
+		_G[frame_name.."BarIcon1"]:SetTexture(icon)
+		_G[frame_name.."BarIcon2"]:SetTexture(icon)
+	end
 end
 
 function barPrototype:SetColor(color)
@@ -1008,7 +1019,11 @@ function barPrototype:Update(elapsed)
 				bar:SetValue(math.max(0, math.min(1, timerValue/totaltimeValue)))
 			end
 		end
-		timer:SetText(stringFromTimer(visibleTimerValue))
+		local timerText = stringFromTimer(visibleTimerValue)
+		if self.lastTimerText ~= timerText then
+			self.lastTimerText = timerText
+			timer:SetText(timerText)
+		end
 	end
 	if isFadingIn and isFadingIn < 0.5 and currentStyle ~= "NoAnim" then
 		self.fadingIn = isFadingIn + elapsed
@@ -1095,8 +1110,8 @@ function barPrototype:Update(elapsed)
 	if not paused and ((barOptions.VarianceEnabled and timerLowestValueFromVariance or timerValue) <= enlargeTime) and not self.small and not isEnlarged and isMoving ~= "enlarge" and enlargeEnabled then
 		self:RemoveFromList()
 		self:Enlarge()
+		DBT:UpdateBars()
 	end
-	DBT:UpdateBars()
 end
 
 function barPrototype:RemoveFromList()
@@ -1112,7 +1127,10 @@ function barPrototype:Cancel()
 	unusedBarObjects[self] = self
 	self.dead = true
 	self.paused = nil
+	self.updateElapsed = 0
+	self.lastTimerText = nil
 	DBT.numBars = DBT.numBars - 1
+	DBT:UpdateBars()
 end
 
 function barPrototype:ApplyStyle()

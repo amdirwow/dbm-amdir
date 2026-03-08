@@ -12,6 +12,7 @@ DBM.Arrow = {}
 --------------
 local arrowFrame = DBM.Arrow
 local frame, runAwayArrow, targetType, targetPlayer, targetX, targetY, hideTime, hideDistance
+local arrowMapX, arrowMapY, lastDistanceText, lastTitleText
 
 --------------------------------------------------------
 --  Cache frequently used global variables in locals  --
@@ -68,8 +69,13 @@ end
 
 local calculateDistance
 do
-	function calculateDistance(x1, y1, x2, y2)
-		local mapX, mapY = DBM:GetMapSize()
+	function calculateDistance(x1, y1, x2, y2, mapX, mapY)
+		mapX = mapX or arrowMapX
+		mapY = mapY or arrowMapY
+		if not mapX or not mapY then
+			mapX, mapY = DBM:GetMapSize()
+			arrowMapX, arrowMapY = mapX, mapY
+		end
 		local dX = (x1 - x2) * mapX
 		local dY = (y1 - y2) * mapY
 		return sqrt(dX * dX + dY * dY)
@@ -117,7 +123,11 @@ do
 				if distance <= hideDistance then
 					frame:Hide()
 				else
-					frame.distance:SetText(formatText:format(distance))
+					local distanceText = formatText:format(distance)
+					if lastDistanceText ~= distanceText then
+						lastDistanceText = distanceText
+						frame.distance:SetText(distanceText)
+					end
 				end
 			end
 		else
@@ -140,7 +150,6 @@ do
 		if hideTime and GetTime() > hideTime then
 			frame:Hide()
 		end
-		arrow:Show()
 		-- the static arrow type is special because it doesn't depend on the player's orientation or position
 		if targetType == "static" then
 			return updateArrow(targetX) -- targetX contains the static angle to show
@@ -154,6 +163,9 @@ do
 				self:Hide() -- Hide the arrow if you enter a zone without a map
 				return
 			end
+			arrowMapX, arrowMapY = DBM:GetMapSize()
+		elseif not arrowMapX or not arrowMapY then
+			arrowMapX, arrowMapY = DBM:GetMapSize()
 		end
 		if targetType == "player" then
 			targetX, targetY = GetPlayerMapPosition(targetPlayer)
@@ -182,7 +194,7 @@ do
 				angle = pi - angle  -- 0 < angle < pi
 			end
 		end
-		updateArrow(angle - GetPlayerFacing(), calculateDistance(x, y, targetX, targetY))
+		updateArrow(angle - GetPlayerFacing(), calculateDistance(x, y, targetX, targetY, arrowMapX, arrowMapY))
 	end)
 end
 
@@ -198,12 +210,20 @@ local function show(runAway, x, y, distance, time, _, _, title)
 	if type(x) == "string" then
 		player, hideDistance, hideTime = x, y, hideDistance
 	end
+	lastDistanceText = nil
 	frame:Show()
 	textframe:Show()
+	if not arrow:IsShown() then
+		arrow:Show()
+	end
 	if title then
 		frame.title:Show()
-		frame.title:SetText(title)
+		if lastTitleText ~= title then
+			lastTitleText = title
+			frame.title:SetText(title)
+		end
 	else
+		lastTitleText = nil
 		frame.title:Hide()
 	end
 	if runAway then
@@ -242,12 +262,17 @@ function arrowFrame:ShowStatic(angle, time)
 	hideDistance = 0
 	targetType = "static"
 	targetX = angle * pi2 / 360
+	lastDistanceText = nil
+	lastTitleText = nil
 	if time then
 		hideTime = time + GetTime()
 	else
 		hideTime = nil
 	end
 	frame:Show()
+	if not arrow:IsShown() then
+		arrow:Show()
+	end
 	textframe:Hide()--just in case they call static while a non static was already showing
 end
 
@@ -256,6 +281,9 @@ function arrowFrame:IsShown()
 end
 
 function arrowFrame:Hide()
+	arrowMapX, arrowMapY = nil, nil
+	lastDistanceText = nil
+	lastTitleText = nil
 	textframe:Hide()
 	frame:Hide()
 end

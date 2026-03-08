@@ -2,8 +2,8 @@ local _, private = ...
 
 local twipe = table.wipe
 local IsInGroup = private.IsInGroup
-local UnitExists, UnitPlayerOrPetInRaid, UnitGUID =
-	UnitExists, UnitPlayerOrPetInRaid, UnitGUID
+local UnitExists, UnitPlayerOrPetInRaid, UnitGUID, GetTime =
+	UnitExists, UnitPlayerOrPetInRaid, UnitGUID, GetTime
 local C_NamePlate = C_NamePlate -- https://github.com/FrostAtom/awesome_wotlk
 
 local module = private:NewModule("TargetScanning")
@@ -11,6 +11,7 @@ local module = private:NewModule("TargetScanning")
 --Traditional loop scanning method tables
 local targetScanCount = {}
 local bossuIdCache = {}
+local bossTargetResultCache = {}
 --UNIT_TARGET scanning method table
 local unitScanCount = 0
 local unitMonitor = {}
@@ -18,6 +19,7 @@ local unitMonitor = {}
 function module:OnModuleEnd()
 	twipe(targetScanCount)
 	twipe(bossuIdCache)
+	twipe(bossTargetResultCache)
 	unitScanCount = 0
 	twipe(unitMonitor)
 end
@@ -78,10 +80,20 @@ do
 	end
 
 	function module:GetBossTarget(mod, cidOrGuid, scanOnlyBoss)
+		cidOrGuid = cidOrGuid or mod.creatureId
+		if not cidOrGuid then return end
+		local cacheKey = (scanOnlyBoss and "1" or "0") .. "\031" .. tostring(cidOrGuid)
+		local currentTime = GetTime()
+		local cachedResult = bossTargetResultCache[cacheKey]
+		if cachedResult and cachedResult.time == currentTime then
+			if cachedResult.valid then
+				return cachedResult.name, cachedResult.uid, cachedResult.bossuid
+			end
+			return
+		end
 		local name, uid, bossuid
 		DBM:Debug("GetBossTarget firing for :"..tostring(mod).." "..tostring(cidOrGuid).." "..tostring(scanOnlyBoss), 3)
 		if type(cidOrGuid) == "number" then--CID passed, slower and slighty more hacky scan
-			cidOrGuid = cidOrGuid or mod.creatureId
 			local cacheuid = bossuIdCache[cidOrGuid] or "boss1"
 			if mod:GetUnitCreatureId(cacheuid) == cidOrGuid then
 				bossuIdCache[cidOrGuid] = cacheuid
@@ -104,9 +116,20 @@ do
 		if uid then
 			local cid = mod:GetUnitCreatureId(uid)
 			if cid == 24207 or cid == 80258 or cid == 87519 then--Filter useless units, like "Army of the Dead", that would otherwise throw off the target scan
+				bossTargetResultCache[cacheKey] = {
+					time = currentTime,
+					valid = false
+				}
 				return
 			end
 		end
+		bossTargetResultCache[cacheKey] = {
+			time = currentTime,
+			valid = name and uid and bossuid and true or false,
+			name = name,
+			uid = uid,
+			bossuid = bossuid
+		}
 		return name, uid, bossuid
 	end
 

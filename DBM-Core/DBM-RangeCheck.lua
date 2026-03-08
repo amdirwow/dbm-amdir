@@ -495,12 +495,17 @@ local HarmItems = { -- for BossMode, to avoid iterating thru pairs of lib harmRC
 	},
 }
 
-local function getUnitRange(unit)
-	local restrictionsActive = DBM:HasMapRestrictions()
+local function getUnitRange(unit, playerX, playerY, mapX, mapY, restrictionsActive)
+	if restrictionsActive == nil then
+		restrictionsActive = DBM:HasMapRestrictions()
+	end
 	if not restrictionsActive and (UnitInRaid(unit) or UnitInParty(unit)) and UnitIsPlayer(unit) then
-		local mapX, mapY = DBM:GetMapSize()
-
-		local playerX, playerY = GetPlayerMapPosition("player")
+		if not mapX then
+			mapX, mapY = DBM:GetMapSize()
+		end
+		if not playerX then
+			playerX, playerY = GetPlayerMapPosition("player")
+		end
 		local unitX, unitY = GetPlayerMapPosition(unit)
 		rangeX, rangeY = (unitX - playerX) * mapX, (unitY - playerY) * mapY
 		local range = (rangeX * rangeX + rangeY * rangeY) ^ 0.5
@@ -1007,10 +1012,13 @@ do
 		local filter = mainFrame.filter
 		local type = reverse and 2 or filter and 1 or 0
 		local onlySummary = mainFrame.onlySummary
+		local restrictionsActive = DBM:HasMapRestrictions()
+		local playerX, playerY, mapX, mapY
+		local usePlayerMapRange = false
 
 		if mainFrame.bossMode then
 			local uId = mainFrame.bossUnit
-			local range = getUnitRange(uId)
+			local range = getUnitRange(uId, nil, nil, nil, nil, restrictionsActive)
 			if uId and range and range <= activeRange and (not filter or filter(uId)) then
 				closePlayer = closePlayer + 1
 				local color = NORMAL_FONT_COLOR
@@ -1031,11 +1039,24 @@ do
 				end
 			end
 		else
-			for i = 1, GetNumGroupMembers() do
+			local numPlayers = GetNumGroupMembers()
+			if not restrictionsActive then
+				playerX, playerY = GetPlayerMapPosition("player")
+				if playerX == 0 and playerY == 0 then
+					if rEnabled then
+						rangeCheck:Hide(true)
+						return
+					end
+				else
+					mapX, mapY = DBM:GetMapSize()
+					usePlayerMapRange = true
+				end
+			end
+			for i = 1, numPlayers do
 				local uId = unitList[i]
 				local dot = radarFrame.dots[i]
 				if UnitExists(uId) and not UnitIsUnit(uId, "player") and not UnitIsDeadOrGhost(uId) and UnitIsConnected(uId) and (not filter or filter(uId)) then
-					local range = getUnitRange(uId)
+					local range = getUnitRange(uId, playerX, playerY, mapX, mapY, restrictionsActive)
 					local inRange = false
 					if range < activeRange + 0.5 then
 						closePlayer = closePlayer + 1
@@ -1061,12 +1082,7 @@ do
 						textFrame.lines[closePlayer]:Show()
 						textFrame:SetHeight((closePlayer * 12) + 12)
 					end
-					if rEnabled then
-						local playerX, playerY = GetPlayerMapPosition("player")
-						if playerX == 0 and playerY == 0 then
-							rangeCheck:Hide(true)
-							return
-						end
+					if rEnabled and usePlayerMapRange then
 						dot.x = rangeX
 						dot.y = rangeY
 						dot.range = range

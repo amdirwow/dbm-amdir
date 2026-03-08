@@ -6910,7 +6910,7 @@ end
 function bossModPrototype:UnregisterOnUpdateHandler()
 	self.elapsed = nil
 	self.updateInterval = nil
-	twipe(private.updateFunctions)
+	private.updateFunctions[self] = nil
 end
 
 function bossModPrototype:SetStage(stage)
@@ -8004,6 +8004,25 @@ do
 	font3u:Hide()
 
 	local font1elapsed, font2elapsed, font3elapsed
+	local function setWarningFontAlpha(font, alpha)
+		if font.currentAlpha ~= alpha then
+			font.currentAlpha = alpha
+			font:SetAlpha(alpha)
+		end
+	end
+	local function updateWarningFont(updater, font, elapsed)
+		local diff = (font.updateElapsed or 0) + elapsed
+		local origSize = DBM.Options.WarningFontSize
+		font.updateElapsed = diff
+		if diff > 0.4 then
+			font:SetTextHeight(origSize)
+			updater:Hide()
+		elseif diff > 0.2 then
+			font:SetTextHeight(origSize * (1.5 - (diff - 0.2) * 2.5))
+		else
+			font:SetTextHeight(origSize * (1 + diff * 2.5))
+		end
+	end
 
 	local function fontHide1()
 		local duration = DBM.Options.WarningDuration2
@@ -8017,10 +8036,10 @@ do
 		elseif font1elapsed > duration then
 			font1elapsed = font1elapsed + 0.05
 			local alpha = 1 - (font1elapsed - duration) / (duration * 0.3)
-			font1:SetAlpha(alpha > 0 and alpha or 0)
+			setWarningFontAlpha(font1, alpha > 0 and alpha or 0)
 		else
 			font1elapsed = font1elapsed + 0.05
-			font1:SetAlpha(1)
+			setWarningFontAlpha(font1, 1)
 		end
 	end
 
@@ -8036,10 +8055,10 @@ do
 		elseif font2elapsed > duration then
 			font2elapsed = font2elapsed + 0.05
 			local alpha = 1 - (font2elapsed - duration) / (duration * 0.3)
-			font2:SetAlpha(alpha > 0 and alpha or 0)
+			setWarningFontAlpha(font2, alpha > 0 and alpha or 0)
 		else
 			font2elapsed = font2elapsed + 0.05
-			font2:SetAlpha(1)
+			setWarningFontAlpha(font2, 1)
 		end
 	end
 
@@ -8055,50 +8074,23 @@ do
 		elseif font3elapsed > duration then
 			font3elapsed = font3elapsed + 0.05
 			local alpha = 1 - (font3elapsed - duration) / (duration * 0.3)
-			font3:SetAlpha(alpha > 0 and alpha or 0)
+			setWarningFontAlpha(font3, alpha > 0 and alpha or 0)
 		else
 			font3elapsed = font3elapsed + 0.05
-			font3:SetAlpha(1)
+			setWarningFontAlpha(font3, 1)
 		end
 	end
 
-	font1u:SetScript("OnUpdate", function(self)
-		local diff = GetTime() - font1.lastUpdate
-		local origSize = DBM.Options.WarningFontSize
-		if diff > 0.4 then
-			font1:SetTextHeight(origSize)
-			self:Hide()
-		elseif diff > 0.2 then
-			font1:SetTextHeight(origSize * (1.5 - (diff-0.2) * 2.5))
-		else
-			font1:SetTextHeight(origSize * (1 + diff * 2.5))
-		end
+	font1u:SetScript("OnUpdate", function(self, elapsed)
+		updateWarningFont(self, font1, elapsed)
 	end)
 
-	font2u:SetScript("OnUpdate", function(self)
-		local diff = GetTime() - font2.lastUpdate
-		local origSize = DBM.Options.WarningFontSize
-		if diff > 0.4 then
-			font2:SetTextHeight(origSize)
-			self:Hide()
-		elseif diff > 0.2 then
-			font2:SetTextHeight(origSize * (1.5 - (diff-0.2) * 2.5))
-		else
-			font2:SetTextHeight(origSize * (1 + diff * 2.5))
-		end
+	font2u:SetScript("OnUpdate", function(self, elapsed)
+		updateWarningFont(self, font2, elapsed)
 	end)
 
-	font3u:SetScript("OnUpdate", function(self)
-		local diff = GetTime() - font3.lastUpdate
-		local origSize = DBM.Options.WarningFontSize
-		if diff > 0.4 then
-			font3:SetTextHeight(origSize)
-			self:Hide()
-		elseif diff > 0.2 then
-			font3:SetTextHeight(origSize * (1.5 - (diff-0.2) * 2.5))
-		else
-			font3:SetTextHeight(origSize * (1 + diff * 2.5))
-		end
+	font3u:SetScript("OnUpdate", function(self, elapsed)
+		updateWarningFont(self, font3, elapsed)
 	end)
 
 	function DBM:UpdateWarningOptions()
@@ -8123,7 +8115,8 @@ do
 		local added = false
 		if not frame.font1ticker then
 			font1elapsed = 0
-			font1.lastUpdate = GetTime()
+			font1.currentAlpha = nil
+			font1.updateElapsed = 0
 			font1:SetText(text)
 			font1:Show()
 			font1u:Show()
@@ -8131,7 +8124,8 @@ do
 			frame.font1ticker = frame.font1ticker or AceTimer:ScheduleRepeatingTimer(fontHide1, 0.05)
 		elseif not frame.font2ticker then
 			font2elapsed = 0
-			font2.lastUpdate = GetTime()
+			font2.currentAlpha = nil
+			font2.updateElapsed = 0
 			font2:SetText(text)
 			font2:Show()
 			font2u:Show()
@@ -8139,7 +8133,8 @@ do
 			frame.font2ticker = frame.font2ticker or AceTimer:ScheduleRepeatingTimer(fontHide2, 0.05)
 		elseif not frame.font3ticker or force then
 			font3elapsed = 0
-			font3.lastUpdate = GetTime()
+			font3.currentAlpha = nil
+			font3.updateElapsed = 0
 			font3:SetText(text)
 			font3:Show()
 			font3u:Show()
@@ -9031,6 +9026,12 @@ do
 	frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 
 	local font1elapsed, font2elapsed, moving
+	local function setSpecialWarningFontAlpha(font, alpha)
+		if font.currentAlpha ~= alpha then
+			font.currentAlpha = alpha
+			font:SetAlpha(alpha)
+		end
+	end
 
 	local function fontHide1()
 		local duration = DBM.Options.SpecialWarningDuration2
@@ -9043,10 +9044,10 @@ do
 		elseif font1elapsed > duration then
 			font1elapsed = font1elapsed + 0.05
 			local alpha = 1 - (font1elapsed - duration) / (duration * 0.3)
-			font1:SetAlpha(alpha > 0 and alpha or 0)
+			setSpecialWarningFontAlpha(font1, alpha > 0 and alpha or 0)
 		else
 			font1elapsed = font1elapsed + 0.05
-			font1:SetAlpha(1)
+			setSpecialWarningFontAlpha(font1, 1)
 		end
 	end
 
@@ -9061,10 +9062,10 @@ do
 		elseif font2elapsed > duration then
 			font2elapsed = font2elapsed + 0.05
 			local alpha = 1 - (font2elapsed - duration) / (duration * 0.3)
-			font2:SetAlpha(alpha > 0 and alpha or 0)
+			setSpecialWarningFontAlpha(font2, alpha > 0 and alpha or 0)
 		else
 			font2elapsed = font2elapsed + 0.05
-			font2:SetAlpha(1)
+			setSpecialWarningFontAlpha(font2, 1)
 		end
 	end
 
@@ -9089,14 +9090,14 @@ do
 		local added = false
 		if not frame.font1ticker then
 			font1elapsed = 0
-			font1.lastUpdate = GetTime()
+			font1.currentAlpha = nil
 			font1:SetText(text)
 			font1:Show()
 			added = true
 			frame.font1ticker = frame.font1ticker or AceTimer:ScheduleRepeatingTimer(fontHide1, 0.05)
 		elseif not frame.font2ticker or force then
 			font2elapsed = 0
-			font2.lastUpdate = GetTime()
+			font2.currentAlpha = nil
 			font2:SetText(text)
 			font2:Show()
 			added = true

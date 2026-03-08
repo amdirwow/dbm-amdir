@@ -365,7 +365,7 @@ do
 		for i = 1, 10 do
 			local unitId = "boss"..i
 			if UnitExists(unitId) and UnitIsVisible(unitId) then--Hopefully enough failsafe against icons failing
-				for _, scanId in ipairs(scanExpires) do
+				for scanId, _ in pairs(scanExpires) do
 					executeMarking(scanId, unitId)
 				end
 			end
@@ -393,7 +393,10 @@ do
 				return
 			end
 			--Initialize icon method variables for event handlers
-			scansActive = scansActive + 1
+			local isNewScan = not scanExpires[scanId]
+			if isNewScan then
+				scansActive = scansActive + 1
+			end
 			if not addsIcon[scanId] then addsIcon[scanId] = mobIcon or 8 end
 			if not addsIconSet[scanId] then addsIconSet[scanId] = 0 end
 			if not iconVariables[scanId] then iconVariables[scanId] = {} end
@@ -402,7 +405,7 @@ do
 			iconVariables[scanId].allowFriendly = allowFriendly and true or false
 			iconVariables[scanId].skipMarked = skipMarked and true or false
 			iconVariables[scanId].wipeGUID = wipeGUID and true or false
-			if not scanExpires[scanId] then
+			if isNewScan then
 				scanExpires[scanId] = GetTime() + (scanningTime or 8)
 				DBM:Schedule((scanningTime or 8)+2, expireScan, scanId, iconVariables[scanId].wipeGUID)
 			end
@@ -418,6 +421,9 @@ do
 			--Caveat, if all expected units are found before it finishes going over mobUids table, it'll still finish goingg through table
 			for _, unitId in ipairs(mobUids) do
 				executeMarking(scanId, unitId)
+				if not scanExpires[scanId] then
+					break
+				end
 			end
 			--Hopefully we found all units with initial scan and scanExpires has already been emptied in the executeMarking calls
 			--But if not, we Register listeners to watch for the units we seek to appear

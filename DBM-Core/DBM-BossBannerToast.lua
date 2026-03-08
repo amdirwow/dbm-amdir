@@ -1244,21 +1244,22 @@ local defaultTranslationOffsetsTable = {
 	["LootFrame-Icon-To"] = {-110, 0},
 }
 
-local xOffset, yOffset
+local xOffset, yOffset, lastValidatedTranslationScale
 local function validateOffsets(animation, defaultkey, effectiveScale)
 	xOffset, yOffset = animation:GetOffset()
-	if round(xOffset, 0) ~= round((defaultTranslationOffsetsTable[defaultkey][1]*effectiveScale), 0) then -- due to inconsistent precision with floats, use round for a preventive measure
-		xOffset = defaultTranslationOffsetsTable[defaultkey][1]*effectiveScale
+	local targetX = defaultTranslationOffsetsTable[defaultkey][1] * effectiveScale
+	local targetY = defaultTranslationOffsetsTable[defaultkey][2] * effectiveScale
+	if round(xOffset, 0) ~= round(targetX, 0) or round(yOffset, 0) ~= round(targetY, 0) then -- due to inconsistent precision with floats, use round for a preventive measure
+		animation:SetOffset(targetX, targetY)
 	end
-	if round(yOffset, 0) ~= round((defaultTranslationOffsetsTable[defaultkey][2]*effectiveScale), 0) then -- due to inconsistent precision with floats, use round for a preventive measure
-		yOffset = defaultTranslationOffsetsTable[defaultkey][2]*effectiveScale
-	end
-
-	animation:SetOffset(xOffset, yOffset)
 end
 
 local function fixTranslationAnim()
 	local effectiveScale = BossBanner:GetEffectiveScale() -- Lootframes inherit from this too, so keep it as is
+	local roundedScale = round(effectiveScale, 4)
+	if lastValidatedTranslationScale == roundedScale then
+		return
+	end
 --	local rightFillagreeTranslationAnimFrom = (select(3, BossBanner.RightFillagree.animForAnimIn:GetAnimations()))
 --	local rightFillagreeTranslationAnimTo = (select(4, BossBanner.RightFillagree.animForAnimIn:GetAnimations()))
 	local rightFillagreeTranslationAnimTo = (select(3, BossBanner.RightFillagree.animForAnimIn:GetAnimations()))
@@ -1288,6 +1289,7 @@ local function fixTranslationAnim()
 		validateOffsets(lootFrameIconTranslationAnimFrom, "LootFrame-Icon-From", effectiveScale)
 		validateOffsets(lootFrameIconTranslationAnimTo, "LootFrame-Icon-To", effectiveScale)
 	end
+	lastValidatedTranslationScale = roundedScale
 end
 
 local function BossBanner_Play(self, data)
