@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 local select = select
 
-mod:SetRevision("20251101211532")
+mod:SetRevision("20260308151500")
 mod:SetCreatureID(36678)
 mod:SetEncounterID(851)
 mod:SetUsedIcons(1, 2, 3, 4)
@@ -15,11 +15,13 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 70351 71966 71967 71968 71617 72842 72843 72851 72852 71621 72850 70672 72455 72832 72833 73121 73122 73120 71893",
 	"SPELL_CAST_SUCCESS 70341 71255 72855 72856 70911 72615 72295 74280 74281",
-	"SPELL_AURA_APPLIED 70447 72836 72837 72838 70672 72455 72832 72833 72451 72463 72671 72672 70542 70539 72457 72875 72876 70352 74118 70353 74119 72855 72856 70911",
+	"SPELL_AURA_APPLIED 70447 72836 72837 72838 70672 72455 72832 72833 72451 72463 72671 72672 70542 70539 72457 72875 72876 70352 74118 70353 74119 72855 72856 70911 72873",
 	"SPELL_AURA_APPLIED_DOSE 72451 72463 72671 72672 70542",
 	"SPELL_AURA_REFRESH 70539 72457 72875 72876 70542",
 	"SPELL_AURA_REMOVED 70447 72836 72837 72838 70672 72455 72832 72833 72855 72856 70911 71615 70539 72457 72875 72876 70542",
+	"SPELL_SUMMON 70342",
 	"CHAT_MSG_MONSTER_YELL",
+	"CHAT_MSG_RAID_BOSS_EMOTE",
 	"UNIT_HEALTH boss1"
 --	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
@@ -52,7 +54,7 @@ local yellUnboundPlague				= mod:NewYellMe(70911, false)	-- Heroic Ability, disa
 local timerGaseousBloat				= mod:NewTargetTimer(20, 70672, nil, nil, nil, 3)			-- Duration of debuff
 local timerGaseousBloatCast			= mod:NewCastTimer(3, 70672, nil, nil, nil, 3)				-- Cast duration
 local timerSlimePuddleCD			= mod:NewCDTimer(35, 70341, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON)				-- Approx
-local timerUnstableExperimentCD		= mod:NewCDTimer(35, 70351, nil, nil, nil, 1, nil, DBM_COMMON_L.DEADLY_ICON, true) -- 5s variance [35-40]. Added "keep" arg (10N Icecrown 2022/08/20 || 10N Icecrown 2022/08/25 || 10H Lordaeron 2022/09/02 || 25H Lordaeron 2022/09/04) - 39.1, 38.0 || 39.1, 38.0 || Stage 1/30.7, 36.2 ; Stage 1/33.9, 67.6, Stage 2/2.1, 36.5/38.6, 36.7; Stage 1/30.5, 35.7, Stage 2/41.6 || Stage 1/30.5, 68.3, Stage 2/4.9, 32.8/37.7, 37.7
+local timerUnstableExperimentCD		= mod:NewVarTimer("v35-40", 70351, nil, nil, nil, 1, nil, DBM_COMMON_L.DEADLY_ICON, true) -- AzerothCore schedules repeats every 35-40s; fixed 35s bars finish too early on current logs.
 local timerUnboundPlagueCD			= mod:NewNextTimer(90, 70911, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)
 local timerUnboundPlague			= mod:NewBuffActiveTimer(12, 70911, nil, nil, nil, 3)		-- Heroic Ability: we can't keep the debuff 60 seconds, so we have to switch at 12-15 seconds. Otherwise the debuff does to much damage!
 
@@ -74,7 +76,7 @@ local warnChokingGasBomb			= mod:NewSpellAnnounce(71255, 3, nil, "Melee")		-- Ph
 local specWarnChokingGasBomb		= mod:NewSpecialWarningMove(71255, "Melee", nil, nil, 1, 2)
 local specWarnMalleableGooCast		= mod:NewSpecialWarningSpell(72295, "Ranged", nil, nil, 2, 2)
 
-local timerChokingGasBombCD			= mod:NewCDTimer(35.2, 71255, nil, nil, nil, 3, nil, nil, true) -- ~5s variance [35.2-39.8]. Added "keep" arg (25H Lordaeron 2022/09/07 || 25H Lordaeron 2022/09/23 wipe1 || 25H Lordaeron 2022/09/23 kill) - pull:126.3/Stage 2/22.8, 35.3, 35.5, 35.9; pull:126.4/Stage 2/22.1, 36.6, 35.9, 37.3, 38.7, Stage 2.5/7.8, Stage 3/31.9, 30.0/61.9/69.7, 38.2 || pull:121.2/Stage 2/21.9, 37.2, 38.7, 37.7, 38.7, Stage 2.5/2.3, Stage 3/33.0, 33.2/66.1/68.4, 39.4" || Stage 2/21.3, 38.0, 35.2, 35.8, 39.8, Stage 2.5/11.6, Stage 3/33.2, 23.9/57.1/68.8, 35.5
+local timerChokingGasBombCD			= mod:NewVarTimer("v35-40", 71255, nil, nil, nil, 3, nil, nil, true) -- AzerothCore repeats Choking Gas every 35-40s; fixed 35.2s bars end early on current logs.
 local timerChokingGasBombExplosion	= mod:NewCastTimer(12, 71279, nil, nil, nil, 2)
 local timerMalleableGooCD			= mod:NewVarTimer("v25-30", 72295, nil, nil, nil, 3) -- (25H Lordaeron 2022/09/07) - pull:113.6/Stage 2/10.1, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0; pull:114.4/Stage 2/10.1, 20.0, 20.1, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, Stage 2.5/8.1, Stage 3/31.9, 10.0/41.9/50.0, 20.0, 20.0, 20.0, 20.0"
 
@@ -117,33 +119,140 @@ mod.vb.warned_preP2 = false
 mod.vb.warned_preP3 = false
 mod.vb.unboundCount = 0
 
-local function NextPhase(self)
+local PULL_FIRST_UNSTABLE = 35
+local HEROIC_CREATE_TO_P2 = 6.25
+local HEROIC_GUZZLE_TO_P3 = 6.25
+local HEROIC_P2_FIRST_PUDDLE = 46.5
+local HEROIC_P2_FIRST_MALLEABLE = 26.5
+local HEROIC_P2_FIRST_CHOKING = 35
+local HEROIC_P2_FIRST_UNSTABLE = 37.5
+local HEROIC_P3_FIRST_PUDDLE = 43.5
+local HEROIC_P3_FIRST_MALLEABLE = 40.5
+local HEROIC_P3_FIRST_CHOKING = 37
+local NextPhase
+
+local function isTransform1Yell(msg)
+	return msg:find(L.YellTransform1, 1, true)
+		or msg:find("Хм, что-то я ничего не чувствую. Что?! Это еще откуда?", 1, true)
+		or msg:find("Hrm, I don't feel a thing. Wha?! Where'd those come from?", 1, true)
+end
+
+local function isTransform2Yell(msg)
+	return msg:find(L.YellTransform2, 1, true)
+		or msg:find("На вкус, как вишенка! ОЙ! Извиниите!", 1, true)
+		or msg:find("Tastes like... Cherry! OH! Excuse me!", 1, true)
+end
+
+local function isHeroicIntermissionYell(msg)
+	return (L.HeroicIntermission and msg:find(L.HeroicIntermission, 1, true))
+		or msg:find("Два слизнюка в одной комнате", 1, true)
+		or msg:find("Two oozes, one room", 1, true)
+		or msg:find("Два слизнюки в одній кімнаті", 1, true)
+end
+
+local function isMalleableGooEmote(msg)
+	return (L.MalleableGooCastEmote and msg:find(L.MalleableGooCastEmote, 1, true))
+		or msg:find("вязкую жижу", 1, true)
+		or msg:find("Malleable Goo", 1, true)
+		or msg:find("Вязкая гадость", 1, true)
+		or msg:find("в'язку гидоту", 1, true)
+end
+
+local function announceMalleableGoo(self)
+	if not self:AntiSpam(3, 2) then
+		return
+	end
+	-- Some AzerothCore builds do not expose the cast/summon spell in CLEU; the first visible signal is 72873 on impact.
+	specWarnMalleableGooCast:Show()
+	timerMalleableGooCD:Start()
+	soundSpecWarnMalleableGoo:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable.mp3")
+	soundMalleableGooSoon:Cancel()
+	soundMalleableGooSoon:Schedule(22, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+end
+
+local function cancelPhaseAbilityTimers()
+	warnUnstableExperimentSoon:Cancel()
+	warnChokingGasBombSoon:Cancel()
+	timerSlimePuddleCD:Cancel()
+	timerUnstableExperimentCD:Cancel()
+	timerMalleableGooCD:Cancel()
+	timerChokingGasBombCD:Cancel()
+	soundMalleableGooSoon:Cancel()
+	soundChokingGasSoon:Cancel()
+end
+
+local function beginPotionTransition(self, reengageTime)
+	cancelPhaseAbilityTimers()
+	if self.vb.phase == 1 or self.vb.phase == 2 then
+		self:SetStage(self.vb.phase + 0.5)
+	end
+	timerNextPhase:Cancel()
+	self:Unschedule(NextPhase)
+	timerNextPhase:Start(reengageTime)
+	self:Schedule(reengageTime, NextPhase, self)
+end
+
+local function scheduleHeroicPhaseTwoTimers()
+	timerSlimePuddleCD:Start(HEROIC_P2_FIRST_PUDDLE)
+	timerMalleableGooCD:Start(HEROIC_P2_FIRST_MALLEABLE)
+	soundMalleableGooSoon:Schedule(HEROIC_P2_FIRST_MALLEABLE - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+	timerChokingGasBombCD:Start(HEROIC_P2_FIRST_CHOKING)
+	soundChokingGasSoon:Schedule(HEROIC_P2_FIRST_CHOKING - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
+	warnChokingGasBombSoon:Schedule(HEROIC_P2_FIRST_CHOKING - 5)
+	timerUnstableExperimentCD:Start(HEROIC_P2_FIRST_UNSTABLE)
+	warnUnstableExperimentSoon:Schedule(HEROIC_P2_FIRST_UNSTABLE - 5)
+end
+
+local function scheduleHeroicPhaseThreeTimers()
+	timerSlimePuddleCD:Start(HEROIC_P3_FIRST_PUDDLE)
+	timerMalleableGooCD:Start(HEROIC_P3_FIRST_MALLEABLE)
+	soundMalleableGooSoon:Schedule(HEROIC_P3_FIRST_MALLEABLE - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+	timerChokingGasBombCD:Start(HEROIC_P3_FIRST_CHOKING)
+	soundChokingGasSoon:Schedule(HEROIC_P3_FIRST_CHOKING - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
+	warnChokingGasBombSoon:Schedule(HEROIC_P3_FIRST_CHOKING - 5)
+end
+
+local function startNormalIntermission(self)
+	if self.vb.phase ~= 1 and self.vb.phase ~= 2 then
+		return
+	end
+	self:SetStage(self.vb.phase + 0.5)
+	warnTearGas:Show()
+	timerNextPhase:Cancel()
+	self:Unschedule(NextPhase)
+	cancelPhaseAbilityTimers()
+end
+
+local function startHeroicIntermission(self)
+	if self.vb.phase ~= 1 and self.vb.phase ~= 2 then
+		return
+	end
+	self:SetStage(self.vb.phase + 0.5)
+	warnVolatileExperiment:Show()
+	timerNextPhase:Cancel()
+	self:Unschedule(NextPhase)
+	cancelPhaseAbilityTimers()
+	local unboundElapsed = timerUnboundPlagueCD:GetTime()
+	if self.vb.phase == 1.5 then
+		firstIntermisisonUnboundElapsed = unboundElapsed
+		timerUnboundPlagueCD:Update(unboundElapsed, 130)
+	elseif self.vb.phase == 2.5 then
+		if self.vb.unboundCount == 1 then
+			timerUnboundPlagueCD:Update(firstIntermisisonUnboundElapsed, 170)
+		else
+			timerUnboundPlagueCD:Update(unboundElapsed, 130)
+		end
+	end
+end
+
+NextPhase = function(self)
 	self:SetStage(self.vb.phase + 0.5)
 	if self.vb.phase == 2 then
 		warnPhase2:Show()
 		warnPhase2:Play("ptwo")
-		timerUnstableExperimentCD:Start(30) -- 19/04/2024: (Heroic) Unstable Experiement scheduled 30 seconds after Create Concoction finishes. https://www.warmane.com/bugtracker/report/121798#comment-114099
-		warnUnstableExperimentSoon:Schedule(25)
-		-- EVENT_PHASE_TRANSITION - scheduled for Create Concoction cast + 100 ms (will fire [CHAT_MSG_MONSTER_YELL] Hrm, I don't feel a thing. Wha?! Where'd those come from?)
-		if self:IsHeroic() then
-			timerMalleableGooCD:Start(50)
-			soundMalleableGooSoon:Schedule(47, "Interface\AddOns\DBM-Core\sounds\RaidAbilities\malleable_soon.mp3")
-			timerChokingGasBombCD:Start(60)
-			soundChokingGasSoon:Schedule(57, "Interface\AddOns\DBM-Core\sounds\RaidAbilities\choking_soon.mp3")
-			warnChokingGasBombSoon:Schedule(55)
-		else
-			timerMalleableGooCD:Start(25)
-			soundMalleableGooSoon:Schedule(22, "Interface\AddOns\DBM-Core\sounds\RaidAbilities\malleable_soon.mp3")
-			timerChokingGasBombCD:Start(35)
-			soundChokingGasSoon:Schedule(32, "Interface\AddOns\DBM-Core\sounds\RaidAbilities\choking_soon.mp3")
-			warnChokingGasBombSoon:Schedule(30)
-		end
-	--	self:UnregisterShortTermEvents() -- UnregisterShortTermEvents moved here to ensure UNIT_TARGET is unregistered (previously was running on sync, which is not always used)
 	elseif self.vb.phase == 3 then
 		warnPhase3:Show()
 		warnPhase3:Play("pthree")
-		-- EVENT_PHASE_TRANSITION - scheduled for Guzzle Potions cast + 100 ms (will fire [CHAT_MSG_MONSTER_YELL] Tastes like... Cherry! OH! Excuse me!)
-	--	self:UnregisterShortTermEvents() -- UnregisterShortTermEvents moved here to ensure UNIT_TARGET is unregistered (previously was running on sync, which is not always used)
 	end
 end
 
@@ -183,8 +292,8 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	berserkTimer:Start(-delay)
 	timerSlimePuddleCD:Start(10-delay)
-	timerUnstableExperimentCD:Start(30-delay) -- REVIEW! need P1 N log data to determine whether H/N has difference. heroic 5s variance (10N Icecrown 2022/08/25 || 10H Lordaeron 2022/09/02 || 25H Lordaeron 2022/09/04) - 61 || 33.0; 30.7; 30.5; 33.9 || 30.5
-	warnUnstableExperimentSoon:Schedule(25-delay)
+	timerUnstableExperimentCD:Start(PULL_FIRST_UNSTABLE-delay)
+	warnUnstableExperimentSoon:Schedule(PULL_FIRST_UNSTABLE-5-delay)
 	table.wipe(redOozeGUIDsCasts)
 	firstIntermisisonUnboundElapsed = 0
 	self.vb.warned_preP2 = false
@@ -207,60 +316,16 @@ function mod:SPELL_CAST_START(args)
 		timerUnstableExperimentCD:Start()
 		warnUnstableExperimentSoon:Schedule(30)
 	elseif spellId == 71617 then				--Tear Gas (stun all on Normal phase) (Normal intermission)
-		self:SetStage(self.vb.phase + 0.5) -- ACTION_CHANGE_PHASE
-		warnTearGas:Show()
-		local puddleElapsed = timerSlimePuddleCD:GetTime()
-		timerSlimePuddleCD:Update(puddleElapsed, 59) -- the next Normal Slime Puddle will always be [59.03:25N/59.03:10N]s after the previous Slime Puddle cast, so calculate elapsed time and update timer
-		if self.vb.phase == 2.5 then -- Usual timer delta is not reliable for Malleable Goo, it's a different logic, commented below
-			local gooElapsed = timerMalleableGooCD:GetTime() -- On second Normal intermission, the next Malleable Goo will always be [44:25N/44:10N]s after the previous Malleable Goo cast, so calculate elapsed time and update timer
-			timerMalleableGooCD:Update(gooElapsed, 44)
-			soundMalleableGooSoon:Schedule(44-gooElapsed-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
-			local chokingElapsed = timerChokingGasBombCD:GetTime() -- On second Normal intermission, the next Choking Gas Bomb will always be [59.28-61.10:25N/60.17:10N]s after the previous Choking Gas Bomb cast, so calculate elapsed time and update timer
-			timerChokingGasBombCD:Update(chokingElapsed, 59)
-			soundChokingGasSoon:Schedule(59-chokingElapsed-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
-			warnChokingGasBombSoon:Schedule(59-chokingElapsed-5)
-		end
+		startNormalIntermission(self)
 	elseif args:IsSpellID(72842, 72843) then		--Volatile Experiment (Heroic intermission)
-		self:SetStage(self.vb.phase + 0.5) -- ACTION_CHANGE_PHASE
-		warnVolatileExperiment:Show()
-		warnUnstableExperimentSoon:Cancel()
-		timerUnstableExperimentCD:Cancel()
-		local puddleElapsed = timerSlimePuddleCD:GetTime()
-		local puddleMaxTimePerDifficulty = self:IsDifficulty("heroic25") and 75 or self:IsDifficulty("heroic10") and 85 or 59 -- the next Heroic Slime Puddle will always be [75.05:25H/84.99:10H]s after the previous Slime Puddle cast, so calculate elapsed time and update timer
-		timerSlimePuddleCD:Update(puddleElapsed, puddleMaxTimePerDifficulty)
-		local unboundElapsed = timerUnboundPlagueCD:GetTime()
-		if self.vb.phase == 1.5 then
-			firstIntermisisonUnboundElapsed = unboundElapsed -- cache for second intermission if necessary
-			timerUnboundPlagueCD:Update(unboundElapsed, 130)
-		elseif self.vb.phase == 2.5 then
-			if self.vb.unboundCount == 1 then -- only 1 Unbound Plague cast during whole raid (rushed phase 2)
-				timerUnboundPlagueCD:Update(firstIntermisisonUnboundElapsed, 170) -- 170s between Unbound Plague from Phase 1 and Phase 3
-			else
-				timerUnboundPlagueCD:Update(unboundElapsed, 130) -- REVIEW! One log had 220.04 (25H Lordaeron [2024-05-21]@[21:15:56]), it needs investigation
-			end
-			local gooElapsed = timerMalleableGooCD:GetTime() -- On second Heroic intermission, the next Malleable Goo will always be [60:25H/70:10H]s after the previous Malleable Goo cast, so calculate elapsed time and update timer
-			local gooMaxTimePerDifficulty = self:IsDifficulty("heroic25") and 60 or self:IsDifficulty("heroic10") and 70 or 44 -- REVIEW! 25H confirmed, 10H need more data, 25N only one log, 10N only one log
-			timerMalleableGooCD:Update(gooElapsed, gooMaxTimePerDifficulty)
-			soundMalleableGooSoon:Schedule(gooMaxTimePerDifficulty-gooElapsed-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
-			local chokingElapsed = timerChokingGasBombCD:GetTime() -- On second Heroic intermission, the next Choking Gas Bomb will always be [75-80:25H/89.39:10H]s after the previous Choking Gas Bomb cast, so calculate elapsed time and update timer
-			local chokingMaxTimePerDifficulty = self:IsDifficulty("heroic25") and 75 or self:IsDifficulty("heroic10") and 85 or 59 -- REVIEW! 25H confirmed, 10H only one log, 25N only two log, 10N only one log
-			timerChokingGasBombCD:Update(chokingElapsed, chokingMaxTimePerDifficulty)
-			soundChokingGasSoon:Schedule(chokingMaxTimePerDifficulty-chokingElapsed-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
-			warnChokingGasBombSoon:Schedule(chokingMaxTimePerDifficulty-chokingElapsed-5)
-		end
+		startHeroicIntermission(self)
 	elseif args:IsSpellID(72851, 72852, 71621, 72850) then		--Create Concoction (phase2 change)
-		local castTime = self:IsHeroic() and 30 or 4 -- Normal and Heroic have different cast times, so hardcode the cast time in seconds. DO NOT USE GetSpellInfo API here, as it is affected by player Haste.
-		warnUnstableExperimentSoon:Cancel()
-		timerUnstableExperimentCD:Cancel()
-		timerNextPhase:Start(castTime) -- Script phasing happens right after UNIT_SPELLCAST_SUCCEEDED. Boss re-engage is timed to account for the remaining time (check YELL)
-		self:Schedule(castTime, NextPhase, self) -- prefer scheduling over UNIT_SPELLCAST_SUCCEEDED because on Normal difficulty Create Concoction does not fire UNIT_SPELLCAST_SUCCEEDED, only _STOP. This has the benefit of also being cross-server
 		if self:IsHeroic() then
---			if self:IsDifficulty("heroic10") then -- Apply to both 10H and 25H (reason below)
-				-- self:Schedule(35.63, NextPhase, self) -- using longest timer found, since this is a schedule
-				self:RegisterShortTermEvents(
-					"UNIT_TARGET boss1"
-				)
---			end
+			beginPotionTransition(self, HEROIC_CREATE_TO_P2)
+			scheduleHeroicPhaseTwoTimers()
+		else
+			local castTime = 4
+			timerNextPhase:Start(castTime + 2.25)
 		end
 	elseif args:IsSpellID(70672, 72455, 72832, 72833) then	--Red Slime
 		timerGaseousBloatCast:Start(args.sourceGUID) -- account for multiple red oozes
@@ -274,16 +339,12 @@ function mod:SPELL_CAST_START(args)
 			specWarnGaseousBloatCast:Play("targetchange")
 		end
 	elseif args:IsSpellID(73121, 73122, 73120, 71893) then		--Guzzle Potions (phase3 change)
-		local castTime = self:IsDifficulty("heroic25") and 20 or self:IsDifficulty("heroic10") and 30 or 4 -- Normal, Heroic10 and Heroic25 have different cast times, so hardcode the cast time in seconds. DO NOT USE GetSpellInfo API here, as it is affected by player Haste.
-		timerUnstableExperimentCD:Cancel()
-		timerNextPhase:Start(castTime) -- Script phasing happens right after UNIT_SPELLCAST_SUCCEEDED. Boss re-engage is timed to account for the remaining time (check YELL)
-		self:Schedule(castTime, NextPhase, self) -- prefer scheduling over UNIT_SPELLCAST_SUCCEEDED because on Normal difficulty Guzzle Potions does not fire UNIT_SPELLCAST_SUCCEEDED, only _STOP. This has the benefit of also being cross-server
 		if self:IsHeroic() then
-			--self:Schedule(38.69, NextPhase, self) -- REVIEW! using longest timer found, since this is a schedule
-			--timerNextPhase:Start(38.67) -- (10H Lordaeron [2023-08-12]@[20:34:20]) - 38.67
-			self:RegisterShortTermEvents(
-				"UNIT_TARGET boss1"
-			)
+			beginPotionTransition(self, HEROIC_GUZZLE_TO_P3)
+			scheduleHeroicPhaseThreeTimers()
+		else
+			local castTime = 4
+			timerNextPhase:Start(castTime + 2.25)
 		end
 	end
 end
@@ -299,21 +360,24 @@ function mod:SPELL_CAST_SUCCESS(args)
 		specWarnChokingGasBomb:Show()
 		soundSpecWarnChokingGasBomb:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking.mp3")
 		soundChokingGasSoon:Cancel()
-		soundChokingGasSoon:Schedule(35.5-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
+		soundChokingGasSoon:Schedule(32, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
 		timerChokingGasBombCD:Start()
 		timerChokingGasBombExplosion:Start()
-		warnChokingGasBombSoon:Schedule(30.5)
+		warnChokingGasBombSoon:Schedule(30)
 	elseif args:IsSpellID(72855, 72856, 70911) then
 		self.vb.unboundCount = self.vb.unboundCount + 1
 		timerUnboundPlagueCD:Start()
 	elseif args:IsSpellID(72615, 72295, 74280, 74281) then -- Malleable Goo
 		--self:BossTargetScanner(36678, "MalleableGooTarget", 0.05, 6)
-		specWarnMalleableGooCast:Show()
-		--specWarnMalleableGooCast:Play("watchstep")
-		timerMalleableGooCD:Start()
-		soundSpecWarnMalleableGoo:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable.mp3")
-		soundMalleableGooSoon:Cancel()
-		soundMalleableGooSoon:Schedule(20-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+		announceMalleableGoo(self)
+	end
+end
+
+function mod:SPELL_SUMMON(args)
+	if args.spellId == 70342 and self:AntiSpam(5, 1) then -- Slime Puddle
+		warnSlimePuddle:Show()
+		soundSlimePuddle:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\puddle_cast.mp3")
+		timerSlimePuddleCD:Start()
 	end
 end
 
@@ -372,6 +436,8 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			warnUnboundPlague:Show(args.destName)
 		end
+	elseif spellId == 72873 then -- AzerothCore Malleable Goo impact/aura fallback
+		announceMalleableGoo(self)
 	end
 end
 
@@ -422,13 +488,32 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	-- EVENT_RESUME_ATTACK
-	if msg == L.YellTransform1 or msg:find(L.YellTransform1) then
+	if isHeroicIntermissionYell(msg) and self:IsHeroic() then
+		startHeroicIntermission(self)
+	elseif isTransform1Yell(msg) and self.vb.phase < 2 then
+		timerNextPhase:Cancel()
+		self:Unschedule(NextPhase)
+		if self.vb.phase == 1 then
+			self:SetStage(1.5)
+		end
+		NextPhase(self)
 		warnReengage:Schedule(5.5, L.name)
 		timerReengage:Start(5.5)
-	elseif msg == L.YellTransform2 or msg:find(L.YellTransform2) then
+	elseif isTransform2Yell(msg) and self.vb.phase < 3 then
+		timerNextPhase:Cancel()
+		self:Unschedule(NextPhase)
+		if self.vb.phase == 2 then
+			self:SetStage(2.5)
+		end
+		NextPhase(self)
 		warnReengage:Schedule(8.5, L.name)
 		timerReengage:Start(8.5)
+	end
+end
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
+	if isMalleableGooEmote(msg) then
+		announceMalleableGoo(self)
 	end
 end
 

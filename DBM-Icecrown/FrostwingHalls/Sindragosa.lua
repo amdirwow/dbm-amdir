@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Sindragosa", "DBM-Icecrown", 4)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20251101201015")
+mod:SetRevision("20260308150000")
 mod:SetCreatureID(36853)
 mod:SetEncounterID(855)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6)
@@ -37,7 +37,7 @@ local warnPhase2soon			= mod:NewPrePhaseAnnounce(2)
 local warnInstability			= mod:NewCountAnnounce(69766, 2, nil, false)
 local warnChilledtotheBone		= mod:NewCountAnnounce(70106, 2, nil, false)
 local warnFrostBeacon			= mod:NewTargetNoFilterAnnounce(70126, 4)
-local warnFrostBreath			= mod:NewSpellAnnounce(69649, 2, nil, "Tank|Healer")
+local warnFrostBreath			= mod:NewSpellAnnounce(69649, 2, nil, true, 1)
 local warnUnchainedMagic		= mod:NewTargetAnnounce(69762, 2, nil, "SpellCaster", 2)
 
 local specWarnUnchainedMagic	= mod:NewSpecialWarningYou(69762, nil, nil, nil, 1, 2)
@@ -48,10 +48,11 @@ local specWarnChilledtotheBone	= mod:NewSpecialWarningStack(70106, nil, mod:IsHe
 local specWarnBlisteringCold	= mod:NewSpecialWarningRun(70123, nil, nil, nil, 4, 2)
 
 local timerNextAirphase			= mod:NewTimer(110, "TimerNextAirphase", 43810, nil, nil, 6) -- Fixed timer on Air Yell: 110s
-local timerNextGroundphase		= mod:NewTimer(44.2, "TimerNextGroundphase", 43810, nil, nil, 6) -- 0.4s variance (10H Lordaeron 2022/10/02 || 25H Lordaeron 2022/10/02 || 25H Lordaeron 2022/10/06) - 44.2; 44.2 || 44.2; 44.3, 44.6; 44.2 || 45.1
-local timerNextFrostBreath		= mod:NewNextTimer(22, 69649, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerNextGroundphase		= mod:NewTimer(39.5, "TimerNextGroundphase", 43810, nil, nil, 6) -- Current live log + script timing puts the landing window at ~39-40s from the air yell.
+local timerNextFrostBreath		= mod:NewNextTimer("v20-25", 69649, nil, true, 1, 5, nil, DBM_COMMON_L.TANK_ICON) -- Reset the option key so old saved vars with Timer69649next=false no longer hide the bar.
+local timerNextIcyGrip			= mod:NewNextTimer("v35-40", 70117, nil, nil, nil, 2)
 local timerNextBlisteringCold	= mod:NewCDTimer(66, 70123, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON, true, 2) -- Added "keep" arg
-local timerNextBeacon			= mod:NewNextCountTimer(16, 70126, nil, nil, nil, 3, nil, DBM_COMMON_L.DEADLY_ICON)
+local timerNextBeacon			= mod:NewVarCountTimer("v18-22", 70126, nil, nil, nil, 3, nil, DBM_COMMON_L.DEADLY_ICON)
 local timerBeaconIncoming		= mod:NewTargetTimer("d7", 70126, nil, nil, nil, 3) -- One incoming timer for each target
 local timerBlisteringCold		= mod:NewCastTimer(6, 70123, nil, nil, nil, 2)
 local timerUnchainedMagic		= mod:NewCDTimer(32, 69762, nil, nil, nil, 3) -- (25H Lordaeron 2022/07/09 || 10N Icecrown 2022/08/22 || 10N Icecrown 2022/08/25) - 32.0, 63.2, 32.1, 77.8, 32.1, 32.5, 31.9, 34.8 || 35.7, 58.4, 32.1, 77.9, 32.1, 78.6, 32.0, 32.0, 32.1 || 32.0, 62.1, 32.0, Stage 2/68.4, 9.9/78.3, 32.0
@@ -180,13 +181,29 @@ local function ResetRange(self)
 	end
 end
 
+local function isAirPhaseYell(msg)
+	return msg:find(L.YellAirphase, 1, true)
+		or msg:find(L.YellAirphaseDem, 1, true)
+		or msg:find("Здесь ваше вторжение и окончится! Никто не уцелеет.", 1, true)
+		or msg:find("Your incursion ends here! None shall survive!", 1, true)
+end
+
+local function isPhase2Yell(msg)
+	return msg:find(L.YellPhase2, 1, true)
+		or msg:find(L.YellPhase2Dem, 1, true)
+		or msg:find("А теперь почувствуйте всю мощь господина и погрузитесь в отчаяние!", 1, true)
+		or msg:find("Now, feel my master's limitless power and despair!", 1, true)
+end
+
 -- Warmane workaround, since there is no dedicated event for Sindragosa Landing Phase, and UNIT_TARGET boss1 only fires if Sindragosa is targeted or focused (sync'ed below)
 local function landingPhaseWorkaround(self, timeOffset)
 	DBM:Debug("UNIT_TARGET boss1 didn't fire. Landing Phase scheduled")
 	self:SetStage(1)
-	timerUnchainedMagic:Start("v12-17")
+	timerNextFrostBreath:Start(7-timeOffset)
+	timerUnchainedMagic:Start(12-timeOffset)
 	timerTailSmash:Start(19-timeOffset)
-	timerNextBlisteringCold:Start("v35-40")
+	timerNextIcyGrip:Start(35-timeOffset)
+	timerNextBlisteringCold:Start(35-timeOffset)
 	self:UnregisterShortTermEvents()
 end
 
@@ -205,6 +222,8 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	berserkTimer:Start(-delay)
 	timerNextAirphase:Start(50-delay)
+	timerNextFrostBreath:Start("v8-12")
+	timerNextIcyGrip:Start(33.5-delay)
 	timerNextBlisteringCold:Start(34.5-delay) -- ~10s variance [31.6-40] (10H Lordaeron 2022/10/02 || 25H Lordaeron 2022/10/02) - 37.5; 34.9 || 31.6; 36.4; 34.9; 34.9
 	timerTailSmash:Start(20-delay) -- (25H Lordaeron 2022/07/09 || 10N Icecrown 2022/08/22 || 10N Icecrown 2022/08/25 || 10H Lordaeron 2022/10/02 || 25H Lordaeron 2022/10/02) - 20.0 || 20.0 || 20.0 || 20.0; 20.0 || 20.0; 19.9; 20.0; 20.0
 	timerUnchainedMagic:Start("v9-14") -- (25H Lordaeron 2022/07/09 || 10N Icecrown 2022/08/22 || 10N Icecrown 2022/08/25) - 10.1 || 10.1 || 10.0
@@ -241,6 +260,9 @@ function mod:SPELL_CAST_SUCCESS(args)
 		specWarnBlisteringCold:Play("runout")
 		timerBlisteringCold:Start()
 		timerNextBlisteringCold:Start()
+		if self.vb.phase == 2 then
+			timerNextIcyGrip:Start("v65-70")
+		end
 
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:SetBossRange(25, self:GetBossUnitByCreatureId(36853))
@@ -273,7 +295,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		if self.vb.phase == 2 then--Phase 2 there is only one icon/beacon, don't use sorting method if we don't have to.
 			self.vb.beaconP2Count = self.vb.beaconP2Count + 1
-			timerNextBeacon:Start(16, self.vb.beaconP2Count)
+			timerNextBeacon:Start("v18-22", self.vb.beaconP2Count)
 			if self.Options.SetIconOnFrostBeacon then
 				self:SetIcon(args.destName, 8)
 				if self.Options.AnnounceFrostBeaconIcons and DBM:IsInGroup() and DBM:GetRaidRank() > 1 then
@@ -404,7 +426,7 @@ function mod:UNIT_TARGET(uId)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if (msg == L.YellAirphase or msg:find(L.YellAirphase)) or (msg == L.YellAirphaseDem or msg:find(L.YellAirphaseDem)) then
+	if isAirPhaseYell(msg) then
 		if self.Options.ClearIconsOnAirphase then
 			self:ClearIcons()
 		end
@@ -414,22 +436,24 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		timerUnchainedMagic:Cancel()
 		timerNextBlisteringCold:Cancel()
 		timerTailSmash:Cancel()
+		timerNextIcyGrip:Cancel()
 		timerNextAirphase:Start()
 		timerNextGroundphase:Start()
-		warnGroundphaseSoon:Schedule(37.5)
-		self:Schedule(45.2, landingPhaseWorkaround, self, 1) -- giving a 0.2s cushion from 45s (max I have on logs is 45.1s). 1s comes from 45.2-44.2s from ground timer
+		warnGroundphaseSoon:Schedule(33)
+		self:Schedule(40.5, landingPhaseWorkaround, self, 1) -- Give UNIT_TARGET a short grace window before falling back to synthetic landing timers.
 		self:RegisterShortTermEvents(
 			"UNIT_TARGET boss1"
 		)
-	elseif (msg == L.YellPhase2 or msg:find(L.YellPhase2)) or (msg == L.YellPhase2Dem or msg:find(L.YellPhase2Dem)) then
+	elseif isPhase2Yell(msg) then
 		self:SetStage(2)
 		warnPhase2:Show()
 		warnPhase2:Play("ptwo")
-		timerNextBeacon:Start(7, 1) -- no need to use self.vb.beaconP2Count here since it will always be one on this timer
+		timerNextBeacon:Start("v8-10", 1) -- Current live pulls land the first phase 2 beacon near the back half of the server's 7-10s window.
 		timerNextAirphase:Cancel()
 		timerNextGroundphase:Cancel()
 		warnGroundphaseSoon:Cancel()
-		timerNextBlisteringCold:Restart(35) -- Fixed timer: 35s (25H Lordaeron 2024/11/28) - 35.03
+		timerNextIcyGrip:Start("v35-40")
+		timerNextBlisteringCold:Restart(36)
 		timerNextMysticBuffet:Start()
 		self:Schedule(6, cycleMysticBuffet, self)
 		self:Unschedule(landingPhaseWorkaround)
@@ -442,8 +466,10 @@ function mod:OnSync(msg)
 	if msg == "SindragosaLanded" and self:GetStage(1.5) then
 		self:Unschedule(landingPhaseWorkaround)
 		self:SetStage(1)
+		timerNextFrostBreath:Start("v7-10")
 		timerUnchainedMagic:Start("v12-17")
 		timerTailSmash:Start("v19-23")
+		timerNextIcyGrip:Start("v35-40")
 		timerNextBlisteringCold:Start("v35-40")
 		self:UnregisterShortTermEvents()
 	end
