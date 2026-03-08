@@ -25,7 +25,7 @@
 ## X-DBM-Mod-MapID: 528
 ## X-DBM-Mod-LoadZone: The Eye of Eternity
 ## X-DBM-Mod-LoadZone-zhCN: 永恒之眼
-## X-DBM-Mod-LoadZone-ruRU:Око Вічності
+## X-DBM-Mod-LoadZone-ruRU: Око Вечности
 
 localization.en.lua
 localization.fr.lua

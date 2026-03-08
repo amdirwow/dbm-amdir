@@ -24,7 +24,7 @@
 ## X-DBM-Mod-Name-frFR: Repaire de l'Aile noire
 ## X-DBM-Mod-LoadZone: Blackwing Lair
 ## X-DBM-Mod-LoadZone-esES: Guarida Alanegra
-## X-DBM-Mod-LoadZone-ruRU:Логово Крила Темряви
+## X-DBM-Mod-LoadZone-ruRU: Логово Крыла Тьмы
 ## X-DBM-Mod-LoadZone-frFR: Repaire de l'Aile noire
 ## X-DBM-Mod-LoadZone-esMX: Guarida Alanegra
 ## X-DBM-Mod-LoadZone-zhTW: 黑翼之巢

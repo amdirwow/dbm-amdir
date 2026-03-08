@@ -50,7 +50,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellReanimatedFanatic	= "Повстань і набуй справжньої форми!",
+	YellReanimatedFanatic	= "Восстань и обрети истинную форму!",
 	ShieldPercent			= "Бар'єр мани",
 --	Fanatic1				= "Фанатик культа",
 --	Fanatic2				= "Кособокий фанатик",
@@ -82,16 +82,16 @@ L:SetTimerLocalization({
 })
 
 L:SetMiscLocalization({
-	PullAlliance	= "Запускайте двигуни! Летимо назустріч долі.",
-	PullHorde		= "Підійміться, сини та дочки Орди! Сьогодні ми битимемося зі смертельним ворогом! ЛОК'ТАР ОГАР!",
+	PullAlliance	= "Запускайте двигатели! Летим навстречу судьбе.",
+	PullHorde		= "Воспряньте, сыны и дочери Орды! Сегодня мы будем биться со смертельным врагом! ЛОК'ТАР ОГАР!",
 	--CombatAlliance	= "Ах вы псы трусливые! Напали исподтишка!",
 	--CombatHorde		= "Сейчас вы ответите перед Саурфангом!",
-	AddsAlliance	= "Руйнівники, сержанти, у бій!",
-	AddsHorde		= "Піхота, сержанти, в бій!",
-	MageAlliance	= "Корабель під обстрілом! Бойового мага сюди, хай заткне ці гармати!",
-	MageHorde		= "Корабель під обстрілом! Заклинача сюди, хай заткне ці гармати!",
-	KillAlliance	= "Ну не говоріть потім, що я не попереджав. В атаку, брати та сестри!",
-	KillHorde		= "Альянс переможено. Вперед, до Короля-лича!"
+	AddsAlliance	= "Разрушители, сержанты, в бой!",
+	AddsHorde		= "Пехота, сержанты, в бой!",
+	MageAlliance	= "Корабль под обстрелом! Боевого мага сюда, пусть заткнет эти пушки!",
+	MageHorde		= "Корабль под обстрелом! Заклинателя сюда, пусть заткнет эти пушки!",
+	KillAlliance	= "Ну не говорите потом, что я не предупреждал. В атаку, братья и сестры!",
+	KillHorde		= "Альянс повержен. Вперед, к Королю-личу!"
 })
 
 -----------------------------
@@ -154,8 +154,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellSlimePipes1	= "Чудові новини, народ! Я полагодив труби для подачі отруйного слизу!",	-- Professor Putricide
-	YellSlimePipes2	= "Чудові новини, народ! Слиз знову потік!"	-- Professor Putricide
+	YellSlimePipes1	= "Отличные новости, народ! Я починил трубы для подачи ядовитой слизи!",	-- Professor Putricide
+	YellSlimePipes2	= "Отличные новости, народ! Слизь снова потекла!"	-- Professor Putricide
 })
 
 ---------------------------
@@ -181,8 +181,8 @@ L:SetTimerLocalization({
 })]]
 
 L:SetMiscLocalization({
-	YellTransform1			= "Хм, щось я нічого не відчуваю. Що? Це ще звідки?",
-	YellTransform2			= "На смак, як вишенька! ОЙ! Вибачте!"
+	YellTransform1			= "Хм, что-то я ничего не чувствую. Что?! Это еще откуда?",
+	YellTransform2			= "На вкус, как вишенка! ОЙ! Извиниите!"
 })
 
 ----------------------------
@@ -215,8 +215,8 @@ L:SetMiscLocalization({
 	Keleseth			= "Принц Келесет",
 	Taldaram			= "Принц Талдарам",
 	Valanar				= "Принц Валанар",
-	FirstPull			= "Дурні смертні. Думали, що здолали нас? Сан'лейн - непереможні воїни Короля-ліча. Тепер наші сили єдині!",
-	EmpoweredFlames		= "Спекотне полум'я тягнеться до (%S+)!"
+	FirstPull			= "Глупые смертные. Думали, что одолели нас? Сан'лейн – непобедимые воины Короля-лича. Теперь наши силы едины!",
+	EmpoweredFlames		= "Жаркое пламя тянется к (%S+)!"
 })
 
 -----------------------------
@@ -229,7 +229,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	SwarmingShadows			= "Тіні збираються і оточують (%S+)!",
+	SwarmingShadows			= "Тени собираются и окружают (%S+)!",
 	YellFrenzy				= "Я голодний!"
 })
 
@@ -262,7 +262,7 @@ L:SetOptionLocalization({
 
 L:SetMiscLocalization({
 	YellPull		= "Чужаки увірвалися у внутрішні покої. Знищте зелений дракон! Нехай залишаться лише кістки та порох для воскресіння!",
-	YellPortals		= "Я відкрила портал у Смарагдовий Сон. Там ви знайдете порятунок, герої..."
+	YellPortals		= "Я открыла портал в Изумрудный Сон. Там вы найдете спасение, герои..."
 })
 
 ------------------
@@ -298,8 +298,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellAirphase		= "Тут ваше вторгнення і закінчиться! Ніхто не вціліє.",
-	YellPhase2			= "А тепер відчуйте всю міць пана і пориньте у відчай!",
+	YellAirphase		= "Здесь ваше вторжение и окончится! Никто не уцелеет.",
+	YellPhase2			= "А теперь почувствуйте всю мощь господина и погрузитесь в отчаяние!",
 	YellAirphaseDem		= "Rikk zilthuras rikk zila Aman adare tiriosh ",--Demonic, since curse of tonges is used by some guilds and it messes up yell detection.
 	YellPhase2Dem		= "Zar kiel xi romathIs zilthuras revos ruk toralar ",--Demonic, since curse of tonges is used by some guilds and it messes up yell detection.
 	BeaconIconSet		= "Крижана мітка {rt%d} встановлена на: %s",
@@ -347,7 +347,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	LKPull					= "Невже нарешті прибули хвалені сили Світла? Мені кинути Крижану Скорботу і здатися на твою милість, Фордрінг?",
+	LKPull					= "Неужели прибыли наконец хваленые силы Света? Мне бросить Ледяную Скорбь и сдаться на твою милость, Фордринг?",
 	LKRoleplay				= "Що рухає вами?.. Праведність? Не знаю...",
 	ValkGrabbedIcon			= "Валь'кіра {rt%d} схопила %s",
 	ValkGrabbed				= "Валь'кіра схопила %s",
@@ -385,11 +385,11 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	WarderTrap1			= "Хто... йде?",
-	WarderTrap2			= "Я прокинувся...",
-	WarderTrap3			= "У покої пана проникли!",
-	FleshreaperTrap1	= "Скоріше нападемо на них ззаду!",
-	FleshreaperTrap2	= "Вам не втекти від нас.",
-	FleshreaperTrap3	= "Живі? Тут?",
-	SindragosaEvent		= "Вони не повинні прорватися до Сіндрагоси! Скоріше, зупиніть їх!"
+	WarderTrap1			= "Кто... идет?",
+	WarderTrap2			= "Я пробудился...",
+	WarderTrap3			= "В покои господина проникли!",
+	FleshreaperTrap1	= "Скорей, нападем на них сзади!",
+	FleshreaperTrap2	= "Вам не уйти от нас.",
+	FleshreaperTrap3	= "Живые? Здесь?!",
+	SindragosaEvent		= "Они не должны прорваться к Синдрагосе! Скорее, остановите их!"
 })

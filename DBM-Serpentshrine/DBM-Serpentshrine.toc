@@ -34,7 +34,6 @@
 ## X-DBM-Mod-LoadZone-frFR: Caverne du sanctuaire du Serpent
 ## X-DBM-Mod-LoadZone-zhCN: 毒蛇神殿
 ## X-DBM-Mod-LoadZone-zhTW: 毒蛇神殿洞穴
-## X-DBM-Mod-LoadZone-ruRU:Зміїне святилище
 
 localization.en.lua
 localization.cn.lua

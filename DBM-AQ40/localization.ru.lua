@@ -64,12 +64,12 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Slow		= "уповільнюється!",
-	Freezing	= "заморожується!",
-	Frozen		= "застигає!",
-	Phase4		= "починає розколюватись!",
-	Phase5		= "ледве тримається!",
-	Phase6		= "вибухає!",
+	Slow		= "замедляется!",
+	Freezing	= "замораживается!",
+	Frozen		= "застывает!",
+	Phase4		= "начинает раскалываться!",
+	Phase5		= "едва держится!",
+	Phase6		= "взрывается!",
 
 	HitsRemain	= "Ударів Залишилось",
 	Frost		= "Лід",
@@ -142,7 +142,7 @@ L:SetMiscLocalization({
 	Stomach		= "Тварин",
 	Eye			= "Око К'Туна",
 	FleshTent	= "М'ясисте щупальце",--Localized so it shows on frame in users language, not senders
-	Weakened	= "ослаблений!",
+	Weakened	= "ослаблен!",
 	NotValid	= "АК40 частково зачищений. %s необов'язкові боси залишилися."
 })
 

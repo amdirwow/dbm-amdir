@@ -29,7 +29,7 @@
 ## X-DBM-Mod-LoadZone-koKR: 검은 사원
 ## X-DBM-Mod-LoadZone-zhCN: 黑暗神殿
 ## X-DBM-Mod-LoadZone-zhTW: 黑暗神廟
-## X-DBM-Mod-LoadZone-ruRU:Чорний храм
+## X-DBM-Mod-LoadZone-ruRU: Черный храм
 
 localization.en.lua
 localization.cn.lua

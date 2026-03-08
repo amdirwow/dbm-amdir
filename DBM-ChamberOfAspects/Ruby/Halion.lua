@@ -13,14 +13,15 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 74806 75954 75955 75956 74525 74526 74527 74528",
 	"SPELL_CAST_SUCCESS 74792 74562",
-	"SPELL_AURA_APPLIED 74792 74562",
-	"SPELL_AURA_REMOVED 74792 74562",
+	"SPELL_AURA_APPLIED 74792 74562 74807",
+	"SPELL_AURA_REMOVED 74792 74562 74807",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
 	"CHAT_MSG_MONSTER_YELL",
 	"CHAT_MSG_RAID_BOSS_EMOTE",
 	"UPDATE_WORLD_STATES",
-	"UNIT_HEALTH boss1"
+	"UNIT_HEALTH boss1",
+	"UNIT_AURA player"
 )
 
 -- General
@@ -91,6 +92,22 @@ local function clearKeepTimers(self) -- Attempt to clear "keep" negative timers 
 	if timerFieryBreathCD:GetRemaining() < 0 then timerFieryBreathCD:Stop() end
 end
 
+local function getHalionHealth()
+	local primaryCID = playerInShadowRealm and 40142 or 39863
+	local secondaryCID = playerInShadowRealm and 39863 or 40142
+	local health = mod:GetBossHP(primaryCID)
+	if health then
+		return health
+	end
+	return mod:GetBossHP(secondaryCID)
+end
+
+mod:SetBossHealthInfo(getHalionHealth, L.Halion)
+
+local function updateHealthFrame(self, shadowRealm)
+	playerInShadowRealm = shadowRealm and true or false
+end
+
 function mod:OnCombatStart(delay)
 	self.vb.warned_preP2 = false
 	self.vb.warned_preP3 = false
@@ -106,6 +123,7 @@ function mod:OnCombatStart(delay)
 	timerFieryCombustionCD:Start(15-delay) -- (25N Lordaeron 2022/09/20 || 25H Lordaeron 2022/10/09) - 17.6 || 16.4
 	timerFieryBreathCD:Start(10-delay) -- (25H Lordaeron 2022/09/21 wipe1 || 25H Lordaeron 2022/09/21 wipe2 || 25H Lordaeron 2022/09/21 wipe3 || 25H Lordaeron 2022/09/23) - 10.5 || 11.3 || 12.4 || 10.3
 	timerTailLashCD:Start(-delay)
+	updateHealthFrame(self, false)
 end
 
 function mod:OnCombatEnd()
@@ -168,6 +186,8 @@ function mod:SPELL_AURA_APPLIED(args)--We don't use spell cast success for actua
 		if self.Options.SetIconOnShadowConsumption then
 			self:SetIcon(args.destName, 3)
 		end
+	elseif spellId == 74807 and args:IsPlayer() then
+		updateHealthFrame(self, true)
 	elseif spellId == 74562 then
 		if self:LatencyCheck() then
 			self:SendSync("FieryTarget", args.destName)
@@ -192,6 +212,8 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.SetIconOnShadowConsumption then
 			self:SetIcon(args.destName, 0)
 		end
+	elseif spellId == 74807 and args:IsPlayer() then
+		updateHealthFrame(self, false)
 	elseif spellId == 74562 then
 		if self.Options.SetIconOnFireConsumption then
 			self:SetIcon(args.destName, 0)
@@ -200,23 +222,28 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_DAMAGE(sourceGUID, _, _, destGUID, _, _, spellId)
+	local sourceCID = self:GetCIDFromGUID(sourceGUID)
+	local destCID = self:GetCIDFromGUID(destGUID)
 	if (spellId == 75952 or spellId == 75951 or spellId == 75950 or spellId == 75949 or spellId == 75948 or spellId ==  75947) and destGUID == UnitGUID("player") and self:AntiSpam() then
 		specWarnMeteorStrike:Show()
 		specWarnMeteorStrike:Play("runaway")
 	-- Physical/Shadow Realm detection:
 	-- OnCombatStarts already defines playerInShadowRealm as false.
 	-- Code below is meant to handle P2 and P3
-	elseif (self:GetCIDFromGUID(sourceGUID) == 39863 or self:GetCIDFromGUID(destGUID) == 39863) and self.Options.HealthFrame and playerInShadowRealm then -- check if Physical Realm boss exists and playerInShadowRealm is still cached as true
-		playerInShadowRealm = false
-		DBM.BossHealth:Clear()
-		DBM.BossHealth:AddBoss(39863, L.NormalHalion)
-	elseif (self:GetCIDFromGUID(sourceGUID) == 40142 or self:GetCIDFromGUID(destGUID) == 40142) and self.Options.HealthFrame and not playerInShadowRealm then -- check if Shadow Realm boss exists
-		playerInShadowRealm = true
-		DBM.BossHealth:Clear()
-		DBM.BossHealth:AddBoss(40142, L.TwilightHalion)
+	elseif (sourceCID == 39863 or destCID == 39863) and self.Options.HealthFrame and playerInShadowRealm then -- check if Physical Realm boss exists and playerInShadowRealm is still cached as true
+		updateHealthFrame(self, false)
+	elseif (sourceCID == 40142 or destCID == 40142) and self.Options.HealthFrame and not playerInShadowRealm then -- check if Shadow Realm boss exists
+		updateHealthFrame(self, true)
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
+
+function mod:UNIT_AURA()
+	if self:GetStage() < 2 then
+		return
+	end
+	updateHealthFrame(self, DBM:UnitBuff("player", 74807) or DBM:UnitDebuff("player", 74807))
+end
 
 function mod:UNIT_HEALTH(uId)
 	if not self.vb.warned_preP2 and self:GetUnitCreatureId(uId) == 39863 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.79 then
@@ -363,6 +390,7 @@ function mod:OnSync(msg, target)
 		self:Schedule(20, clearKeepTimers, self)
 	elseif msg == "Phase3" and self:GetStage(3, 1) then
 		self:SetStage(3)
+		self:UNIT_AURA()
 		warnPhase3:Show()
 		warnPhase3:Play("pthree")
 		timerMeteorCD:Start(23.2) --These i'm not sure if they start regardless of drake aggro, or if it varies as well. (25H Lordaeron 2022/10/09 || 25H Lordaeron 2022/10/30) - Stage 3/25.8 || 23.2

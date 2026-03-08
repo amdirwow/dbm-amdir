@@ -24,7 +24,7 @@
 ## X-DBM-Mod-Name-ruRU:Зул'Гуруб
 ## X-DBM-Mod-LoadZone: Zul'Gurub
 ## X-DBM-Mod-LoadZone-esES: Zul'Gurub
-## X-DBM-Mod-LoadZone-ruRU:Зул'Гуруб
+## X-DBM-Mod-LoadZone-ruRU: Зул'Гуруб
 ## X-DBM-Mod-LoadZone-frFR: Zul'Gurub
 ## X-DBM-Mod-LoadZone-esMX: Zul'Gurub
 ## X-DBM-Mod-LoadZone-zhTW: 祖爾格拉布

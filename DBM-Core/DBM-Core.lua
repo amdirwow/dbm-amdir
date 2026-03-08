@@ -4965,6 +4965,9 @@ do
 			encounterInProgress = true
 			mod.combatInfo.pull = GetTime() - (delay or 0)
 			bossuIdFound = event == "IEEU"
+			if self.BossHealth:IsShown() then
+				self.BossHealth:Hide()
+			end
 			if (self.Options.AlwaysShowHealthFrame or mod.Options.HealthFrame) and mod.Options.Enabled then
 				self.BossHealth:Show(mod.localization.general.name)
 				if mod.bossHealthInfo then

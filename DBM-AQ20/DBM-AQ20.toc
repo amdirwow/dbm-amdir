@@ -24,7 +24,7 @@
 ## X-DBM-Mod-Sort: 1103
 ## X-DBM-Mod-LoadZone: Ruins of Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esES: Ruinas de Ahn'Qiraj
-## X-DBM-Mod-LoadZone-ruRU:Руїни Ан'Кіражу
+## X-DBM-Mod-LoadZone-ruRU: Руины Ан'Киража
 ## X-DBM-Mod-LoadZone-frFR: Ruines d'Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-esMX: Ruinas de Ahn'Qiraj
 ## X-DBM-Mod-LoadZone-zhTW: 安其拉廢墟

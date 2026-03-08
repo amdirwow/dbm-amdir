@@ -30,7 +30,7 @@ L:SetOptionLocalization({
 L:SetMiscLocalization({
 	Frost		= "Гідроса",
 	Nature		= "псування",
-	YellPull	= "Я не дозволю вам втручатися!"
+	YellPull	= "Я не позволю вам вмешиваться!"
 })
 
 -----------------------
@@ -94,9 +94,9 @@ L:SetOptionLocalization({
 L:SetMiscLocalization({
 	Human		= "Human",--Translate
 	Demon		= "Demon",--Translate
-	YellDemon	= "Геть, жалюгідний ельф. Настав мій час!",
-	YellPhase2	= "Ні... ні! Що ви наробили? Я головний! Чуєш мене? Я... Ааааах! Мені його... не втримати.",
-	YellPull	= "Нарешті моє ув'язнення закінчено!"
+	YellDemon	= "Прочь, жалкий эльф. Настало мое время!",
+	YellPhase2	= "Нет... нет! Что вы наделали? Я – главный! Слышишь меня? Я... Ааааах! Мне его... не удержать.",
+	YellPull	= "Наконец-то мое заточение окончено!"
 })
 
 -----------------------------
@@ -112,7 +112,7 @@ L:SetMiscLocalization({
 	Caribdis	= "Fathom-Guard Caribdis",--Translate
 	Tidalvess	= "Fathom-Guard Tidalvess",--Translate
 	Sharkkis	= "Fathom-Guard Sharkkis",--Translate
-	YellPull	= "Варта до бою! У нас гості..."
+	YellPull	= "Стража, к бою! У нас гости..."
 })
 
 --------------------------
@@ -140,8 +140,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Grave			= "%s відправляє своїх ворогів у водяні могили!",
-	Murlocs			= "Сильний поштовх землетрусу насторожив мурлок поблизу!"
+	Grave			= "%s отправляет своих врагов в водяные могилы!",
+	Murlocs			= "Сильный толчок землетрясения насторожил мурлоков поблизости!"
 })
 
 -----------------
@@ -182,6 +182,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	DBM_VASHJ_YELL_PHASE2				= "Час настав! Не залишайте нікого в живих!",
+	DBM_VASHJ_YELL_PHASE2				= "Время пришло! Не оставляйте никого в живых!",
 	LootMsg			= "([^%s]+).*Hitem:(%d+)"
 })

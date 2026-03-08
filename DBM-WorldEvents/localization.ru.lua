@@ -22,7 +22,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	SayCombatStart		= "Хоч тобі сказали, хто я і чим займаюся?"
+	SayCombatStart		= "Тебе хоть сказали, кто я и чем занимаюсь?"
 })
 
 ----------------------------
@@ -56,7 +56,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull			= "Камінь Льоду розтанув!"
+	Pull			= "Камень Льда растаял!"
 })
 
 ----------------------
@@ -106,8 +106,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	HorsemanSummon			= "Вершник встає.", -- CONFIRM! local SQL has different string: Всадник встает...
-	HorsemanHead			= "Не набридло ще тікати?",
-	HorsemanSoldiers		= "Встаньте слуги, прямуйте в бій! Нехай полеглий лицар знаходить спокій!",
-	SayCombatEnd			= "Зі смертю ми давно вже друзі ... Що чекає тепер на пустки мене?"
+	HorsemanSummon			= "Всадник встает…",
+	HorsemanHead			= "Не надоело еще убегать?",
+	HorsemanSoldiers		= "Восстаньте слуги, устремитесь в бой! Пусть павший рыцарь обретет покой!",
+	SayCombatEnd			= "Со смертью мы давно уже друзья...Что ждет теперь на пустоши меня?"
 })

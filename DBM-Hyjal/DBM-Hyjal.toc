@@ -32,7 +32,7 @@
 ## X-DBM-Mod-LoadZone-zhCN: 海加尔峰
 ## X-DBM-Mod-LoadZone-zhTW: 海加爾山巔
 ## X-DBM-Mod-LoadZone-koKR: 하이잘 정상
-## X-DBM-Mod-LoadZone-ruRU:Вершина Хіджала
+## X-DBM-Mod-LoadZone-ruRU: Вершина Хиджала
 
 localization.en.lua
 localization.de.lua

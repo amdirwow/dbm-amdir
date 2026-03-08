@@ -30,7 +30,7 @@
 ## X-DBM-Mod-Name-deDE: Onyxias Hort (Vanilla)
 ## X-DBM-Mod-LoadZone: Onyxia's Lair
 ## X-DBM-Mod-LoadZone-frFR: Repaire d'Onyxia
-## X-DBM-Mod-LoadZone-ruRU:Логове Оніксії
+## X-DBM-Mod-LoadZone-ruRU: Логово Ониксии
 ## X-DBM-Mod-LoadZone-esES: Guarida de Onyxia
 ## X-DBM-Mod-LoadZone-esMX: Guarida de Onyxia
 ## X-DBM-Mod-LoadZone-zhTW: 奧妮克希亞的巢穴

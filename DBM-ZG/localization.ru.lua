@@ -52,9 +52,9 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	PriestDied	= "%s вмирає.",
-	YellPhase2	= "Ширвалла, наповни мене своїм гнівом!",
-	YellKill	= "Хаккар більше не владний з мене! Нарешті я знайшов спокій!",
+	PriestDied	= "%s умирает.",
+	YellPhase2	= "Ширвалла, наполни меня своим ГНЕВОМ!",
+	YellKill	= "Хаккар больше не властен надо мной! Наконец-то я обрел покой!",
 	Thekal		= "Верховний жрець Текал",
 	Zath		= "Ревнитель Зат",
 	LorKhan		= "Ревнитель Лор'Кхан"
@@ -90,7 +90,7 @@ L:SetGeneralLocalization({
 L:SetMiscLocalization({
 	Bloodlord	= "Мандокір Володар Крові",
 	Ohgan		= "Охган",
-	GazeYell	= "Я за тобою стежу"
+	GazeYell	= "Я за тобой слежу"
 })
 
 -------------------

@@ -24,7 +24,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	TankSwitch		= "%%s кидається до (%S+)!"
+	TankSwitch		= "%%s бросается к (%S+)!"
 })
 
 --------------------------------

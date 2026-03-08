@@ -23,7 +23,7 @@
 ## X-DBM-Mod-Name-ruRU:Плато Сонячної Криниці
 ## X-DBM-Mod-MapID: 790
 ## X-DBM-Mod-LoadZone: Sunwell Plateau
-## X-DBM-Mod-LoadZone-ruRU:Плато Сонячної Криниці
+## X-DBM-Mod-LoadZone-ruRU: Плато Солнечного Колодца
 ## X-DBM-Mod-LoadZone-zhCN: 太阳之井高地
 ## X-DBM-Mod-LoadZone-zhTW: 太陽之井高地
 ## X-DBM-Mod-LoadZone-deDE: Sonnenbrunnenplateau

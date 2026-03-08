@@ -9,7 +9,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Це місце під моїм захистом. Таємні містерії залишаться неоскверненими."
+	Pull		= "Это место под моей защитой. Тайные мистерии останутся неоскверненными."
 })
 
 -- Taerar (Ashenvale)
@@ -20,7 +20,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Світ – це лише швидкоплинний сон. Нехай править КОШМАР!"
+	Pull		= "Мир – это всего лишь мимолетный сон. Пусть правит КОШМАР!"
 })
 
 -- Ysondre (Feralas)
@@ -31,7 +31,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Нитки ЖИТТЯ розірвані! Помстимося за Сплячих!"
+	Pull		= "Нити ЖИЗНИ разорваны! Отомстим за Спящих!"
 })
 
 -- Lethon (Hinterlands)
@@ -42,7 +42,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Я відчуваю ТІНЬ, що нависла над вашими серцями. Нечестивцям не буде спокою!"
+	Pull		= "Я чувствую ТЕНЬ, нависшую над вашими сердцами. Нечестивцам не будет покоя!"
 })
 
 -- Emeriss (Duskwood)
@@ -53,5 +53,5 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull		= "Надія – це ХВОРОБА душі! Ця земля зачахне та помре!"
+	Pull		= "Надежда – это БОЛЕЗНЬ души! Эта земля зачахнет и умрет!"
 })

@@ -207,15 +207,31 @@ frameOkay:SetScript("OnClick", function()
 	end
 end)
 
+local websiteURL = "https://amdir.in.ua"
+local discordURL = "https://discord.gg/jvMBqzsHa6"
+
 local frameWebsite = frame:CreateFontString("$parentWebsite", "ARTWORK", "GameFontNormal")
 frameWebsite:SetPoint("BOTTOMLEFT", frameRevision, "TOPLEFT", 0, 15)
-frameWebsite:SetPoint("RIGHT", frameOkay, "RIGHT")
-frameWebsite:SetText(L.Website)
+frameWebsite:SetText(L.WebsiteButton .. ": |cFF73C2FB" .. websiteURL .. "|r")
 
 local frameWebsiteButtonA = CreateFrame("Button", nil, frame)
 frameWebsiteButtonA:SetAllPoints(frameWebsite)
 frameWebsiteButtonA:SetScript("OnMouseUp", function()
-	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, "https://amdir.in.ua")
+	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, websiteURL)
+end)
+
+local frameWebsiteSeparator = frame:CreateFontString("$parentWebsiteSeparator", "ARTWORK", "GameFontNormal")
+frameWebsiteSeparator:SetPoint("LEFT", frameWebsite, "RIGHT", 6, 0)
+frameWebsiteSeparator:SetText("|")
+
+local frameDiscord = frame:CreateFontString("$parentDiscord", "ARTWORK", "GameFontNormal")
+frameDiscord:SetPoint("LEFT", frameWebsiteSeparator, "RIGHT", 6, 0)
+frameDiscord:SetText("Discord: |cFF73C2FB" .. discordURL .. "|r")
+
+local frameDiscordButtonA = CreateFrame("Button", nil, frame)
+frameDiscordButtonA:SetAllPoints(frameDiscord)
+frameDiscordButtonA:SetScript("OnMouseUp", function()
+	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, discordURL)
 end)
 
 local frameWebsiteButton = CreateFrame("Button", "$parentWebsiteButton", frame, "UIPanelButtonTemplate")
@@ -223,7 +239,15 @@ frameWebsiteButton:SetSize(96, 22)
 frameWebsiteButton:SetPoint("BOTTOMRIGHT", frameOkay, "BOTTOMLEFT", -20, 0)
 frameWebsiteButton:SetText(L.WebsiteButton)
 frameWebsiteButton:SetScript("OnClick", function()
-	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG)
+	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, websiteURL)
+end)
+
+local frameDiscordButton = CreateFrame("Button", "$parentDiscordButton", frame, "UIPanelButtonTemplate")
+frameDiscordButton:SetSize(96, 22)
+frameDiscordButton:SetPoint("BOTTOMRIGHT", frameWebsiteButton, "BOTTOMLEFT", -10, 0)
+frameDiscordButton:SetText("Discord")
+frameDiscordButton:SetScript("OnClick", function()
+	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, discordURL)
 end)
 
 local bossMods = CreateFrame("Frame", "$parentBossMods", frame)

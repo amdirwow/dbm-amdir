@@ -25,7 +25,7 @@
 ## X-DBM-Mod-LoadZone-esMX: Karazhan
 ## X-DBM-Mod-LoadZone-frFR: Karazhan
 ## X-DBM-Mod-LoadZone-koKR: 카라잔
-## X-DBM-Mod-LoadZone-ruRU:Каражан
+## X-DBM-Mod-LoadZone-ruRU: Каражан
 
 localization.en.lua
 localization.de.lua

@@ -215,7 +215,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Mechs	= "Гей, хлопці, тут треба дещо налаштувати!"
+	Mechs	= "Эй, ребята, тут надо кое-что настроить!"
 })
 
 --------------------------
@@ -469,7 +469,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Shielddown			= "Ні! Будь проклята ця жалюгідна смертна оболонка!"
+	Shielddown			= "Нет! Будь проклята эта жалкая смертная оболочка!"
 })
 
 --------------------
@@ -493,7 +493,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	JackHammer	= "%s загрозливо піднімає свій молот..."
+	JackHammer	= "%s угрожающе поднимает свой молот..."
 })
 
 ------------------------------
@@ -619,7 +619,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Split	= "Ми незліченні, як зірки! Ми заполонимо всесвіт!"
+	Split	= "Мы бесчисленны, как звезды! Мы заполоним вселенную!"
 })
 
 --------------------------
@@ -686,5 +686,5 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	KaelP2	= "Я переверну ваш світ... нагору... дном."
+	KaelP2	= "Я переверну ваш мир... вверх... дном."
 })

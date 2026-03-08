@@ -43,9 +43,9 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	PhaseTank		= "у гніві вдаряє по землі!",--Check if Backwards
-	PhaseKite		= "Земля починає розколюватись!",--Check if Backwards
-	ChangeTarget	= "атакує нову мету!",
+	PhaseTank		= "в гневе ударяет по земле!",--Check if Backwards
+	PhaseKite		= "Земля начинает раскалываться!",--Check if Backwards
+	ChangeTarget	= "атакует новую цель!",
 	Kite			= "Kite",--Translate
 	Tank			= "Tank"--Translate
 })
@@ -219,10 +219,10 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull			= "Акама! Твоя байдужість мене не дивує. Мені давно варто було знищити тебе і твоїх потворних побратимів.",
-	Eyebeam			= "Подивися на очі Зрадника!",
-	Demon			= "Побачте міць демона!",
-	Phase4			= "Це все смертні? Це і є вся ваша лють?",
+	Pull			= "Акама! Твое двуличие меня не удивляет. Мне давным-давно стоило уничтожить тебя и твоих уродливых собратьев.",
+	Eyebeam			= "Посмотри в глаза Предателя!",
+	Demon			= "Узрите мощь демона!",
+	Phase4			= "Это все, смертные? Это и есть вся ваша ярость?",
 	S1YouAreNotPrepared	= "Stage One: You Are Not Prepared",
 	S2FlamesOfAzzinoth	= "Stage Two: Flames of Azzinoth",
 	S3TheDemonWithin	= "Stage Three: The Demon Within",
