@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("ValkTwins", "DBM-Coliseum")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20260320160000")
 mod:SetCreatureID(34497, 34496)
 mod:SetEncounterID(641)
 mod:SetMinCombatTime(30)
@@ -10,13 +10,13 @@ mod:SetUsedIcons(1, 2, 3, 4)
 mod:RegisterCombat("combat")
 
 mod:RegisterEvents(
-	"CHAT_MSG_MONSTER_YELL"
-)
-mod:RegisterEventsInCombat(
+	"CHAT_MSG_MONSTER_YELL",
 	"SPELL_CAST_START 66046 67206 67207 67208 66058 67182 67183 67184 65875 67303 67304 67305 65876 67306 67307 67308",
 	"SPELL_AURA_APPLIED 65724 67213 67214 67215 65748 67216 67217 67218 65950 67296 67297 67298 66001 67281 67282 67283 67246 65879 65916 67244 67245 67248 67249 67250 65874 67256 67257 67258 65858 67259 67260 67261",
 	"SPELL_AURA_REMOVED 65874 67256 67257 67258 65858 67259 67260 67261",
-	"SPELL_INTERRUPT"
+	"SPELL_INTERRUPT",
+	"SWING_DAMAGE",
+	"SWING_MISSED"
 )
 
 mod:SetBossHealthInfo(
@@ -35,13 +35,14 @@ local specWarnPoweroftheTwins		= mod:NewSpecialWarningDefensive(65916, "Tank", n
 local specWarnEmpoweredDarkness		= mod:NewSpecialWarningYou(65724)--No voice ideas for this
 local specWarnEmpoweredLight		= mod:NewSpecialWarningYou(65748)--No voice ideas for this
 
-local timerCombatStart				= mod:NewCombatTimer(22)
+local timerCombatStart				= mod:NewCombatTimer(12.5)
 local enrageTimer					= mod:NewBerserkTimer(360)
 local timerSpecial					= mod:NewTimer(45, "TimerSpecialSpell", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge", nil, nil, 6)
 local timerHeal						= mod:NewCastTimer(15, 65875, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerLightTouch				= mod:NewTargetTimer(20, 65950, nil, false, 2, 3)
 local timerDarkTouch				= mod:NewTargetTimer(20, 66001, nil, false, 2, 3)
-local timerAchieve					= mod:NewAchievementTimer(180, 3815)
+local timerAchieve10				= mod:NewAchievementTimer(180, 3799)
+local timerAchieve25				= mod:NewAchievementTimer(180, 3815)
 
 local timerAnubRoleplay				= mod:NewTimer(52, "TimerAnubRoleplay", 43827, nil, nil, 6)
 
@@ -55,10 +56,33 @@ local lightEssence, darkEssence = DBM:GetSpellInfo(65686), DBM:GetSpellInfo(6568
 local debuffTargets = {}
 mod.vb.debuffIcon = 1
 
+local function isTwinCID(cid)
+	return cid == 34497 or cid == 34496
+end
+
+local function ensureCombatStarted(self, sourceGUID, destGUID, reason)
+	if self:IsInCombat() then
+		return
+	end
+	local sourceCID = sourceGUID and self:GetCIDFromGUID(sourceGUID)
+	local destCID = destGUID and self:GetCIDFromGUID(destGUID)
+	if isTwinCID(sourceCID) or isTwinCID(destCID) then
+		timerCombatStart:Stop()
+		DBM:StartCombat(self, 0, reason)
+	end
+end
+
 function mod:OnCombatStart(delay)
+	timerCombatStart:Stop()
 	timerSpecial:Start(-delay)
 	warnSpecial:Schedule(40-delay)
-	timerAchieve:Start(-delay)
+	timerAchieve10:Stop()
+	timerAchieve25:Stop()
+	if self:IsDifficulty("normal10", "heroic10") then
+		timerAchieve10:Start(-delay)
+	else
+		timerAchieve25:Start(-delay)
+	end
 	if self:IsHeroic() then
 		enrageTimer:Start(360-delay)
 	else
@@ -68,6 +92,8 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
+	timerAchieve10:Stop()
+	timerAchieve25:Stop()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
@@ -84,6 +110,7 @@ do
 	end
 
 	function mod:SPELL_CAST_START(args)
+		ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_CAST_START "..args.spellId)
 		if args:IsSpellID(66046, 67206, 67207, 67208) then			-- Light Vortex
 			local debuff = DBM:UnitDebuff("player", lightEssence)
 			SpecialAbility(debuff)
@@ -195,6 +222,7 @@ do
 	end
 
 	function mod:SPELL_AURA_APPLIED(args)
+		ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_AURA_APPLIED "..args.spellId)
 		if args:IsPlayer() and args:IsSpellID(65724, 67213, 67214, 67215) then		-- Empowered Darkness
 			specWarnEmpoweredDarkness:Show()
 		elseif args:IsPlayer() and args:IsSpellID(65748, 67216, 67217, 67218) then	-- Empowered Light
@@ -259,10 +287,16 @@ do
 end
 
 function mod:SPELL_INTERRUPT(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_INTERRUPT "..tostring(args.extraSpellId))
 	if type(args.extraSpellId) == "number" and (args.extraSpellId == 65875 or args.extraSpellId == 67303 or args.extraSpellId == 67304 or args.extraSpellId == 67305 or args.extraSpellId == 65876 or args.extraSpellId == 67306 or args.extraSpellId == 67307 or args.extraSpellId == 67308) then
 		timerHeal:Cancel()
 	end
 end
+
+function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
+	ensureCombatStarted(self, sourceGUID, destGUID, "SWING_DAMAGE")
+end
+mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.ValksRP or msg:find(L.ValksRP) then

@@ -118,7 +118,7 @@ L:SetGeneralLocalization({
 L:SetWarningLocalization({
 	WarnSpecialSpellSoon		= "Скоро спец-здатність",
 	SpecWarnSpecial				= "Зміна кольору",
-	SpecWarnSwitchTarget		= "Зміна мети",
+	SpecWarnSwitchTarget		= "Зміна цілі",
 	SpecWarnKickNow				= "Переривання",
 	WarningTouchDebuff			= "Негативний ефект на |3-5(>%s<)",
 	WarningPoweroftheTwins2		= "Сила близнюків - більше лікування |3-3(>%s<)",

@@ -3,8 +3,9 @@ local L		= mod:GetLocalizedStrings()
 
 local CancelUnitBuff = CancelUnitBuff
 local GetSpellInfo = GetSpellInfo
+local max = math.max
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20260320235500")
 mod:SetCreatureID(34564)
 mod:SetEncounterID(645)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 8)
@@ -72,6 +73,8 @@ mod:AddBoolOption("RemoveHealthBuffsInP3", false, nil, nil, nil, nil, 66118)
 
 mod.vb.Burrowed = false
 
+local ANUB_FIRST_ADDS = 7
+
 --"<40.90 19:45:27> [UNIT_SPELLCAST_SUCCEEDED] Anub'arak -Nerubian Burrower- [[boss1:Nerubian Burrower::0:]]", -- [1059]
 --[[disabling adds scheduling since we have proper event for this
 local function Adds(self)
@@ -100,7 +103,7 @@ local function EmergeFix(self)
 	self:SetStage(1)
 	self.vb.Burrowed = false
 	timerEmerge:Cancel()
-	timerAdds:Start(5)
+	timerAdds:Start(ANUB_FIRST_ADDS)
 --	warnAdds:Schedule(5)
 --	self:Schedule(5, Adds, self)
 	warnEmerge:Show()
@@ -127,7 +130,7 @@ end
 function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	self.vb.Burrowed = false
-	timerAdds:Start(10-delay) -- (25H Lordaeron 2022/09/03) - pull:10.0
+	timerAdds:Start(max(0.1, ANUB_FIRST_ADDS-delay)) -- Server schedules the first burrower in a 5-8s window; midpoint is closer than the old 10s bar.
 --	warnAdds:Schedule(10-delay)
 --	self:Schedule(10-delay, Adds, self)
 	warnSubmergeSoon:Schedule(70-delay)
@@ -177,18 +180,20 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 67574 then			-- Pursue
-		if args:IsPlayer() then
-			specWarnPursue:Show()
-			specWarnPursue:Play("justrun")
-			specWarnPursue:ScheduleVoice(1.5, "keepmove")
-		else
-			warnPursue:Show(args.destName)
-		end
-		if self.Options.PursueIcon then
-			self:SetIcon(args.destName, 8, 15)
+		if self:AntiSpam(2, 67574) then
+			if args:IsPlayer() then
+				specWarnPursue:CancelVoice()
+				specWarnPursue:Show()
+				specWarnPursue:Play("justrun")
+				specWarnPursue:ScheduleVoice(1.5, "keepmove")
+			else
+				warnPursue:Show(args.destName)
+			end
+			if self.Options.PursueIcon then
+				self:SetIcon(args.destName, 8, 15)
+			end
 		end
 	elseif args:IsSpellID(66013, 67700, 68509, 68510) then		-- Penetrating Cold
-		timerPCold:Show()
 		if args:IsPlayer() then
 			specWarnPCold:Show()
 			specWarnPCold:Play("targetyou")
@@ -254,7 +259,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 		self:SetStage(1)
 		self.vb.Burrowed = false
 		timerEmerge:Cancel()
-		timerAdds:Start(5)
+		timerAdds:Start(ANUB_FIRST_ADDS)
 --		warnAdds:Schedule(5)
 --		self:Schedule(5, Adds, self)
 		warnEmerge:Show()

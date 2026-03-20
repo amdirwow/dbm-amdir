@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 local UnitGUID = UnitGUID
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20260320160000")
 mod:SetCreatureID(34458, 34451, 34459, 34448, 34449, 34445, 34456, 34447, 34441, 34454, 34444, 34455, 34450, 34453, 34461, 34460, 34469, 34467, 34468, 34471, 34465, 34466, 34473, 34472, 34470, 34463, 34474, 34475)
 mod:SetEncounterID(637)
 mod:SetMinSyncRevision(20220907000000)
@@ -11,11 +11,13 @@ mod:SetMinSyncRevision(20220907000000)
 mod:RegisterCombat("combat")
 mod:RegisterKill("yell", L.AllianceVictory, L.HordeVictory)
 
-mod:RegisterEventsInCombat(
+mod:RegisterEvents(
 	"SPELL_CAST_SUCCESS 66017 68753 68754 68755 66020 68758 68757 68756 66115 66009 66008 66613 66007 66011 65793 65790 65816 68145 68146 68147 65820 68141 68139 68140 65947 65932 65931 66063 65983 65980 65544 65543 65545 65542 65860 66086 67974 67975 67976 66178 68759 68760 68761 65960 65961 66207 65880 65869",
 	"SPELL_AURA_APPLIED 66010 65802 65801 65809 65927 65929 66054 65859 65857 65871 65878 65877",
 	"SPELL_DAMAGE 65817 68142 68143 68144",
 	"SPELL_MISSED 65817 68142 68143 68144",
+	"SWING_DAMAGE",
+	"SWING_MISSED",
 	"UNIT_DIED"
 )
 
@@ -141,7 +143,23 @@ local timerSilenceCD		= mod:NewCDTimer(45, 65542)
 local timerHeroismCD		= mod:NewCDTimer(300, 65983)
 local timerBloodlustCD		= mod:NewCDTimer(300, 65980) -- REVIEW! variance? (25H Lordaeron 2022/09/03) - pull:26.9
 
+local function isChampionCID(cid)
+	return cid and cid >= 34441 and cid <= 34475
+end
+
+local function ensureCombatStarted(self, sourceGUID, destGUID, reason)
+	if self:IsInCombat() then
+		return
+	end
+	local sourceCID = sourceGUID and self:GetCIDFromGUID(sourceGUID)
+	local destCID = destGUID and self:GetCIDFromGUID(destGUID)
+	if isChampionCID(sourceCID) or isChampionCID(destCID) then
+		DBM:StartCombat(self, 0, reason)
+	end
+end
+
 function mod:SPELL_CAST_SUCCESS(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_CAST_SUCCESS "..args.spellId)
 	local spellId = args.spellId
 	-- Death Knight
 	if args:IsSpellID(66017, 68753, 68754, 68755) and args:IsDestTypePlayer() then	-- Death Grip
@@ -245,6 +263,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_AURA_APPLIED "..args.spellId)
 	local spellId = args.spellId
 	-- Death Knight
 	-- Paladin
@@ -282,13 +301,19 @@ function mod:SPELL_AURA_APPLIED(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(_, _, _, destGUID, _, _, spellId, spellName)
+function mod:SPELL_DAMAGE(sourceGUID, _, _, destGUID, _, _, spellId, spellName)
+	ensureCombatStarted(self, sourceGUID, destGUID, "SPELL_DAMAGE "..spellId)
 	if (spellId == 65817 or spellId ==  68142 or spellId == 68143 or spellId == 68144) and destGUID == UnitGUID("player") and self:AntiSpam() then
 		specWarnHellfire:Show(spellName)
 		specWarnHellfire:Play("watchfeet")
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
+
+function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
+	ensureCombatStarted(self, sourceGUID, destGUID, "SWING_DAMAGE")
+end
+mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)

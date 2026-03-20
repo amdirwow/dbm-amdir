@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Jaraxxus", "DBM-Coliseum")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20260320235500")
 mod:SetCreatureID(34780)
 mod:SetEncounterID(633)
 --mod:SetMinCombatTime(30)
@@ -11,16 +11,16 @@ mod:SetMinSyncRevision(20220907000000)
 mod:RegisterCombat("combat")
 
 mod:RegisterEvents(
-	"CHAT_MSG_MONSTER_YELL"
-)
-
-mod:RegisterEventsInCombat(
+	"CHAT_MSG_MONSTER_YELL",
 	"SPELL_CAST_START 66532 66963 66964 66965",
-	"SPELL_CAST_SUCCESS 66228 67106 67107 67108 67901 67902 67903 66258 66269 67898 67899 67900 66197 68123 68124 68125 67051 67050 67049 66237 66528 67029 67030 67031",
+	"SPELL_CAST_SUCCESS 66228 67106 67107 67108 67901 67902 67903 66258 66269 67898 67899 67900 66197 68123 68124 68125 67051 67050 67049 66237",
+	"SPELL_SUMMON 67901 67902 67903 66258 66269 67898 67899 67900",
 	"SPELL_AURA_APPLIED 67051 67050 67049 66237 66197 68123 68124 68125 66334 67905 67906 67907 66532 66963 66964 66965",
 	"SPELL_AURA_REMOVED 67051 67050 67049 66237 66197 68123 68124 68125",
 	"SPELL_DAMAGE 66877 67070 67071 67072 66496 68716 68717 68718",
 	"SPELL_MISSED 66877 67070 67071 67072 66496 68716 68717 68718",
+	"SWING_DAMAGE",
+	"SWING_MISSED",
 	"SPELL_HEAL",
 	"SPELL_PERIODIC_HEAL"
 )
@@ -30,7 +30,6 @@ local warnPortalSoon			= mod:NewSoonAnnounce(66269, 3)
 local warnVolcanoSoon			= mod:NewSoonAnnounce(66258, 3)
 local warnFlame					= mod:NewTargetAnnounce(66197, 4)
 local warnFlesh					= mod:NewTargetNoFilterAnnounce(66237, 4, nil, "Healer")
-local warnFelLightning			= mod:NewSpellAnnounce(67031, 3, nil, false)
 
 local specWarnFlame				= mod:NewSpecialWarningRun(66877, nil, nil, 2, 4, 2)
 local specWarnGTFO				= mod:NewSpecialWarningGTFO(66877, nil, nil, 2, 1, 8)
@@ -41,17 +40,18 @@ local specWarnFelInferno		= mod:NewSpecialWarningMove(66496, nil, nil, nil, 1, 2
 local SpecWarnFelFireball		= mod:NewSpecialWarningInterrupt(66532, "HasInterrupt", nil, 2, 1, 2)
 local SpecWarnFelFireballDispel	= mod:NewSpecialWarningDispel(66532, "RemoveMagic", nil, 2, 1, 2)
 
-local timerCombatStart			= mod:NewCombatTimer(76) -- Roleplay before the first pull.
+local timerCombatStart			= mod:NewCombatTimer(70.8) -- Roleplay before the first pull.
 local timerFlame				= mod:NewTargetTimer(8, 66197, nil, nil, nil, 3) -- Covers the trigger aura plus the damage debuff.
 local timerFlameCD				= mod:NewNextTimer(30, 66197, nil, nil, nil, 3) -- AzerothCore: 30s fixed timer
 local timerNetherPowerCD		= mod:NewVarTimer("v25-45", 67009, nil, "MagicDispeller", nil, 5, nil, DBM_COMMON_L.MAGIC_ICON)
 local timerFlesh				= mod:NewTargetTimer(12, 66237, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON)
 local timerFleshCD				= mod:NewVarTimer("v20-25", 66237, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON)
-local timerPortalCD				= mod:NewNextTimer(60, 66269, nil, nil, nil, 1, nil, nil, true) -- AzerothCore alternates Portal/Volcano every 60s after the first summon
+local timerPortalCD				= mod:NewNextTimer(60, 66269, nil, nil, nil, 1) -- AzerothCore alternates Portal/Volcano every 60s after the first summon
 local timerVolcanoCD			= mod:NewNextTimer(60, 66258, nil, nil, nil, 1)
-local timerFelLightning			= mod:NewVarTimer("v10-15", 67031, nil, nil, nil, 3, nil, nil, true)
 
 local enrageTimer				= mod:NewBerserkTimer(600)
+local netherPowerDelay			= 5
+local introTimerStarted			= false
 
 mod:AddSetIconOption("LegionFlameIcon", 66197, true, 0, {7})
 mod:AddSetIconOption("IncinerateFleshIcon", 66237, true, 0, {8})
@@ -62,24 +62,68 @@ mod:AddBoolOption("IncinerateShieldFrame", false, "misc")
 mod.vb.fleshCount = 0
 local incinerateFleshTargetName
 
+local function scheduleSoonWarning(timer, warning)
+	warning:Cancel()
+	local remaining = timer:GetRemaining()
+	if remaining > 10 then
+		warning:Schedule(remaining - 10)
+	end
+end
+
+local function ensureCombatStarted(self, sourceGUID, destGUID, reason)
+	if self:IsInCombat() then
+		return
+	end
+	local sourceCID = sourceGUID and self:GetCIDFromGUID(sourceGUID)
+	local destCID = destGUID and self:GetCIDFromGUID(destGUID)
+	if sourceCID == 34780 or destCID == 34780 then
+		timerCombatStart:Stop()
+		DBM:StartCombat(self, 0, reason)
+	end
+end
+
+local function handleSummonRotation(args)
+	if args:IsSpellID(67901, 67902, 67903, 66258) and mod:AntiSpam(3, 66258) then
+		timerVolcanoCD:Stop()
+		warnVolcanoSoon:Cancel()
+		timerPortalCD:Start()
+		scheduleSoonWarning(timerPortalCD, warnPortalSoon)
+	elseif args:IsSpellID(66269, 67898, 67899, 67900) and mod:AntiSpam(3, 66269) then
+		timerPortalCD:Stop()
+		warnPortalSoon:Cancel()
+		timerVolcanoCD:Start()
+		scheduleSoonWarning(timerVolcanoCD, warnVolcanoSoon)
+	end
+end
+
 function mod:OnCombatStart(delay)
+	timerCombatStart:Stop()
+	introTimerStarted = false
 	if self.Options.IncinerateShieldFrame then
 		DBM.BossHealth:Show(L.name)
 		DBM.BossHealth:AddBoss(34780, L.name)
 	end
 	self.vb.fleshCount = 0
 	timerPortalCD:Start(20-delay)
-	warnPortalSoon:Schedule(15-delay)
 	timerVolcanoCD:Start(80-delay)
-	warnVolcanoSoon:Schedule(75-delay)
+	scheduleSoonWarning(timerPortalCD, warnPortalSoon)
+	scheduleSoonWarning(timerVolcanoCD, warnVolcanoSoon)
 	timerNetherPowerCD:Start(("v%s-%s"):format(25-delay, 45-delay))
 	timerFleshCD:Start(("v%s-%s"):format(24-delay, 26-delay))
 	timerFlameCD:Start(30-delay)
-	timerFelLightning:Start(("v%s-%s"):format(10-delay, 15-delay))
 	enrageTimer:Start(-delay)
 end
 
 function mod:OnCombatEnd()
+	timerCombatStart:Stop()
+	introTimerStarted = false
+	warnPortalSoon:Cancel()
+	warnVolcanoSoon:Cancel()
+	timerPortalCD:Stop()
+	timerVolcanoCD:Stop()
+	timerNetherPowerCD:Stop()
+	timerFleshCD:Stop()
+	timerFlameCD:Stop()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
@@ -137,6 +181,7 @@ do
 end
 
 function mod:SPELL_CAST_START(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_CAST_START "..args.spellId)
 	if args:IsSpellID(66532, 66963, 66964, 66965) and self:CheckInterruptFilter(args.sourceGUID, false, true) then	-- Fel Fireball (track cast for interupt, only when targeted)
 		SpecWarnFelFireball:Show(args.sourceName)
 		SpecWarnFelFireball:Play("kickcast")
@@ -144,28 +189,34 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_CAST_SUCCESS "..args.spellId)
 	if args:IsSpellID(66228, 67106, 67107, 67108) then			-- Nether Power
 		specWarnNetherPower:Show(args.sourceName)
 		specWarnNetherPower:Play("dispelboss")
 		timerNetherPowerCD:Start()
-	elseif args:IsSpellID(67901, 67902, 67903, 66258) then		-- Infernal Eruption
-		timerPortalCD:Start()
-		warnPortalSoon:Schedule(50)
-	elseif args:IsSpellID(66269, 67898, 67899, 67900) then		-- Nether Portal
-		timerVolcanoCD:Start()
-		warnVolcanoSoon:Schedule(50)
+		timerPortalCD:AddTime(netherPowerDelay)
+		timerVolcanoCD:AddTime(netherPowerDelay)
+		timerFlameCD:AddTime(netherPowerDelay)
+		timerFleshCD:AddTime(netherPowerDelay)
+		scheduleSoonWarning(timerPortalCD, warnPortalSoon)
+		scheduleSoonWarning(timerVolcanoCD, warnVolcanoSoon)
+	elseif args:IsSpellID(67901, 67902, 67903, 66258, 66269, 67898, 67899, 67900) then
+		handleSummonRotation(args)
 	elseif args:IsSpellID(66197, 68123, 68124, 68125) then		-- Legion Flame
 		timerFlameCD:Start()
 		warnFlame:Show(args.destName) -- I prefer to keep this here, rather than a player elseif on aura applied. Faster and unfiltered.
 	elseif args:IsSpellID(67051, 67050, 67049, 66237) then		-- Incinerate Flesh
 		timerFleshCD:Start()
-	elseif args:IsSpellID(66528, 67029, 67030, 67031) then		-- Fel Lightning
-		timerFelLightning:Start()
-		warnFelLightning:Show()
 	end
 end
 
+function mod:SPELL_SUMMON(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_SUMMON "..args.spellId)
+	handleSummonRotation(args)
+end
+
 function mod:SPELL_AURA_APPLIED(args)
+	ensureCombatStarted(self, args.sourceGUID, args.destGUID, "SPELL_AURA_APPLIED "..args.spellId)
 	if args:IsSpellID(67051, 67050, 67049, 66237) then			-- Incinerate Flesh
 		self.vb.fleshCount = self.vb.fleshCount + 1
 		timerFlesh:Start(args.destName)
@@ -222,9 +273,10 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(_, _, _, destGUID, _, _, spellId)
+function mod:SPELL_DAMAGE(sourceGUID, _, _, destGUID, _, _, spellId, spellName)
+	ensureCombatStarted(self, sourceGUID, destGUID, "SPELL_DAMAGE "..spellId)
 	if (spellId == 66877 or spellId == 67070 or spellId == 67071 or spellId == 67072) and destGUID == UnitGUID("player") and self:AntiSpam(3, 1) then	-- Legion Flame
-		specWarnGTFO:Show()
+		specWarnGTFO:Show(spellName)
 		specWarnGTFO:Play("watchfeet")
 	elseif (spellId == 66496 or spellId == 68716 or spellId == 68717 or spellId == 68718) and destGUID == UnitGUID("player") and self:AntiSpam(3, 1) then	-- Fel Inferno (does not make sense to fire watchfeet for radius AoE)
 		specWarnFelInferno:Show()
@@ -233,8 +285,21 @@ function mod:SPELL_DAMAGE(_, _, _, destGUID, _, _, spellId)
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
+function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
+	ensureCombatStarted(self, sourceGUID, destGUID, "SWING_DAMAGE")
+end
+mod.SWING_MISSED = mod.SWING_DAMAGE
+
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.FirstPull or msg:find(L.FirstPull) then
+	if self:IsInCombat() or introTimerStarted then
+		return
+	end
+	if msg == L.FirstPull
+		or msg:find(L.FirstPull, 1, true)
+		or msg:find("summon forth your next challenge", 1, true)
+		or msg:find("призовет вашего нового противника", 1, true)
+		or msg:find("призове вашого нового супротивника", 1, true) then
+		introTimerStarted = true
 		timerCombatStart:Start()
 	end
 end

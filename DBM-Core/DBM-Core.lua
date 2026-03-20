@@ -45,6 +45,8 @@ private.DBMPrefix = DBMPrefix
 
 local L = DBM_CORE_L
 local CL = DBM_COMMON_L
+local CUSTOM_RUN_AWAY_SOUND = "Interface\\AddOns\\DBM-Core\\sounds\\run.mp3"
+local LEGACY_RUN_AWAY_SOUND = "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav"
 
 -------------------------------
 --  Globals/Default Options  --
@@ -142,7 +144,7 @@ DBM.DefaultOptions = {
 	SpecialWarningSound = "Sound\\Spells\\PVPFlagTaken.wav",
 	SpecialWarningSound2 = "Sound\\Creature\\AlgalonTheObserver\\UR_Algalon_BHole01.wav",
 	SpecialWarningSound3 = "Interface\\AddOns\\DBM-Core\\sounds\\AirHorn.ogg",
-	SpecialWarningSound4 = "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav",
+	SpecialWarningSound4 = LEGACY_RUN_AWAY_SOUND,
 	SpecialWarningSound5 = "Sound\\Creature\\Loathstare\\Loa_Naxx_Aggro02.wav",
 	ModelSoundValue = "Short",
 	CountdownVoice = "Corsica",
@@ -1609,6 +1611,12 @@ function DBM:Unschedule(f, ...)
 	return DBMScheduler:Unschedule(f, nil, ...)
 end
 
+local function restoreLegacyRunAwaySound(options)
+	if options and options.SpecialWarningSound4 == CUSTOM_RUN_AWAY_SOUND then
+		options.SpecialWarningSound4 = LEGACY_RUN_AWAY_SOUND
+	end
+end
+
 ---------------
 --  Profile  --
 ---------------
@@ -1627,6 +1635,7 @@ function DBM:CreateProfile(name)
 	DBM_AllSavedOptions[usedProfile] = DBM_AllSavedOptions[usedProfile] or {}
 	self:AddDefaultOptions(DBM_AllSavedOptions[usedProfile], self.DefaultOptions)
 	self.Options = DBM_AllSavedOptions[usedProfile]
+	restoreLegacyRunAwaySound(self.Options)
 	-- rearrange position
 	DBT:CreateProfile("DBM")
 	self:RepositionFrames()
@@ -1642,6 +1651,7 @@ function DBM:ApplyProfile(name)
 	DBM_UsedProfile = usedProfile
 	self:AddDefaultOptions(DBM_AllSavedOptions[usedProfile], self.DefaultOptions)
 	self.Options = DBM_AllSavedOptions[usedProfile]
+	restoreLegacyRunAwaySound(self.Options)
 	-- rearrange position
 	DBT:ApplyProfile("DBM")
 	self:RepositionFrames()
@@ -1659,6 +1669,7 @@ function DBM:CopyProfile(name)
 	DBM_AllSavedOptions[usedProfile] = DBM_AllSavedOptions[name]
 	self:AddDefaultOptions(DBM_AllSavedOptions[usedProfile], self.DefaultOptions)
 	self.Options = DBM_AllSavedOptions[usedProfile]
+	restoreLegacyRunAwaySound(self.Options)
 	-- rearrange position
 	DBT:CopyProfile(name, "DBM", true)
 	self:RepositionFrames()
@@ -1678,6 +1689,7 @@ function DBM:DeleteProfile(name)
 	usedProfile = "Default"--Restore to default
 	DBM_UsedProfile = usedProfile
 	self.Options = DBM_AllSavedOptions[usedProfile]
+	restoreLegacyRunAwaySound(self.Options)
 	if not self.Options then
 		-- the default profile got lost somehow (maybe WoW crashed and the saved variables file got corrupted)
 		self:CreateProfile("Default")
@@ -2866,6 +2878,7 @@ do
 		end
 		--]]
 		DBM_CharSavedRevision = self.Revision
+		restoreLegacyRunAwaySound(self.Options)
 		-- load special warning options
 		self:UpdateWarningOptions()
 		self:UpdateSpecialWarningOptions()
@@ -8656,7 +8669,7 @@ do
 
 	function soundPrototype:Play(file)
 		if not self.option or self.mod.Options[self.option] then
-			PlaySoundFile(file or "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav", "Master")
+			PlaySoundFile(file or LEGACY_RUN_AWAY_SOUND, "Master")
 		end
 	end
 
@@ -8767,7 +8780,7 @@ do
 
 	function soundPrototypeYou:Play(file)
 		if not self.option or self.mod.Options[self.option] then
-			PlaySoundFile(file or "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav", "Master")
+			PlaySoundFile(file or LEGACY_RUN_AWAY_SOUND, "Master")
 		end
 	end
 
@@ -8803,7 +8816,7 @@ do
 
 	function soundPrototypeSoon:Play(file)
 		if not self.option or self.mod.Options[self.option] then
-			PlaySoundFile(file or "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav", "Master")
+			PlaySoundFile(file or LEGACY_RUN_AWAY_SOUND, "Master")
 		end
 	end
 
@@ -8840,7 +8853,7 @@ do
 
 	function soundPrototypeClose:Play(file)
 		if not self.option or self.mod.Options[self.option] then
-			PlaySoundFile(file or "Sound\\Creature\\HoodWolf\\HoodWolfTransformPlayer01.wav", "Master")
+			PlaySoundFile(file or LEGACY_RUN_AWAY_SOUND, "Master")
 		end
 	end
 

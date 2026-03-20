@@ -34,6 +34,8 @@ local L = DBM_CORE_L
 local BB_EXPAND_TIME = 0.25			-- time to expand per item
 local BB_EXPAND_HEIGHT = 50			-- pixels to expand per item
 local BB_MAX_LOOT = 8				-- changed retail value from 7 to 8, since TOC Tribute chest (gob 195665) can drop 8 items
+local BB_UI_SCALE = 0.78
+local BB_TOP_OFFSET = 0
 
 local BB_STATE_BANNER_IN = 1		-- banner is animating in
 local BB_STATE_KILL_HOLD = 2		-- banner is holding with kill info
@@ -361,8 +363,9 @@ end
 local BossBanner = CreateFrame("Frame", "BossBanner", UIParent)
 BossBanner:Hide()
 BossBanner:SetSize(128, 156)
-BossBanner:SetPoint("TOP", UIParent, 0, -120)
-BossBanner:EnableMouse(true) -- required for Mouse scripts
+BossBanner:SetScale(BB_UI_SCALE)
+BossBanner:SetPoint("TOP", UIParent, 0, BB_TOP_OFFSET)
+BossBanner:EnableMouse(false) -- Keep loot item hitboxes clickable, but let the root banner stop blocking world/UI clicks.
 BossBanner:SetAlpha(1)
 BossBanner.LootFrames = {}
 BossBanner.encounterLootCache = encounterLootCache -- custom, for debugging purposes
