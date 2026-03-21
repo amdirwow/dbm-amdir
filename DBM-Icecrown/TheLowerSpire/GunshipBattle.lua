@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("GunshipBattle", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20260321174000")
 local addsIcon
 local bossID
 mod:SetEncounterID(847)--No ES fires this combat
@@ -46,7 +46,7 @@ local warnWoundingStrike	= mod:NewTargetNoFilterAnnounce(69651, 2)
 local warnAddsSoon			= mod:NewAnnounce("WarnAddsSoon", 2, addsIcon)
 
 local timerCombatStart		= mod:NewCombatTimer(47.5)
-local timerBelowZeroCD		= mod:NewNextTimer(36, 69705, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON, nil, 1)
+local timerBelowZeroCD		= mod:NewNextTimer(35, 69705, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON, nil, 1)
 local timerBattleFuryActive	= mod:NewBuffActiveTimer(17, 69638, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerAdds				= mod:NewTimer(60, "TimerAdds", addsIcon, nil, nil, 1)
 
@@ -60,6 +60,26 @@ mod.vb.freezeCastAt = 0
 
 local activeFreezeCannons = {}
 
+local function beginPrecombatWatch(self)
+	self:UnregisterShortTermEvents()
+	self:RegisterShortTermEvents(
+		"SPELL_CAST_START 69705 69679 70162",
+		"SPELL_AURA_APPLIED 69705",
+		"SPELL_DAMAGE 70173 69402 69680 70162",
+		"SWING_DAMAGE",
+		"SWING_MISSED"
+	)
+end
+
+local function ensureCombatStarted(self, reason)
+	if self:IsInCombat() then
+		return
+	end
+	timerCombatStart:Stop()
+	self:UnregisterShortTermEvents()
+	DBM:StartCombat(self, 0, reason)
+end
+
 local function Adds(self) -- no longer on a timed loop, since YELL event is available
 	-- Keep a timed fallback loop in case yell events are missed.
 	self:Unschedule(Adds)
@@ -70,6 +90,8 @@ local function Adds(self) -- no longer on a timed loop, since YELL event is avai
 end
 
 function mod:OnCombatStart(delay)
+	timerCombatStart:Stop()
+	self:UnregisterShortTermEvents()
 	DBM.BossHealth:Clear()
 	timerAdds:Start(12-delay)
 	warnAddsSoon:Schedule(7-delay)
@@ -80,8 +102,18 @@ function mod:OnCombatStart(delay)
 	table.wipe(activeFreezeCannons)
 end
 
+function mod:OnCombatEnd()
+	timerCombatStart:Stop()
+	self:UnregisterShortTermEvents()
+	timerBelowZeroCD:Stop()
+	warnBelowZeroSoon:Cancel()
+end
+
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
+	if not self:IsInCombat() and spellId == 69705 then
+		ensureCombatStarted(self, "SPELL_AURA_APPLIED "..spellId)
+	end
 	if spellId == 71195 then
 		warnElite:Show(args.destName)
 	elseif spellId == 71193 then
@@ -118,6 +150,9 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
+	if not self:IsInCombat() and args:IsSpellID(69705, 69679, 70162) then
+		ensureCombatStarted(self, "SPELL_CAST_START "..args.spellId)
+	end
 	if args.spellId == 69705 then
 		self.vb.freezeActive = true
 		self.vb.freezeCastAt = GetTime()
@@ -126,13 +161,36 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
+function mod:SPELL_DAMAGE(_, sourceGUID, _, destGUID, _, _, spellId)
+	if self:IsInCombat() then
+		return
+	end
+	local sourceCID = self:GetCIDFromGUID(sourceGUID)
+	local destCID = self:GetCIDFromGUID(destGUID)
+	if spellId == 70173 or spellId == 69402 or spellId == 69680 or spellId == 70162 or sourceCID == bossID or destCID == bossID then
+		ensureCombatStarted(self, "SPELL_DAMAGE "..spellId)
+	end
+end
+
+function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
+	if self:IsInCombat() then
+		return
+	end
+	local sourceCID = self:GetCIDFromGUID(sourceGUID)
+	local destCID = self:GetCIDFromGUID(destGUID)
+	if sourceCID == bossID or destCID == bossID then
+		ensureCombatStarted(self, "SWING_DAMAGE")
+	end
+end
+mod.SWING_MISSED = mod.SWING_DAMAGE
+
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
 	if cid == 37116 or cid == 37117 then
 		-- AzerothCore starts the next mage cycle when the current freeze mage dies and clears its slot.
-		timerBelowZeroCD:Start(36)
+		timerBelowZeroCD:Start(35)
 		warnBelowZeroSoon:Cancel()
-		warnBelowZeroSoon:Schedule(21)
+		warnBelowZeroSoon:Schedule(20)
 		self.vb.freezeActive = false
 		self.vb.freezeCastAt = 0
 		self.vb.firstMage = false
@@ -149,6 +207,7 @@ end
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg:find(L.PullAlliance) then
 		timerCombatStart:Start()
+		beginPrecombatWatch(self)
 		self.vb.firstMage = false
 		self.vb.freezeActive = false
 		self.vb.freezeCastAt = 0
@@ -157,6 +216,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		warnBelowZeroSoon:Cancel()
 	elseif msg:find(L.PullHorde) then
 		timerCombatStart:Start(45)
+		beginPrecombatWatch(self)
 		self.vb.firstMage = false
 		self.vb.freezeActive = false
 		self.vb.freezeCastAt = 0

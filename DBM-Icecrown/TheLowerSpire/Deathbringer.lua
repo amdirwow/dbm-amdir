@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Deathbringer", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260320121500")
+mod:SetRevision("20260321171000")
 mod:SetCreatureID(37813)
 mod:SetEncounterID(848)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
@@ -47,7 +47,8 @@ local specwarnMark			= mod:NewSpecialWarningYou(72444, nil, 28836, nil, 1, 2)
 local specwarnRuneofBlood	= mod:NewSpecialWarningTaunt(72410, nil, nil, nil, 1, 2)
 local specwarnRuneofBloodYou= mod:NewSpecialWarningYou(72410, "Tank")
 
-local timerRuneofBlood		= mod:NewVarTimer("v20-25", 72410, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON) -- Usually 20s, with occasional 20-25s variance.
+local timerFirstRuneofBlood	= mod:NewNextTimer(20, 72410, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON) -- Server schedules the first Rune of Blood exactly 20s after engage.
+local timerRuneofBlood		= mod:NewVarTimer("v20-25", 72410, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON) -- Server keeps the recurring Rune on a real random 20-25s EventMap window.
 local timerBoilingBlood		= mod:NewVarTimer("v15-20", 72385, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON) -- Usually 15-20s on ICC logs.
 local timerBloodNova		= mod:NewVarTimer("v20-25", 72378, nil, nil, nil, 2) -- Observed 20-25s interval.
 
@@ -96,6 +97,26 @@ local function matchesAny(msg, patterns)
 	return false
 end
 
+local function beginPrecombatWatch(self)
+	self:UnregisterShortTermEvents()
+	self:RegisterShortTermEvents(
+		"SPELL_CAST_START 73058 72378",
+		"SPELL_CAST_SUCCESS 72410 72769 72385 72441 72442 72443",
+		"SPELL_AURA_APPLIED 72293 72371 72385 72441 72442 72443 72737",
+		"SWING_DAMAGE",
+		"SWING_MISSED"
+	)
+end
+
+local function ensureCombatStarted(self, reason)
+	if self:IsInCombat() then
+		return
+	end
+	timerCombatStart:Stop()
+	self:UnregisterShortTermEvents()
+	DBM:StartCombat(self, 0, reason)
+end
+
 do	-- add the additional Rune Power Bar
 	local UnitGUID = UnitGUID
 	local last = 0
@@ -132,6 +153,8 @@ end
 end]]
 
 function mod:OnCombatStart(delay)
+	timerCombatStart:Stop()
+	self:UnregisterShortTermEvents()
 	self.Options.announceother72410target = true
 	if self.Options.Timer72410var ~= nil then
 		self.Options.Timer72410var = true
@@ -151,7 +174,7 @@ function mod:OnCombatStart(delay)
 	timerCallBloodBeast:Start(30-delay)
 	warnAddsSoon:Schedule(20-delay)
 	timerBloodNova:Start(17-delay) -- Pull timer from ICC logs.
-	timerRuneofBlood:Start(20-delay) -- Pull timer from ICC logs.
+	timerFirstRuneofBlood:Start(20-delay)
 	timerBoilingBlood:Start(15.5-delay) -- Pull timer from ICC logs.
 	self.vb.warned_preFrenzy = false
 	self.vb.boilingBloodIcon = 1
@@ -168,6 +191,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
+	timerCombatStart:Stop()
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Hide()
 	end
@@ -179,6 +203,9 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
+	if not self:IsInCombat() and self:GetCIDFromGUID(args.sourceGUID) == 37813 then
+		ensureCombatStarted(self, "SPELL_CAST_START "..args.spellId)
+	end
 	if args:IsSpellID(73058, 72378) then	-- Blood Nova (only 2 cast IDs, 4 spell damage IDs, and one dummy)
 		warnBloodNova:Show()
 		timerBloodNova:Start()
@@ -189,8 +216,12 @@ end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
+	if not self:IsInCombat() and self:GetCIDFromGUID(args.sourceGUID) == 37813 then
+		ensureCombatStarted(self, "SPELL_CAST_SUCCESS "..spellId)
+	end
 	if spellId == 72410 then
 		warnRuneofBlood:Show(args.destName)
+		timerFirstRuneofBlood:Stop()
 		if not args:IsPlayer() then
 			specwarnRuneofBlood:Show(args.destName)
 			specwarnRuneofBlood:Play("tauntboss")
@@ -208,6 +239,9 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
+	if not self:IsInCombat() and self:GetCIDFromGUID(args.sourceGUID) == 37813 then
+		ensureCombatStarted(self, "SPELL_AURA_APPLIED "..spellId)
+	end
 	if spellId == 72293 then		-- Mark of the Fallen Champion
 		self.vb.Mark = self.vb.Mark + 1
 		warnMark:Show(self.vb.Mark, args.destName)
@@ -260,11 +294,19 @@ function mod:SPELL_SUMMON(args)
 end
 
 function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
+	if not self:IsInCombat() then
+		local sourceCID = self:GetCIDFromGUID(sourceGUID)
+		local destCID = self:GetCIDFromGUID(destGUID)
+		if sourceCID == 37813 or destCID == 37813 then
+			ensureCombatStarted(self, "SWING_DAMAGE")
+		end
+	end
 	if destGUID == UnitGUID("player") and self:GetCIDFromGUID(sourceGUID) == 38508 then -- Blood Beast
 		specWarnBeastOnYou:Show()
 		specWarnBeastOnYou:Play("targetyou")
 	end
 end
+mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
@@ -287,11 +329,13 @@ end
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if matchesAny(msg, allianceIntroFallbacks) or (L.PullAlliance and msg:find(L.PullAlliance, 1, true)) then
 		timerCombatStart:Start()
+		beginPrecombatWatch(self)
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Show(12)
 		end
 	elseif matchesAny(msg, hordeIntroFallbacks) or (L.PullHorde and msg:find(L.PullHorde, 1, true)) then
-		timerCombatStart:Start(98.72)
+		timerCombatStart:Start(81.75) -- Horde RP on this core reaches ACTION_INTRO_DONE roughly 81-82s after the opening yell.
+		beginPrecombatWatch(self)
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Show(12)
 		end
