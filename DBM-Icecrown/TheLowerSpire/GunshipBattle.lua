@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("GunshipBattle", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260321174000")
+mod:SetRevision("20260326123000")
 local addsIcon
 local bossID
 mod:SetEncounterID(847)--No ES fires this combat
@@ -55,10 +55,6 @@ local soundFreeze			= mod:NewSound(69705)
 mod:RemoveOption("HealthFrame")
 
 mod.vb.firstMage = false
-mod.vb.freezeActive = false
-mod.vb.freezeCastAt = 0
-
-local activeFreezeCannons = {}
 
 local function beginPrecombatWatch(self)
 	self:UnregisterShortTermEvents()
@@ -97,9 +93,11 @@ function mod:OnCombatStart(delay)
 	warnAddsSoon:Schedule(7-delay)
 	self:Schedule(12-delay, Adds, self)
 	self.vb.firstMage = false
-	self.vb.freezeActive = false
-	self.vb.freezeCastAt = 0
-	table.wipe(activeFreezeCannons)
+	if UnitFactionGroup("player") == "Alliance" then
+		timerBelowZeroCD:Start(39-delay)
+	else
+		timerBelowZeroCD:Start(37-delay)
+	end
 end
 
 function mod:OnCombatEnd()
@@ -127,9 +125,6 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpellID(72306, 69638) and self:GetCIDFromGUID(args.destGUID) == bossID then
 		timerBattleFuryActive:Start()		-- only a timer for 1st stack
 	elseif spellId == 69705 and self:AntiSpam(1, 1) then
-		if args.destGUID then
-			activeFreezeCannons[args.destGUID] = true
-		end
 		soundFreeze:Play("Interface\\AddOns\\DBM-Core\\sounds\\Alert.mp3")
 	end
 end
@@ -144,8 +139,10 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 69705 and args.destGUID then
-		activeFreezeCannons[args.destGUID] = nil
+	if args.spellId == 69705 and self:AntiSpam(2, 2) then
+		timerBelowZeroCD:Start(35)
+		warnBelowZeroSoon:Cancel()
+		warnBelowZeroSoon:Schedule(20)
 	end
 end
 
@@ -154,8 +151,6 @@ function mod:SPELL_CAST_START(args)
 		ensureCombatStarted(self, "SPELL_CAST_START "..args.spellId)
 	end
 	if args.spellId == 69705 then
-		self.vb.freezeActive = true
-		self.vb.freezeCastAt = GetTime()
 		warnBelowZero:Show()
 		warnBelowZeroSoon:Cancel()
 	end
@@ -184,20 +179,6 @@ function mod:SWING_DAMAGE(sourceGUID, _, _, destGUID)
 end
 mod.SWING_MISSED = mod.SWING_DAMAGE
 
-function mod:UNIT_DIED(args)
-	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 37116 or cid == 37117 then
-		-- AzerothCore starts the next mage cycle when the current freeze mage dies and clears its slot.
-		timerBelowZeroCD:Start(35)
-		warnBelowZeroSoon:Cancel()
-		warnBelowZeroSoon:Schedule(20)
-		self.vb.freezeActive = false
-		self.vb.freezeCastAt = 0
-		self.vb.firstMage = false
-		table.wipe(activeFreezeCannons)
-	end
-end
-
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName)
 	if spellName == GetSpellInfo(72340) then
 		DBM:EndCombat(self)
@@ -209,30 +190,30 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		timerCombatStart:Start()
 		beginPrecombatWatch(self)
 		self.vb.firstMage = false
-		self.vb.freezeActive = false
-		self.vb.freezeCastAt = 0
-		table.wipe(activeFreezeCannons)
-		timerBelowZeroCD:Cancel()
+		timerBelowZeroCD:Stop()
 		warnBelowZeroSoon:Cancel()
 	elseif msg:find(L.PullHorde) then
 		timerCombatStart:Start(45)
 		beginPrecombatWatch(self)
 		self.vb.firstMage = false
-		self.vb.freezeActive = false
-		self.vb.freezeCastAt = 0
-		table.wipe(activeFreezeCannons)
-		timerBelowZeroCD:Cancel()
+		timerBelowZeroCD:Stop()
 		warnBelowZeroSoon:Cancel()
 	elseif (msg:find(L.AddsAlliance) or msg:find(L.AddsHorde)) and self:IsInCombat() then
 	--		self:Unschedule(Adds)
 		Adds(self)
 	elseif (msg:find(L.MageAlliance) or msg == L.MageAlliance) and self:IsInCombat() then
-		timerBelowZeroCD:Start(5.5)
-		warnBelowZeroSoon:Cancel()
-		self.vb.firstMage = true
+		if not self.vb.firstMage then
+			timerBelowZeroCD:Update(34, 39)
+			self.vb.firstMage = true
+		else
+			timerBelowZeroCD:Update(30, 35)
+		end
 	elseif (msg:find(L.MageHorde) or msg == L.MageHorde) and self:IsInCombat() then
-		timerBelowZeroCD:Start(5.5)
-		warnBelowZeroSoon:Cancel()
-		self.vb.firstMage = true
+		if not self.vb.firstMage then
+			timerBelowZeroCD:Update(34.5, 37)
+			self.vb.firstMage = true
+		else
+			timerBelowZeroCD:Update(32.5, 35)
+		end
 	end
 end

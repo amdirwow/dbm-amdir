@@ -21,7 +21,7 @@
 ## LoadOnDemand: 1
 ## DefaultState: enabled
 ## Author: Amdir
-## Version: 10.1.13_alpha
+## Version: 1.0.0
 
 localization.en.lua
 localization.de.lua

@@ -17,7 +17,7 @@
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## Author: Amdir
-## Version: 10.1.13_alpha
+## Version: 1.0.0
 ## X-Website: https://amdir.in.ua
 
 compat.lua

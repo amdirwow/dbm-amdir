@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Halion", "DBM-ChamberOfAspects", 2)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260320121500")
+mod:SetRevision("20260326123000")
 mod:SetCreatureID(39863)--40142 (twilight form)
 mod:SetEncounterID(887)
 mod:SetUsedIcons(7, 3)
@@ -123,9 +123,8 @@ function mod:OnCombatStart(delay)
 	timerFieryCombustionCD:Start(15-delay) -- (25N Lordaeron 2022/09/20 || 25H Lordaeron 2022/10/09) - 17.6 || 16.4
 	timerFieryBreathCD:Start(10-delay) -- (25H Lordaeron 2022/09/21 wipe1 || 25H Lordaeron 2022/09/21 wipe2 || 25H Lordaeron 2022/09/21 wipe3 || 25H Lordaeron 2022/09/23) - 10.5 || 11.3 || 12.4 || 10.3
 	timerTailLashCD:Start(-delay)
-	if DBM.BossHealth:IsShown() then
-		DBM.BossHealth:Hide()
-	end
+	DBM.BossHealth:Clear()
+	DBM.BossHealth:Hide()
 	if self.Options.Enabled and (DBM.Options.AlwaysShowHealthFrame or self.Options.HealthFrame) then
 		DBM.BossHealth:Show(L.name)
 		DBM.BossHealth:AddBoss(getHalionHealth, L.Halion)
@@ -134,6 +133,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
+	DBM.BossHealth:Clear()
 	DBM.BossHealth:Hide()
 end
 
