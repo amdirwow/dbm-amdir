@@ -237,6 +237,15 @@ local function RemoveImmunes(self)
 	end
 end
 
+local function StartValkyrWave(self)
+	table.wipe(valkyrTargets)
+	grabIcon = 2
+	self.vb.valkIcon = 2
+	self.vb.valkyrWaveCount = self.vb.valkyrWaveCount + 1
+	warnSummonValkyr:Show(self.vb.valkyrWaveCount)
+	timerSummonValkyr:Start(nil, self.vb.valkyrWaveCount+1)
+end
+
 local function NextPhase(self, delay)
 	self.vb.infestCount = 0
 	self.vb.defileCount = 0
@@ -575,7 +584,11 @@ end
 
 function mod:SPELL_SUMMON(args)
 	local spellId = args.spellId
-	if spellId == 69037 then -- Summon Val'kyr
+	local destCID = self:GetCIDFromGUID(args.destGUID)
+	if destCID == 36609 then -- Val'kyr Shadowguard
+		if self:AntiSpam(5, 4) then
+			StartValkyrWave(self)
+		end
 		if self.Options.ShowFrame then
 			self:CreateFrame()
 		end
@@ -677,6 +690,9 @@ function mod:UNIT_ENTERING_VEHICLE(uId)
 	DBM:Debug("UNIT_ENTERING_VEHICLE Val'kyr check for "..  unitName .. " (" .. uId .. "): UnitInVehicle is returning " .. (UnitInVehicle(uId) or "nil") .. " and UnitInRange is returning " .. (UnitInRange(uId) or "nil") .. " with distance: " .. DBM.RangeCheck:GetDistance(uId) .."yd. Checking if it is already cached: " .. (valkyrTargets[unitName] and "true" or "nil."), 3)
 --		DBM:Debug(unitName .. " (" .. uId .. ") has entered a vehicle. Confirming API: " .. (UnitInVehicle(uId) or "nil"))
 	if UnitInVehicle(uId) and not valkyrTargets[unitName] then	  -- if person is in a vehicle and not already announced (API is probably unneeded, need more logs to confirm. Cache check is required to prevent this event from multifiring for the same raid member with more than one uId)
+		if self:AntiSpam(5, 4) then
+			StartValkyrWave(self)
+		end
 		valkyrGrabWarning:Show(DBM:GetUnitRoleIcon(uId), unitName, DBM:IconNumToTexture(grabIcon)) -- roleIcon, name, raid target icon
 		valkyrTargets[unitName] = true
 		local raidIndex = UnitInRaid(uId)
@@ -785,13 +801,8 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName)
 --	if spellName == soulshriek and mod:LatencyCheck() then
 --		self:SendSync("SoulShriek", UnitGUID(uId))
-	if (spellName == GetSpellInfo(74361) or spellName == GetSpellInfo(69037)) and self:AntiSpam(5, 4) then -- Summon Val'kyr Periodic (10H, 25N, 25H) | Summon Val'kyr (10N)
-		table.wipe(valkyrTargets)	-- reset valkyr cache for next round
-		grabIcon = 2
-		self.vb.valkIcon = 2
-		self.vb.valkyrWaveCount = self.vb.valkyrWaveCount + 1
-		warnSummonValkyr:Show(self.vb.valkyrWaveCount)
-		timerSummonValkyr:Start(nil, self.vb.valkyrWaveCount+1)
+	if (spellName == GetSpellInfo(74361) or spellName == GetSpellInfo(69037)) and self:AntiSpam(5, 4) then -- Spell-based fallback for 10-man and older cores.
+		StartValkyrWave(self)
 	end
 end
 
