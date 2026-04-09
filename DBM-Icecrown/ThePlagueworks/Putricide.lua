@@ -119,7 +119,7 @@ mod.vb.warned_preP2 = false
 mod.vb.warned_preP3 = false
 mod.vb.unboundCount = 0
 
-local PULL_FIRST_UNSTABLE = 35
+local PULL_FIRST_UNSTABLE = 30
 local HEROIC_CREATE_TO_P2 = 6.25
 local HEROIC_GUZZLE_TO_P3 = 6.25
 local HEROIC_P2_FIRST_PUDDLE = 46.5
@@ -292,7 +292,7 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	berserkTimer:Start(-delay)
 	timerSlimePuddleCD:Start(10-delay)
-	timerUnstableExperimentCD:Start(PULL_FIRST_UNSTABLE-delay)
+	timerUnstableExperimentCD:Start(PULL_FIRST_UNSTABLE-delay, 35-delay)
 	warnUnstableExperimentSoon:Schedule(PULL_FIRST_UNSTABLE-5-delay)
 	table.wipe(redOozeGUIDsCasts)
 	firstIntermisisonUnboundElapsed = 0
