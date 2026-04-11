@@ -119,16 +119,12 @@ mod.vb.warned_preP2 = false
 mod.vb.warned_preP3 = false
 mod.vb.unboundCount = 0
 
-local PULL_FIRST_UNSTABLE = 30
+local PULL_FIRST_UNSTABLE_MIN = 30
+local PULL_FIRST_UNSTABLE_MAX = 35
+local NORMAL_INTERMISSION_EVENT_DELAY = 24
+local HEROIC_INTERMISSION_EVENT_DELAY = 49
 local HEROIC_CREATE_TO_P2 = 6.25
 local HEROIC_GUZZLE_TO_P3 = 6.25
-local HEROIC_P2_FIRST_PUDDLE = 46.5
-local HEROIC_P2_FIRST_MALLEABLE = 26.5
-local HEROIC_P2_FIRST_CHOKING = 35
-local HEROIC_P2_FIRST_UNSTABLE = 37.5
-local HEROIC_P3_FIRST_PUDDLE = 43.5
-local HEROIC_P3_FIRST_MALLEABLE = 40.5
-local HEROIC_P3_FIRST_CHOKING = 37
 local NextPhase
 
 local function isTransform1Yell(msg)
@@ -181,8 +177,38 @@ local function cancelPhaseAbilityTimers()
 	soundChokingGasSoon:Cancel()
 end
 
-local function beginPotionTransition(self, reengageTime)
-	cancelPhaseAbilityTimers()
+local function refreshUnstableSoon()
+	warnUnstableExperimentSoon:Cancel()
+	local remaining = timerUnstableExperimentCD:GetRemaining()
+	if remaining > 5 then
+		warnUnstableExperimentSoon:Schedule(remaining - 5)
+	end
+end
+
+local function refreshMalleableSoon()
+	soundMalleableGooSoon:Cancel()
+	local remaining = timerMalleableGooCD:GetRemaining()
+	if remaining > 3 then
+		soundMalleableGooSoon:Schedule(remaining - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+	end
+end
+
+local function refreshChokingSoon()
+	warnChokingGasBombSoon:Cancel()
+	soundChokingGasSoon:Cancel()
+	local remaining = timerChokingGasBombCD:GetRemaining()
+	if remaining > 5 then
+		warnChokingGasBombSoon:Schedule(remaining - 5)
+	end
+	if remaining > 3 then
+		soundChokingGasSoon:Schedule(remaining - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
+	end
+end
+
+local function beginPotionTransition(self, reengageTime, resetTimers)
+	if resetTimers ~= false then
+		cancelPhaseAbilityTimers()
+	end
 	if self.vb.phase == 1 or self.vb.phase == 2 then
 		self:SetStage(self.vb.phase + 0.5)
 	end
@@ -193,45 +219,70 @@ local function beginPotionTransition(self, reengageTime)
 end
 
 local function scheduleHeroicPhaseTwoTimers()
-	timerSlimePuddleCD:Start(HEROIC_P2_FIRST_PUDDLE)
-	timerMalleableGooCD:Start(HEROIC_P2_FIRST_MALLEABLE)
-	soundMalleableGooSoon:Schedule(HEROIC_P2_FIRST_MALLEABLE - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
-	timerChokingGasBombCD:Start(HEROIC_P2_FIRST_CHOKING)
-	soundChokingGasSoon:Schedule(HEROIC_P2_FIRST_CHOKING - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
-	warnChokingGasBombSoon:Schedule(HEROIC_P2_FIRST_CHOKING - 5)
-	timerUnstableExperimentCD:Start(HEROIC_P2_FIRST_UNSTABLE)
-	warnUnstableExperimentSoon:Schedule(HEROIC_P2_FIRST_UNSTABLE - 5)
+	if timerMalleableGooCD:GetTime() == 0 then
+		timerMalleableGooCD:Start("v25-28")
+	end
+	refreshMalleableSoon()
+	if timerChokingGasBombCD:GetTime() == 0 then
+		timerChokingGasBombCD:Start("v35-40")
+	end
+	refreshChokingSoon()
 end
 
-local function scheduleHeroicPhaseThreeTimers()
-	timerSlimePuddleCD:Start(HEROIC_P3_FIRST_PUDDLE)
-	timerMalleableGooCD:Start(HEROIC_P3_FIRST_MALLEABLE)
-	soundMalleableGooSoon:Schedule(HEROIC_P3_FIRST_MALLEABLE - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
-	timerChokingGasBombCD:Start(HEROIC_P3_FIRST_CHOKING)
-	soundChokingGasSoon:Schedule(HEROIC_P3_FIRST_CHOKING - 3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
-	warnChokingGasBombSoon:Schedule(HEROIC_P3_FIRST_CHOKING - 5)
+local function delayHeroicPhaseAbilityTimers(phase)
+	warnUnstableExperimentSoon:Cancel()
+	warnChokingGasBombSoon:Cancel()
+	soundMalleableGooSoon:Cancel()
+	soundChokingGasSoon:Cancel()
+	timerSlimePuddleCD:AddTime(HEROIC_INTERMISSION_EVENT_DELAY)
+	if phase == 1 then
+		timerUnstableExperimentCD:AddTime(HEROIC_INTERMISSION_EVENT_DELAY)
+		refreshUnstableSoon()
+	elseif phase == 2 then
+		timerUnstableExperimentCD:Cancel()
+		timerMalleableGooCD:AddTime(HEROIC_INTERMISSION_EVENT_DELAY)
+		timerChokingGasBombCD:AddTime(HEROIC_INTERMISSION_EVENT_DELAY)
+		refreshMalleableSoon()
+		refreshChokingSoon()
+	end
 end
 
 local function startNormalIntermission(self)
 	if self.vb.phase ~= 1 and self.vb.phase ~= 2 then
 		return
 	end
+	local phase = self.vb.phase
 	self:SetStage(self.vb.phase + 0.5)
 	warnTearGas:Show()
 	timerNextPhase:Cancel()
 	self:Unschedule(NextPhase)
-	cancelPhaseAbilityTimers()
+	warnUnstableExperimentSoon:Cancel()
+	warnChokingGasBombSoon:Cancel()
+	soundMalleableGooSoon:Cancel()
+	soundChokingGasSoon:Cancel()
+	if phase == 1 then
+		timerSlimePuddleCD:AddTime(NORMAL_INTERMISSION_EVENT_DELAY)
+		timerUnstableExperimentCD:AddTime(NORMAL_INTERMISSION_EVENT_DELAY)
+		refreshUnstableSoon()
+	elseif phase == 2 then
+		timerSlimePuddleCD:AddTime(NORMAL_INTERMISSION_EVENT_DELAY)
+		timerMalleableGooCD:AddTime(NORMAL_INTERMISSION_EVENT_DELAY)
+		timerChokingGasBombCD:AddTime(NORMAL_INTERMISSION_EVENT_DELAY)
+		refreshMalleableSoon()
+		refreshChokingSoon()
+	end
 end
 
 local function startHeroicIntermission(self)
 	if self.vb.phase ~= 1 and self.vb.phase ~= 2 then
 		return
 	end
+	local phase = self.vb.phase
 	self:SetStage(self.vb.phase + 0.5)
 	warnVolatileExperiment:Show()
 	timerNextPhase:Cancel()
 	self:Unschedule(NextPhase)
-	cancelPhaseAbilityTimers()
+	delayHeroicPhaseAbilityTimers(phase)
 	local unboundElapsed = timerUnboundPlagueCD:GetTime()
 	if self.vb.phase == 1.5 then
 		firstIntermisisonUnboundElapsed = unboundElapsed
@@ -292,8 +343,18 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	berserkTimer:Start(-delay)
 	timerSlimePuddleCD:Start(10-delay)
-	timerUnstableExperimentCD:Start(PULL_FIRST_UNSTABLE-delay, 35-delay)
-	warnUnstableExperimentSoon:Schedule(PULL_FIRST_UNSTABLE-5-delay)
+	local firstUnstableMin = PULL_FIRST_UNSTABLE_MIN - delay
+	local firstUnstableMax = PULL_FIRST_UNSTABLE_MAX - delay
+	if firstUnstableMax > 0 then
+		if firstUnstableMin > 0 then
+			timerUnstableExperimentCD:Start(("v%.1f-%.1f"):format(firstUnstableMin, firstUnstableMax))
+		else
+			timerUnstableExperimentCD:Start(firstUnstableMax)
+		end
+	end
+	if firstUnstableMin > 5 then
+		warnUnstableExperimentSoon:Schedule(firstUnstableMin - 5)
+	end
 	table.wipe(redOozeGUIDsCasts)
 	firstIntermisisonUnboundElapsed = 0
 	self.vb.warned_preP2 = false
@@ -321,7 +382,7 @@ function mod:SPELL_CAST_START(args)
 		startHeroicIntermission(self)
 	elseif args:IsSpellID(72851, 72852, 71621, 72850) then		--Create Concoction (phase2 change)
 		if self:IsHeroic() then
-			beginPotionTransition(self, HEROIC_CREATE_TO_P2)
+			beginPotionTransition(self, HEROIC_CREATE_TO_P2, false)
 			scheduleHeroicPhaseTwoTimers()
 		else
 			local castTime = 4
@@ -340,8 +401,7 @@ function mod:SPELL_CAST_START(args)
 		end
 	elseif args:IsSpellID(73121, 73122, 73120, 71893) then		--Guzzle Potions (phase3 change)
 		if self:IsHeroic() then
-			beginPotionTransition(self, HEROIC_GUZZLE_TO_P3)
-			scheduleHeroicPhaseThreeTimers()
+			beginPotionTransition(self, HEROIC_GUZZLE_TO_P3, false)
 		else
 			local castTime = 4
 			timerNextPhase:Start(castTime + 2.25)
