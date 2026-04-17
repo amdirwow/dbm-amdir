@@ -138,7 +138,7 @@ do
 		end
 	end
 	function del(t)
-		if (t) then
+		if type(t) == "table" then
 			wipe(t)
 			t[''] = true
 			t[''] = nil
@@ -146,7 +146,7 @@ do
 		end
 	end
 	function deepDel(t)
-		if (t) then
+		if type(t) == "table" then
 			for k,v in pairs(t) do
 				if type(v) == "table" then
 					deepDel(v)
@@ -178,25 +178,27 @@ do
 
 		if (lib.talentTimers) then
 			delay = delay + elapsed
-			if (delay > 1) then
+			if (delay > 0.25) then
 				delay = 0
 				local now = GetTime()
+				local timers = lib.talentTimers
+				lib.talentTimers = nil
 				local triggers
-				for guid,when in pairs(lib.talentTimers) do
+				for guid,when in pairs(timers) do
 					if (now > when) then
-						-- Pass to second table to process, because RefreshTimers can affect this talentTimers table
-						-- So it's important we're not still iterating it at the time
+						-- Pass to second table to process, because refreshes can reschedule timers.
 						if (not triggers) then
 							triggers = new()
 						end
 						triggers[guid] = true
-						lib.talentTimers[guid] = nil
-						if (not next(lib.talentTimers)) then
-							lib.talentTimers = del(lib.talentTimers)
-							break
+					else
+						if (not lib.talentTimers) then
+							lib.talentTimers = new()
 						end
+						lib.talentTimers[guid] = when
 					end
 				end
+				del(timers)
 
 				if (triggers) then
 					for guid in pairs(triggers) do
@@ -876,6 +878,9 @@ function lib:OnReceiveTalents(guid, unit, talents, active, numActive, listUnspen
 			if (r.talents) then
 				oldTalents = r.talents[r.active]
 			end
+			if type(oldTalents) ~= "table" then
+				oldTalents = nil
+			end
 			del(r.unspent)
 
 			r.talents = talents
@@ -1047,7 +1052,13 @@ end
 
 -- PLAYER_TALENT_UPDATE
 function lib:PLAYER_TALENT_UPDATE()
-	self:TriggerRefreshTalents(UnitGUID("player"), 2)
+	local guid = UnitGUID("player")
+	local r = guid and self.roster[guid]
+	if (r) then
+		r.role = nil
+		r.refresh = true
+	end
+	self:TriggerRefreshTalents(guid, 0.25)
 end
 
 -- UNIT_SPELLCAST_SUCCEEDED
@@ -1125,12 +1136,28 @@ function lib:RefreshTalentsByGUID(guid)
 	if (not self.talentThrottle) then
 		self.talentThrottle = {}
 	end
+	local expired
 	for guidThrottle,when in pairs(self.talentThrottle) do
 		if (when < GetTime() - 5) then
-			self.talentThrottle[guidThrottle] = nil
+			if (not expired) then
+				expired = new()
+			end
+			expired[guidThrottle] = true
 		elseif (guid == guidThrottle) then
+			if (expired) then
+				for expiredGUID in pairs(expired) do
+					self.talentThrottle[expiredGUID] = nil
+				end
+				del(expired)
+			end
 			return
 		end
+	end
+	if (expired) then
+		for expiredGUID in pairs(expired) do
+			self.talentThrottle[expiredGUID] = nil
+		end
+		del(expired)
 	end
 	self.talentThrottle[guid] = GetTime()
 

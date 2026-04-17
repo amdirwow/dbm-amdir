@@ -379,6 +379,12 @@ L.StripServerName			= "Видаляти ім'я сервера у поперед
 L.FilterVoidFormSay			= "Не надсилати в чат позицію/відлік, якщо знаходитесь в $spell:47241"
 
 L.Area_SpecFilter			= "Параметри фільтра по ролі"
+L.CurrentSpecRole			= "Роль поточного спека"
+L.CurrentSpecRoleDetected	= "Визначено зараз: %s"
+L.CurrentSpecRoleTank		= "Танк"
+L.CurrentSpecRoleHealer		= "Хіл"
+L.CurrentSpecRoleDamager	= "ДД"
+L.CurrentSpecRoleUnknown	= "Невідомо"
 L.FilterTankSpec			= "Фільтрувати попередження для ролі танка, коли не в спеціалізації танка. (примітка: відключення цього параметра не рекомендується для більшості користувачів, оскільки тепер усі попередження «таунта» включені за замовчуванням)"
 L.FilterInterruptsHeader	= "Фільтрувати попередження для спелів, що перериваються, на основі переваг поведінки."
 L.FilterInterrupts			= "Якщо кастер не є Вашою поточною метою/фокусом (завжди)"

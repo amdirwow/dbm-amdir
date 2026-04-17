@@ -469,6 +469,12 @@ L.StripServerName					= "Strip realm name from announcements, timers, range chec
 L.FilterVoidFormSay					= "Do not send chat icon or countdown chat yells when in $spell:47241 (regular chat yells still sent)"
 
 L.Area_SpecFilter					= "Role Filter Options"
+L.CurrentSpecRole					= "Current spec role"
+L.CurrentSpecRoleDetected			= "Detected now: %s"
+L.CurrentSpecRoleTank				= "Tank"
+L.CurrentSpecRoleHealer				= "Healer"
+L.CurrentSpecRoleDamager			= "Damage"
+L.CurrentSpecRoleUnknown			= "Unknown"
 L.FilterTankSpec					= "Filter announcements designated for Tank role when not tank spec. (Note: Disabling this is not recommended for most users as 'taunt' announcements are now all on by default.)"
 L.FilterInterruptsHeader			= "Filter announcements for interruptable spells based on behavior preference."
 L.SWFNever							= "Never"

@@ -72,9 +72,9 @@ end
 
 local function showRealDate(curseDate)
 	curseDate = tostring(curseDate)
-	local year, month, day, hour, minute, second = curseDate:sub(1, 4), curseDate:sub(5, 6), curseDate:sub(7, 8), curseDate:sub(9, 10), curseDate:sub(11, 12), curseDate:sub(13, 14)
-	if year and month and day and hour and minute and second then
-		return year.."/"..month.."/"..day.." "..hour..":"..minute..":"..second
+	local year, month, day = curseDate:sub(1, 4), curseDate:sub(5, 6), curseDate:sub(7, 8)
+	if year and month and day then
+		return day..":"..month..":"..year
 	end
 end
 
@@ -84,9 +84,9 @@ local function currentFullDate()
 end
 
 DBM = {
-	Revision = parseCurseDate("20260326000000"),
-	DisplayVersion = "1.0.0", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2026, 03, 26) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	Revision = parseCurseDate("20260417000000"),
+	DisplayVersion = "1.0.1", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2026, 04, 17) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 
 local fakeBWVersion = 7558
@@ -211,6 +211,7 @@ DBM.DefaultOptions = {
 	AlwaysShowHealthFrame = false,
 	ShowBigBrotherOnCombatStart = false,
 	FilterTankSpec = true,
+	CurrentSpecRoleOverride = {},
 	FilterBTargetFocus = true,
 	FilterBInterruptCooldown = true,
 	FilterBInterruptHealer = false,
@@ -5699,8 +5700,53 @@ do
 		return spec
 	end
 
-	local function GetSpecializationRole(unit, class)
+	local function GetCurrentSpecRoleOverrideKey()
+		local specID = GetInspectSpecialization("player") or currentSpecID or GetSpecialization()
+		return tostring(specID or GetActiveTalentGroup(false, false) or 1)
+	end
+
+	local manualSpecRoles = {
+		["TANK"] = true,
+		["HEALER"] = true,
+		["DAMAGER"] = true
+	}
+
+	function DBM:GetCurrentSpecRoleOverride()
+		if type(self.Options) ~= "table" then
+			return
+		end
+		local overrides = self.Options.CurrentSpecRoleOverride
+		if type(overrides) ~= "table" then
+			return
+		end
+		local role = overrides[GetCurrentSpecRoleOverrideKey()]
+		return manualSpecRoles[role] and role or nil
+	end
+
+	function DBM:SetCurrentSpecRoleOverride(role)
+		if type(self.Options) ~= "table" then
+			return
+		end
+		if type(self.Options.CurrentSpecRoleOverride) ~= "table" then
+			self.Options.CurrentSpecRoleOverride = {}
+		end
+		local key = GetCurrentSpecRoleOverrideKey()
+		if manualSpecRoles[role] then
+			self.Options.CurrentSpecRoleOverride[key] = role
+		else
+			self.Options.CurrentSpecRoleOverride[key] = nil
+		end
+	end
+
+	local function GetSpecializationRole(unit, class, ignoreManualOverride)
 		unit = unit or "player" -- always fallback to player
+
+		if not ignoreManualOverride and UnitIsUnit(unit, "player") then
+			local role = DBM:GetCurrentSpecRoleOverride()
+			if role then
+				return role
+			end
+		end
 
 		-- For LFG using "UnitGroupRolesAssigned" is enough.
 		local isTank, isHealer, isDamager = UnitGroupRolesAssigned(unit)
@@ -5716,6 +5762,19 @@ do
 		class = class or select(2, UnitClass(unit))
 		if class == "HUNTER" or class == "MAGE" or class == "ROGUE" or class == "WARLOCK" then
 			return "DAMAGER"
+		end
+		if UnitIsUnit(unit, "player") then
+			local specID = GetInspectSpecialization("player", class)
+			local specRole = specID and private.specRoleTable[specID]
+			if specRole then
+				if specRole["Tank"] then
+					return "TANK"
+				elseif specRole["Healer"] then
+					return "HEALER"
+				elseif specRole["Dps"] then
+					return "DAMAGER"
+				end
+			end
 		end
 		return LGTRoleTable[LGT:GetUnitRole(unit)] or "NONE"
 	end
@@ -5770,6 +5829,10 @@ do
 
 	function DBM:GetUnitRole(uId, class)
 		return GetSpecializationRole(uId, class)
+	end
+
+	function DBM:GetDetectedUnitRole(uId, class)
+		return GetSpecializationRole(uId, class, true)
 	end
 
 	function DBM:GetUnitRoleIcon(uId, class)
@@ -7506,6 +7569,14 @@ end
 
 function bossModPrototype:IsTank()
 	--IsTanking already handles external calls, no need here.
+	local roleOverride = DBM:GetCurrentSpecRoleOverride()
+	if roleOverride then
+		return roleOverride == "TANK"
+	end
+	local detectedRole = DBM:GetDetectedUnitRole("player")
+	if detectedRole and detectedRole ~= "NONE" then
+		return detectedRole == "TANK"
+	end
 	if not currentSpecID then
 		DBM:SetCurrentSpecInfo()
 	end
@@ -7522,6 +7593,14 @@ function bossModPrototype:IsDps(uId)
 			return DBM:GetUnitRole(uId) == "DAMAGER"
 		end
 	end
+	local roleOverride = DBM:GetCurrentSpecRoleOverride()
+	if roleOverride then
+		return roleOverride == "DAMAGER"
+	end
+	local detectedRole = DBM:GetDetectedUnitRole("player")
+	if detectedRole and detectedRole ~= "NONE" then
+		return detectedRole == "DAMAGER"
+	end
 	if not currentSpecID then
 		DBM:SetCurrentSpecInfo()
 	end
@@ -7537,6 +7616,14 @@ function DBM:IsHealer(uId)
 		else
 			return DBM:GetUnitRole(uId) == "HEALER"
 		end
+	end
+	local roleOverride = DBM:GetCurrentSpecRoleOverride()
+	if roleOverride then
+		return roleOverride == "HEALER"
+	end
+	local detectedRole = DBM:GetDetectedUnitRole("player")
+	if detectedRole and detectedRole ~= "NONE" then
+		return detectedRole == "HEALER"
 	end
 	if not currentSpecID then
 		DBM:SetCurrentSpecInfo()

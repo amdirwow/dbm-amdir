@@ -30,8 +30,33 @@ local SoundChannelDropdown = generaloptions:CreateDropdown(L.UseSoundChannel, so
 end)
 SoundChannelDropdown:SetPoint("TOPLEFT", generaloptions.frame, "TOPLEFT", 0, -55)
 
+local currentSpecRoleValues = {
+	{ text = L.CurrentSpecRoleDetected or "Detected now", value = "AUTO" },
+	{ text = L.CurrentSpecRoleTank or "Tank", value = "TANK" },
+	{ text = L.CurrentSpecRoleHealer or "Healer", value = "HEALER" },
+	{ text = L.CurrentSpecRoleDamager or "Damage", value = "DAMAGER" }
+}
+local currentSpecRoleText = {
+	["TANK"] = L.CurrentSpecRoleTank or "Tank",
+	["HEALER"] = L.CurrentSpecRoleHealer or "Healer",
+	["DAMAGER"] = L.CurrentSpecRoleDamager or "Damage",
+	["NONE"] = L.CurrentSpecRoleUnknown or "Unknown"
+}
+local currentSpecRoleDropdown
+local function UpdateCurrentSpecRoleDropdown()
+	local detectedRole = DBM:GetDetectedUnitRole("player") or "NONE"
+	currentSpecRoleValues[1].text = (L.CurrentSpecRoleDetected or "Detected now: %s"):format(currentSpecRoleText[detectedRole] or detectedRole)
+	currentSpecRoleDropdown:SetSelectedValue(DBM:GetCurrentSpecRoleOverride() or "AUTO")
+end
+currentSpecRoleDropdown = generaloptions:CreateDropdown(L.CurrentSpecRole or "Current spec role", currentSpecRoleValues, nil, "AUTO", function(value)
+	DBM:SetCurrentSpecRoleOverride(value)
+	UpdateCurrentSpecRoleDropdown()
+end, 180)
+currentSpecRoleDropdown:SetPoint("TOPLEFT", SoundChannelDropdown, "BOTTOMLEFT", 0, -30)
+currentSpecRoleDropdown:SetScript("OnShow", UpdateCurrentSpecRoleDropdown)
+
 local bmrange = generaloptions:CreateButton(L.Button_RangeFrame, 120, 30)
-bmrange:SetPoint("TOPLEFT", SoundChannelDropdown, "BOTTOMLEFT", 15, -5)
+bmrange:SetPoint("TOPLEFT", currentSpecRoleDropdown, "BOTTOMLEFT", 15, -5)
 bmrange:SetScript("OnClick", function()
 	if DBM.RangeCheck:IsShown() then
 		DBM.RangeCheck:Hide(true)
