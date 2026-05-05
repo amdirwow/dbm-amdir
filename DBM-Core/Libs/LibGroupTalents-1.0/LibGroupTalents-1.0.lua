@@ -162,6 +162,9 @@ end
 
 do
 	local delay = 0
+	local function IsValidGUID(guid)
+		return type(guid) == "string" and guid:match("^0x%x+$") ~= nil
+	end
 	frame:SetScript("OnUpdate", function(self, elapsed)
 		if (lib.raidRosterUpdate) then
 			lib.raidRosterUpdate = nil
@@ -184,7 +187,15 @@ do
 				local timers = lib.talentTimers
 				lib.talentTimers = nil
 				local triggers
-				for guid,when in pairs(timers) do
+				local timerKeys = new()
+				for guid in pairs(timers) do
+					if (IsValidGUID(guid)) then
+						tinsert(timerKeys, guid)
+					end
+				end
+				for i = 1, #timerKeys do
+					local guid = timerKeys[i]
+					local when = timers[guid]
 					if (now > when) then
 						-- Pass to second table to process, because refreshes can reschedule timers.
 						if (not triggers) then
@@ -198,16 +209,25 @@ do
 						lib.talentTimers[guid] = when
 					end
 				end
+				del(timerKeys)
 				del(timers)
 
-				if (triggers) then
-					for guid in pairs(triggers) do
-						lib:RefreshTalentsByGUID(guid)
+					if (triggers) then
+						local triggerList = new()
+						for guid in pairs(triggers) do
+							if (IsValidGUID(guid)) then
+								tinsert(triggerList, guid)
+							end
+						end
+						del(triggers)
+
+						for i = 1, #triggerList do
+							lib:RefreshTalentsByGUID(triggerList[i])
+						end
+						del(triggerList)
 					end
-					del(triggers)
 				end
 			end
-		end
 
 		if (not lib.talentTimers and not lib.refreshCheckTimer) then
 			self:Hide()
@@ -871,6 +891,24 @@ end
 
 -- OnReceiveTalents
 function lib:OnReceiveTalents(guid, unit, talents, active, numActive, listUnspent)
+	if (type(guid) ~= "string" or not guid:match("^0x%x+$")) then
+		del(talents)
+		del(listUnspent)
+		return
+	end
+	if (type(talents) ~= "table") then
+		del(listUnspent)
+		return
+	end
+	if (type(active) ~= "number" or active < 1 or type(talents[active]) ~= "table") then
+		del(talents)
+		del(listUnspent)
+		return
+	end
+	if (listUnspent and type(listUnspent) ~= "table") then
+		listUnspent = nil
+	end
+
 	local r = self.roster[guid]
 	if (r) then
 		if (active ~= r.active or numActive ~= r.numActive or not CompareTalents(talents and talents[active], r.talents and r.talents[r.active])) then
