@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("GunshipBattle", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260326123000")
+mod:SetRevision("20260524110000")
 local addsIcon
 local bossID
 mod:SetEncounterID(847)--No ES fires this combat
@@ -49,6 +49,7 @@ local timerCombatStart		= mod:NewCombatTimer(47.5)
 local timerBelowZeroCD		= mod:NewNextTimer(35, 69705, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON, nil, 1)
 local timerBattleFuryActive	= mod:NewBuffActiveTimer(17, 69638, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerAdds				= mod:NewTimer(60, "TimerAdds", addsIcon, nil, nil, 1)
+local firstAddsTimer		= 22
 
 local soundFreeze			= mod:NewSound(69705)
 
@@ -89,9 +90,9 @@ function mod:OnCombatStart(delay)
 	timerCombatStart:Stop()
 	self:UnregisterShortTermEvents()
 	DBM.BossHealth:Clear()
-	timerAdds:Start(12-delay)
-	warnAddsSoon:Schedule(7-delay)
-	self:Schedule(12-delay, Adds, self)
+	timerAdds:Start(firstAddsTimer-delay)
+	warnAddsSoon:Schedule(firstAddsTimer-5-delay)
+	self:Schedule(firstAddsTimer-delay, Adds, self)
 	self.vb.firstMage = false
 	if UnitFactionGroup("player") == "Alliance" then
 		timerBelowZeroCD:Start(39-delay)

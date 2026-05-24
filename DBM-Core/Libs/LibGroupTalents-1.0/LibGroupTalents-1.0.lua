@@ -187,16 +187,15 @@ do
 				local timers = lib.talentTimers
 				lib.talentTimers = nil
 				local triggers
-				local timerKeys = new()
-				for guid in pairs(timers) do
-					if (IsValidGUID(guid)) then
-						tinsert(timerKeys, guid)
+				while true do
+					local guid, when = next(timers)
+					if (not guid) then
+						break
 					end
-				end
-				for i = 1, #timerKeys do
-					local guid = timerKeys[i]
-					local when = timers[guid]
-					if (now > when) then
+					timers[guid] = nil
+					if (not IsValidGUID(guid) or type(when) ~= "number") then
+						-- Ignore stale/recycled entries; talent timers are always GUID -> timestamp.
+					elseif (now > when) then
 						-- Pass to second table to process, because refreshes can reschedule timers.
 						if (not triggers) then
 							triggers = new()
@@ -209,26 +208,29 @@ do
 						lib.talentTimers[guid] = when
 					end
 				end
-				del(timerKeys)
 				del(timers)
 
-					if (triggers) then
-						local triggerList = new()
-						for guid in pairs(triggers) do
-							if (IsValidGUID(guid)) then
-								tinsert(triggerList, guid)
-							end
+				if (triggers) then
+					local triggerList = new()
+					while true do
+						local guid = next(triggers)
+						if (not guid) then
+							break
 						end
-						del(triggers)
-
-						for i = 1, #triggerList do
-							lib:RefreshTalentsByGUID(triggerList[i])
+						triggers[guid] = nil
+						if (IsValidGUID(guid)) then
+							tinsert(triggerList, guid)
 						end
-						del(triggerList)
 					end
+					del(triggers)
+
+					for i = 1, #triggerList do
+						lib:RefreshTalentsByGUID(triggerList[i])
+					end
+					del(triggerList)
 				end
 			end
-
+		end
 		if (not lib.talentTimers and not lib.refreshCheckTimer) then
 			self:Hide()
 		end
@@ -548,6 +550,9 @@ do
 				for i = 1,r.numActive do
 					local t = r.talents[i]
 					if (t) then
+						if (type(t) ~= "table") then
+							return
+						end
 						str = format("%s;%d,%s", str, i, table.concat(t, "-"))
 					end
 				end

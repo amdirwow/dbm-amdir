@@ -62,7 +62,7 @@ local timerZombies				= mod:NewNextTimer(20, 71159, nil, nil, nil, 1)
 local timerMortalWound			= mod:NewTargetTimer(15, 71127, nil, nil, nil, 5)
 local timerDecimate				= mod:NewNextTimer(33, 71123, nil, nil, nil, 2)
 local timerBlightBomb			= mod:NewCastTimer(5, 71088, nil, nil, nil, 3)
-local timerProfessorEvent		= mod:NewRPTimer(90, 70475, nil, nil, nil, 2)
+local timerProfessorWaves		= mod:NewTimer(60, "Insect waves", 70475, nil, "timerProfessorWaves", 2)
 --Crimson Hall
 local timerBloodMirror			= mod:NewTargetTimer(30, 70451, nil, "Healer|Tank", nil, 5)
 local timerBloodSap				= mod:NewTargetTimer(8, 70432, nil, "Healer|Tank", nil, 5)
@@ -155,7 +155,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerBanish:Start(args.destName)
 	elseif spellId == 70475 and not eventProfessorStarted then -- Giant Insect Swarm
 		eventProfessorStarted = true
-		timerProfessorEvent:Start()
+		timerProfessorWaves:Start()
 	end
 end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
