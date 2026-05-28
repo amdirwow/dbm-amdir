@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 local CancelUnitBuff, GetSpellInfo = CancelUnitBuff, GetSpellInfo
 local UnitGUID = UnitGUID
 
-mod:SetRevision("20251101165950")
+mod:SetRevision("20260528120000")
 mod:SetCreatureID(36855)
 mod:SetEncounterID(846)
 mod:SetUsedIcons(1, 2, 3, 7, 8)
@@ -670,7 +670,7 @@ function mod:SPELL_SUMMON(args)
 	end
 end]]
 
-function mod:ShadeTarget(targetname, targetuId, sourceGUID)
+function mod:ShadeTarget(targetname, targetuId, sourceGUID, authoritative)
 	if not targetname then return end
 	local now = GetTime()
 	local playerName = UnitName("player")
@@ -682,7 +682,9 @@ function mod:ShadeTarget(targetname, targetuId, sourceGUID)
 	self.vb.lastShadeTargetAt = now
 	warnSummonSpiritTarget:Show(targetname)
 	if targetname == playerName or targetname == playerFullName then
-		personalShadeWarning(self, sourceGUID)
+		if authoritative then
+			personalShadeWarning(self, sourceGUID)
+		end
 	elseif self:CheckNearby(10, targetname) then
 		specWarnVengefulShade:Show()
 		specWarnVengefulShade:Play("watchstep")
@@ -768,7 +770,7 @@ function mod:OnSync(msg, targetname, sourceGUID)
 			warnSummonSpiritTarget:Show(targetname)
 			personalShadeWarning(self, sourceGUID)
 		else
-			self:ShadeTarget(targetname, nil, sourceGUID)
+			self:ShadeTarget(targetname, nil, sourceGUID, true)
 		end
 	elseif msg == "AddWaveP1" then
 		handleExactAddWaveSync(self, false)
