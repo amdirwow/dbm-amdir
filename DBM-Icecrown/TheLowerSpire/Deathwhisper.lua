@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 local CancelUnitBuff, GetSpellInfo = CancelUnitBuff, GetSpellInfo
 local UnitGUID = UnitGUID
 
-mod:SetRevision("20260528120000")
+mod:SetRevision("20260701120000")
 mod:SetCreatureID(36855)
 mod:SetEncounterID(846)
 mod:SetUsedIcons(1, 2, 3, 7, 8)
@@ -184,86 +184,6 @@ shouldPredictSpiritTimer = function()
 	return GetNumPartyMembers() > 1
 end
 
-local function getGroupSize()
-	local raidMembers = GetNumRaidMembers()
-	if raidMembers > 0 then
-		return raidMembers
-	end
-	local partyMembers = GetNumPartyMembers()
-	if partyMembers > 0 then
-		return partyMembers + 1
-	end
-	return 1
-end
-
-local function isSmallGroup()
-	return getGroupSize() <= 2
-end
-
-local function shadeTargetsPlayerInSmallGroup()
-	if not isSmallGroup() or UnitIsDeadOrGhost("player") then
-		return false
-	end
-	local bossTarget = "boss1target"
-	if UnitExists(bossTarget) then
-		return not UnitIsUnit("player", bossTarget)
-	end
-	if UnitExists("boss1") then
-		local tanking, status = UnitDetailedThreatSituation("player", "boss1")
-		return not (tanking or status == 3)
-	end
-	return getGroupSize() == 1
-end
-
-local function forceLocalShadeWarning(self, sourceGUID)
-	local playerName = UnitName("player")
-	if not playerName then
-		return false
-	end
-	self.vb.lastShadeTargetName = playerName
-	self.vb.lastShadeTargetAt = GetTime()
-	warnSummonSpiritTarget:Show(playerName)
-	personalShadeWarning(self, sourceGUID)
-	return true
-end
-
-local function inferShadeTarget()
-	local tankGUID = UnitGUID("boss1target") or UnitGUID("boss2target") or UnitGUID("boss3target") or UnitGUID("boss4target") or UnitGUID("boss5target")
-	local candidates = {}
-	local function addCandidate(unit)
-		if not UnitExists(unit) or not UnitIsPlayer(unit) or UnitIsDeadOrGhost(unit) then
-			return
-		end
-		local guid = UnitGUID(unit)
-		if not guid then
-			return
-		end
-		if not tankGUID then
-			local tanking, status = UnitDetailedThreatSituation(unit, "boss1")
-			if tanking or status == 3 then
-				tankGUID = guid
-				return
-			end
-		end
-		if guid ~= tankGUID then
-			candidates[#candidates + 1] = DBM:GetUnitFullName(unit)
-		end
-	end
-	local raidMembers = GetNumRaidMembers()
-	if raidMembers > 0 then
-		for i = 1, raidMembers do
-			addCandidate("raid" .. i)
-		end
-	else
-		addCandidate("player")
-		for i = 1, GetNumPartyMembers() do
-			addCandidate("party" .. i)
-		end
-	end
-	if #candidates == 1 then
-		return candidates[1]
-	end
-end
 mod:Schedule(0.5, selfSchedWarnMissingSet, mod) -- mod options default values were being read before SV ones, so delay this
 
 local function checkWeaponRemovalSetting(self)
@@ -693,19 +613,12 @@ end
 
 function mod:SPELL_SUMMON(args)
 	if args.spellId == 71363 or args.spellId == 71426 or self:GetCIDFromGUID(args.destGUID) == 38222 then
-		if shadeTargetsPlayerInSmallGroup() then
-			forceLocalShadeWarning(self, args.destGUID)
-		else
-			local inferredTarget = inferShadeTarget()
-			if inferredTarget then
-				self:ShadeTarget(inferredTarget, nil, args.destGUID)
-			end
-		end
 		if self:AntiSpam(5, 1) then
 			warnSummonSpirit:Show()
 			startSpiritCD(self)
 			soundWarnSpirit:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\spirits.mp3")
 		end
+		-- Use the spawned shade target only. Boss cast/unit target guesses can be client-local and make several players SAY.
 		self:BossTargetScanner(args.destGUID, "ShadeTarget", 0.05, 80, nil, nil, nil, nil, nil, true)
 	end
 end
@@ -735,24 +648,11 @@ end
 -- "<235.53 ...> [DBM_TimerStart] Timer71426cd:Summon Spirit CD:11:Interface\\Icons\\Spell_Holy_SenseUndead:cd:71426:3:Deathwhisper:true:nil:Summon Spirit:nil:", -- [20529]
 function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName)
 	if spellName == summonShadeName or spellName == summonSpiritName then -- AzerothCore uses 71363, older logs/cores may report 71426.
-		if shadeTargetsPlayerInSmallGroup() then
-			forceLocalShadeWarning(self)
-		else
-			local inferredTarget = inferShadeTarget()
-			if inferredTarget then
-				self:ShadeTarget(inferredTarget)
-			end
-		end
-		local bossGuid = UnitGUID(uId)
-		if bossGuid then
-			self:BossTargetScanner(bossGuid, "ShadeTarget", 0.02, 4, true, nil, nil, nil, nil, true)
-		end
 		if self:AntiSpam(5, 1) then
 			warnSummonSpirit:Show()
 			startSpiritCD(self)
 			soundWarnSpirit:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\spirits.mp3")
 		end
-		self:BossUnitTargetScanner(uId, "ShadeTarget", 1.2)
 	end
 end
 
@@ -761,10 +661,6 @@ function mod:OnSync(msg, targetname, sourceGUID)
 		local playerName = UnitName("player")
 		local playerFullName = DBM:GetUnitFullName("player")
 		if targetname == playerName or targetname == playerFullName then
-			if sourceGUID then
-				personalShadeWarnings[sourceGUID] = nil
-			end
-			self.vb.lastShadePersonalAt = 0
 			self.vb.lastShadeTargetName = targetname
 			self.vb.lastShadeTargetAt = GetTime()
 			warnSummonSpiritTarget:Show(targetname)
