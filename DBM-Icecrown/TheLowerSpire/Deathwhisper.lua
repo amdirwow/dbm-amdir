@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 local CancelUnitBuff, GetSpellInfo = CancelUnitBuff, GetSpellInfo
 local UnitGUID = UnitGUID
 
-mod:SetRevision("20260701120000")
+mod:SetRevision("20260924120000")
 mod:SetCreatureID(36855)
 mod:SetEncounterID(846)
 mod:SetUsedIcons(1, 2, 3, 7, 8)
@@ -198,17 +198,17 @@ local function checkWeaponRemovalSetting(self)
 end
 
 local function UnW(self)
-	if self:IsEquipmentSetAvailable("pve") then
-		PickupInventoryItem(16)
+	-- The equipment set is only needed to put the weapons back on. Requiring it
+	-- here made the advertised "unequip only" path silently do nothing.
+	PickupInventoryItem(16)
+	PutItemInBackpack()
+	PickupInventoryItem(17)
+	PutItemInBackpack()
+	DBM:Debug("MH and OH unequipped", 2)
+	if isHunter then
+		PickupInventoryItem(18)
 		PutItemInBackpack()
-		PickupInventoryItem(17)
-		PutItemInBackpack()
-		DBM:Debug("MH and OH unequipped", 2)
-		if isHunter then
-			PickupInventoryItem(18)
-			PutItemInBackpack()
-			DBM:Debug("Ranged unequipped", 2)
-		end
+		DBM:Debug("Ranged unequipped", 2)
 	end
 end
 
@@ -499,7 +499,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerDominateMindCD:Start()
 		end
 		dominateMindTargets[#dominateMindTargets + 1] = args.destName
-		if args.destName == UnitName("player") then
+		if args:IsPlayer() then
 			handleDominateMindOnPlayer(self)
 		end
 		if self.Options.SetIconOnDominateMind then

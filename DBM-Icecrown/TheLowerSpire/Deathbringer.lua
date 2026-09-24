@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Deathbringer", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260321171000")
+mod:SetRevision("20260924120000")
 mod:SetCreatureID(37813)
 mod:SetEncounterID(848)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
@@ -80,12 +80,14 @@ local spellName = DBM:GetSpellInfo(72370)
 local allianceIntroFallbacks = {
 	"For every Horde soldier",
 	"Все павшие воины Орды",
-	"Усі загиблі воїни Орди"
+	"Усі загиблі воїни Орди",
+	"Усі воїни Орди"
 }
 local hordeIntroFallbacks = {
 	"Kor'kron, move out!",
 	"Кор'крон, выдвигайтесь!",
-	"Кор'крон, висувайтесь!"
+	"Кор'крон, висувайтесь!",
+	"Кор'крон, висуватися!"
 }
 
 local function matchesAny(msg, patterns)
