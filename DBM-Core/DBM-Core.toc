@@ -17,7 +17,7 @@
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## Author: Amdir
-## Version: 1.0.2
+## Version: 1.0.3
 ## X-Website: https://amdir.in.ua
 
 compat.lua
@@ -75,6 +75,7 @@ modules\Icons.lua
 modules\TargetScanning.lua
 
 # Core
+UkMonsterText.lua
 DBM-Core.lua
 DBM-Arrow.lua
 DBM-Flash.lua

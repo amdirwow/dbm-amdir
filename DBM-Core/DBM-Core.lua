@@ -84,9 +84,9 @@ local function currentFullDate()
 end
 
 DBM = {
-	Revision = parseCurseDate("20260528000000"),
-	DisplayVersion = "1.0.2", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2026, 05, 28) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	Revision = parseCurseDate("20261007000000"),
+	DisplayVersion = "1.0.3", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2026, 10, 07) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 
 local fakeBWVersion = 7558
@@ -796,7 +796,35 @@ do
 		return DBM:GetCIDFromGUID(self.destGUID)
 	end
 
-	local function handleEvent(self, event, ...)
+	-- The client reports ruRU for Russian and Ukrainian players alike, so mods only know
+	-- the Russian texts, while Ukrainian players get the esMX text from the server.
+	-- Translate those messages back to Russian before any mod sees them (UkMonsterText.lua).
+	local ukTranslatedEvents = {
+		CHAT_MSG_MONSTER_YELL = true,
+		CHAT_MSG_MONSTER_SAY = true,
+		CHAT_MSG_MONSTER_EMOTE = true,
+		CHAT_MSG_MONSTER_WHISPER = true,
+		CHAT_MSG_RAID_BOSS_EMOTE = true,
+		CHAT_MSG_RAID_BOSS_WHISPER = true,
+		CHAT_MSG_BG_SYSTEM_NEUTRAL = true,
+		CHAT_MSG_BG_SYSTEM_ALLIANCE = true,
+		CHAT_MSG_BG_SYSTEM_HORDE = true,
+	}
+
+	local function translateUkMessage(msg)
+		if type(msg) ~= "string" then return msg end
+		local ru = DBM_UkMonsterText and DBM_UkMonsterText[msg]
+		if ru then return ru end
+		for _, entry in ipairs(DBM_UkMonsterTextPatterns or {}) do
+			local name1, name2, name3 = msg:match(entry[1])
+			if name1 then
+				return entry[2]:format(name1, name2, name3)
+			end
+		end
+		return msg
+	end
+
+	local function dispatchEvent(self, event, ...)
 		local isUnitEvent = event:sub(0, 5) == "UNIT_" and event ~= "UNIT_DIED" and event ~= "UNIT_DESTROYED"
 		if self == mainFrame and isUnitEvent then
 			-- UNIT_* events that come from mainFrame are _UNFILTERED variants and need their suffix
@@ -821,6 +849,13 @@ do
 				end
 			end
 		end
+	end
+
+	local function handleEvent(self, event, ...)
+		if ukTranslatedEvents[event] then
+			return dispatchEvent(self, event, translateUkMessage((...)), select(2, ...))
+		end
+		return dispatchEvent(self, event, ...)
 	end
 
 	local registerUnitEvent, unregisterUnitEvent, registerSpellId, unregisterSpellId, registerCLEUEvent, unregisterCLEUEvent
