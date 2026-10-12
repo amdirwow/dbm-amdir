@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Halion", "DBM-ChamberOfAspects", 2)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260326123000")
+mod:SetRevision("20261012120000")
 mod:SetCreatureID(39863)--40142 (twilight form)
 mod:SetEncounterID(887)
 mod:SetUsedIcons(7, 3)
@@ -12,7 +12,7 @@ mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 74806 75954 75955 75956 74525 74526 74527 74528",
-	"SPELL_CAST_SUCCESS 74792 74562",
+	"SPELL_CAST_SUCCESS 74792 74562 74531",
 	"SPELL_AURA_APPLIED 74792 74562 74807",
 	"SPELL_AURA_REMOVED 74792 74562 74807",
 	"SPELL_DAMAGE",
@@ -80,10 +80,12 @@ local specWarnCorporeality			= mod:NewSpecialWarningCount(74826, nil, nil, nil, 
 mod.vb.warned_preP2 = false
 mod.vb.warned_preP3 = false
 local playerInShadowRealm = false
-local fieryCombustionCLEU = false -- Assigning a bool for CLEU check to prevent double timer starts from CLEU & Sync
-local fieryBreathCLEU = false -- Assigning a bool for CLEU check to prevent double timer starts from CLEU & Sync
-local soulConsumptionCLEU = false -- Assigning a bool for CLEU check to prevent double timer starts from CLEU & Sync
-local shadowBreathCLEU = false -- Assigning a bool for CLEU check to prevent double timer starts from CLEU & Sync
+-- GetTime() of the last event seen directly (CLEU or yell), so the sync from the other realm doesn't start it twice.
+-- Kept as timestamps rather than bools: players swap realms in P3 and must keep receiving syncs for the realm they left.
+local lastSeen = {}
+local function seenRecently(key)
+	return lastSeen[key] and GetTime() - lastSeen[key] < 3
+end
 local previousCorporeality = 0
 
 local function clearKeepTimers(self) -- Attempt to clear "keep" negative timers that are not relevant to the realm and would otherwise tick to infinity
@@ -113,10 +115,7 @@ function mod:OnCombatStart(delay)
 	self.vb.warned_preP3 = false
 	self:SetStage(1)
 	playerInShadowRealm = false
-	fieryCombustionCLEU = false
-	fieryBreathCLEU = false
-	soulConsumptionCLEU = false
-	shadowBreathCLEU = false
+	table.wipe(lastSeen)
 	previousCorporeality = 0
 	berserkTimer:Start(-delay)
 	timerMeteorCD:Start(20-delay) -- REVIEW! ~5s variance (25N Lordaeron 2022/09/20 || 25H Lordaeron 2022/10/09) - 20.7 || 24.5
@@ -141,14 +140,14 @@ function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(74806, 75954, 75955, 75956) then
 		warningShadowBreath:Show()
 		timerShadowBreathCD:Start()
-		shadowBreathCLEU = true
+		lastSeen.ShadowBreathCD = GetTime()
 		if self:LatencyCheck() then
 			self:SendSync("ShadowBreathCD")
 		end
 	elseif args:IsSpellID(74525, 74526, 74527, 74528) then
 		warningFieryBreath:Show()
 		timerFieryBreathCD:Start()
-		fieryBreathCLEU = true
+		lastSeen.FieryBreathCD = GetTime()
 		if self:LatencyCheck() then
 			self:SendSync("FieryBreathCD")
 		end
@@ -159,13 +158,13 @@ function mod:SPELL_CAST_SUCCESS(args)--We use spell cast success for debuff time
 	local spellId = args.spellId
 	if spellId == 74792 then
 		timerSoulConsumptionCD:Start()
-		soulConsumptionCLEU = true
+		lastSeen.ShadowCD = GetTime()
 		if self:LatencyCheck() then
 			self:SendSync("ShadowCD")
 		end
 	elseif spellId == 74562 then
 		timerFieryCombustionCD:Start()
-		fieryCombustionCLEU = true
+		lastSeen.FieryCD = GetTime()
 		if self:GetStage(1, 2) and self:LatencyCheck() then -- useless on phase 1 since everyone is in the same realm
 			self:SendSync("FieryCD")
 		end
@@ -310,8 +309,9 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 			self:SendSync("Meteor")
 		end
 	elseif msg == L.twilightcutter or msg:find(L.twilightcutter) then -- 2022/10/14: No longer required since this has been fixed serverside! Nevertheless, there is no loss in functionality by doing this in Yell instead of Emote; it's even the first event fired from the pair! (~~Edited (specific for Warmane since CHAT_MSG_RAID_BOSS_EMOTE fires twice: at 5s and at cutter)~~)
-			specWarnTwilightCutter:Schedule(5)
-			specWarnTwilightCutter:ScheduleVoice(5, "farfromline")
+		lastSeen.TwilightCutter = GetTime()
+		specWarnTwilightCutter:Schedule(5)
+		specWarnTwilightCutter:ScheduleVoice(5, "farfromline")
 		if not self.Options.AnnounceAlternatePhase then
 			timerTwilightCutterCD:Cancel()
 			warningTwilightCutter:Show()
@@ -331,6 +331,11 @@ end
 
 function mod:OnSync(msg, target)
 	if msg == "TwilightCutter" then
+		-- The yell comes from Twilight Halion, so players in the Physical Realm never see it and only get this sync
+		if not seenRecently("TwilightCutter") then
+			specWarnTwilightCutter:Schedule(5)
+			specWarnTwilightCutter:ScheduleVoice(5, "farfromline")
+		end
 		if self.Options.AnnounceAlternatePhase then -- 2022/10/14: Removed antispam workaround since this has been fixed serverside! (~~Edited to circumvent Warmane double cutter boss emote~~)
 			timerTwilightCutterCD:Cancel()
 			warningTwilightCutter:Show()
@@ -357,25 +362,21 @@ function mod:OnSync(msg, target)
 			warningFieryCombustion:Show(target)
 		end
 	elseif msg == "ShadowCD" then
-		if self.Options.AnnounceAlternatePhase and not soulConsumptionCLEU then
-			soulConsumptionCLEU = false -- reset state for next CLEU/sync check
+		if self.Options.AnnounceAlternatePhase and not seenRecently("ShadowCD") then
 			timerSoulConsumptionCD:Start()
 		end
 	elseif msg == "ShadowBreathCD" then
-		if self.Options.AnnounceAlternatePhase and not shadowBreathCLEU then
-			shadowBreathCLEU = false -- reset state for next CLEU/sync check
+		if self.Options.AnnounceAlternatePhase and not seenRecently("ShadowBreathCD") then
 			warningShadowBreath:Show()
 			timerShadowBreathCD:Start()
 		end
 	elseif msg == "FieryBreathCD" then
-		if self.Options.AnnounceAlternatePhase and not fieryBreathCLEU then
-			fieryBreathCLEU = false -- reset state for next CLEU/sync check
+		if self.Options.AnnounceAlternatePhase and not seenRecently("FieryBreathCD") then
 			warningFieryBreath:Show()
 			timerFieryBreathCD:Start()
 		end
 	elseif msg == "FieryCD" and self:GetStage(1, 2) then -- block old comms that run this for the entirety of the raid, which is useless on phase 1 since everyone is in the same realm
-		if self.Options.AnnounceAlternatePhase and not fieryCombustionCLEU then
-			fieryCombustionCLEU = false -- reset state for next CLEU/sync check
+		if self.Options.AnnounceAlternatePhase and not seenRecently("FieryCD") then
 			timerFieryCombustionCD:Start()
 		end
 	elseif msg == "Phase2" and self:GetStage(2, 1) then

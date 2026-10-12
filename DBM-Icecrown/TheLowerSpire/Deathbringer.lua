@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Deathbringer", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260924120000")
+mod:SetRevision("20261012120000")
 mod:SetCreatureID(37813)
 mod:SetEncounterID(848)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
@@ -328,18 +328,36 @@ function mod:UNIT_HEALTH(uId)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if matchesAny(msg, allianceIntroFallbacks) or (L.PullAlliance and msg:find(L.PullAlliance, 1, true)) then
-		timerCombatStart:Start()
-		beginPrecombatWatch(self)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(12)
-		end
-	elseif matchesAny(msg, hordeIntroFallbacks) or (L.PullHorde and msg:find(L.PullHorde, 1, true)) then
+local function startIntro(self, horde)
+	if self:IsInCombat() or timerCombatStart:GetRemaining() > 0 then
+		return
+	end
+	if horde then
 		timerCombatStart:Start(81.75) -- Horde RP on this core reaches ACTION_INTRO_DONE roughly 81-82s after the opening yell.
-		beginPrecombatWatch(self)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(12)
-		end
+	else
+		timerCombatStart:Start()
+	end
+	beginPrecombatWatch(self)
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(12)
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(msg)
+	-- Synced so players out of yell range (or whose client text doesn't match) still get the pull timer
+	if matchesAny(msg, allianceIntroFallbacks) or (L.PullAlliance and msg:find(L.PullAlliance, 1, true)) then
+		startIntro(self, false)
+		self:SendSync("IntroAlliance")
+	elseif matchesAny(msg, hordeIntroFallbacks) or (L.PullHorde and msg:find(L.PullHorde, 1, true)) then
+		startIntro(self, true)
+		self:SendSync("IntroHorde")
+	end
+end
+
+function mod:OnSync(msg)
+	if msg == "IntroAlliance" then
+		startIntro(self, false)
+	elseif msg == "IntroHorde" then
+		startIntro(self, true)
 	end
 end
