@@ -329,7 +329,7 @@ function mod:UNIT_HEALTH(uId)
 end
 
 local function startIntro(self, horde)
-	if self:IsInCombat() or timerCombatStart:GetRemaining() > 0 then
+	if self:IsInCombat() or timerCombatStart.bar:GetRemaining() > 0 then
 		return
 	end
 	if horde then
