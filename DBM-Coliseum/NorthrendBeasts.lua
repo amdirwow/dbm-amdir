@@ -5,7 +5,7 @@ local UnitExists, UnitGUID, UnitName = UnitExists, UnitGUID, UnitName
 local GetSpellInfo = GetSpellInfo
 local GetPlayerMapPosition, SetMapToCurrentZone = GetPlayerMapPosition, SetMapToCurrentZone
 
-mod:SetRevision("20260320235500")
+mod:SetRevision("20261021120000")
 mod:SetCreatureID(34796, 35144, 34799, 34797)
 mod:SetEncounterID(629)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
@@ -558,7 +558,8 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg, _, _, _, target)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.CombatStart or msg:find(L.CombatStart) then
+	-- The Ukrainian text may not be in UkMonsterText (live translations change), so also match its stable parts
+	if msg == L.CombatStart or msg:find(L.CombatStart) or (msg:find("Гормок", 1, true) and msg:find("Грозов", 1, true)) then
 		timerCombatStart:Start()
 	end
 end

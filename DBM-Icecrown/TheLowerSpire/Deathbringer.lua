@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Deathbringer", "DBM-Icecrown", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20261012120000")
+mod:SetRevision("20261021120000")
 mod:SetCreatureID(37813)
 mod:SetEncounterID(848)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
@@ -83,11 +83,13 @@ local allianceIntroFallbacks = {
 	"Усі загиблі воїни Орди",
 	"Усі воїни Орди"
 }
+-- The live server's Ukrainian text drifts from the DB the translation table was built from
+-- (висувайтесь / висуватися / висуваємось...), so match the stable parts only.
 local hordeIntroFallbacks = {
 	"Kor'kron, move out!",
 	"Кор'крон, выдвигайтесь!",
-	"Кор'крон, висувайтесь!",
-	"Кор'крон, висуватися!"
+	"Кор'крон, вис",
+	"Скара щойно"
 }
 
 local function matchesAny(msg, patterns)

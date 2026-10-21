@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Jaraxxus", "DBM-Coliseum")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260320235500")
+mod:SetRevision("20261021120000")
 mod:SetCreatureID(34780)
 mod:SetEncounterID(633)
 --mod:SetMinCombatTime(30)
@@ -298,7 +298,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		or msg:find(L.FirstPull, 1, true)
 		or msg:find("summon forth your next challenge", 1, true)
 		or msg:find("призовет вашего нового противника", 1, true)
-		or msg:find("призове вашого нового супротивника", 1, true) then
+		or msg:find("вашого нового супротивника", 1, true) then
 		introTimerStarted = true
 		timerCombatStart:Start()
 	end
