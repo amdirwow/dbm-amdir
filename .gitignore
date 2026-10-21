@@ -1,2 +1,3 @@
 # Генератор DBM-Core/UkMonsterText.lua з бази сервера; лежить лише локально.
 tools/gen_uk_monster_text.py
+__pycache__/
