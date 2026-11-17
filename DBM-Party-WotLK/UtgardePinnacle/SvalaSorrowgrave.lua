@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,mythic"
 
-mod:SetRevision("20251221220131")
+mod:SetRevision("20261117120000")
 mod:SetCreatureID(29281)
 mod:SetEncounterID(577)
 
@@ -39,8 +39,11 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
+-- The live server's Ukrainian text may differ from UkMonsterText, so also match its stable part
+-- ("благословення" / "благословении"); nothing else said in the Svala room contains it.
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.SvalaRoleplayStart or msg:find(L.SvalaRoleplayStart) then
+	if msg == L.SvalaRoleplayStart or msg:find(L.SvalaRoleplayStart, 1, true)
+		or msg:find("beseech you for your blessing", 1, true) or msg:find("благослов", 1, true) then
 		timerRoleplay:Start()
 	end
 end

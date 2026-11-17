@@ -811,6 +811,60 @@ do
 		CHAT_MSG_BG_SYSTEM_HORDE = true,
 	}
 
+	-- The texts the running server sends drift from the DB the table was generated from
+	-- (a word or an ending changes), so if nothing matches exactly, take the table entry
+	-- that shares most of its words with the message.
+	local ukWordIndex -- {words = {word = count}, total = n, ru = text} per table entry
+	local ukFuzzyCache = {}
+
+	local function countWords(text)
+		local words, total = {}, 0
+		for word in text:gmatch("[^%s%p]+") do
+			words[word] = (words[word] or 0) + 1
+			total = total + 1
+		end
+		return words, total
+	end
+
+	local function fuzzyTranslateUk(msg)
+		local cached = ukFuzzyCache[msg]
+		if cached ~= nil then return cached or nil end
+		local words, total = countWords(msg)
+		local best, bestScore, secondScore = nil, 0, 0
+		if total >= 5 then
+			if not ukWordIndex then
+				ukWordIndex = {}
+				for uk, ru in pairs(DBM_UkMonsterText or {}) do
+					local w, n = countWords(uk)
+					if n >= 5 then
+						ukWordIndex[#ukWordIndex + 1] = {words = w, total = n, ru = ru}
+					end
+				end
+			end
+			for _, entry in ipairs(ukWordIndex) do
+				local common = 0
+				for word, count in pairs(words) do
+					local other = entry.words[word]
+					if other then
+						common = common + (count < other and count or other)
+					end
+				end
+				local score = common / (total > entry.total and total or entry.total)
+				if score > bestScore then
+					best, bestScore, secondScore = entry.ru, score, bestScore
+				elseif score > secondScore then
+					secondScore = score
+				end
+			end
+		end
+		if not (best and bestScore >= 0.7 and bestScore > secondScore) then
+			best = nil
+		end
+		ukFuzzyCache[msg] = best or false
+		DBM:Debug(("UkMonsterText: %s match for %q (%.2f)"):format(best and "fuzzy" or "no", msg, bestScore), 3)
+		return best
+	end
+
 	local function translateUkMessage(msg)
 		if type(msg) ~= "string" then return msg end
 		local ru = DBM_UkMonsterText and DBM_UkMonsterText[msg]
@@ -820,6 +874,10 @@ do
 			if name1 then
 				return entry[2]:format(name1, name2, name3)
 			end
+		end
+		-- Only Ukrainian text needs translating: і ї є ґ / І Ї Є Ґ never occur in Russian
+		if msg:find("\209[\148\150\151]") or msg:find("\208[\132\134\135]") or msg:find("\210[\144\145]") then
+			return fuzzyTranslateUk(msg) or msg
 		end
 		return msg
 	end
