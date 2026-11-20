@@ -294,8 +294,8 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self:IsInCombat() or introTimerStarted then
 		return
 	end
-	if msg == L.FirstPull
-		or msg:find(L.FirstPull, 1, true)
+	if msg:find(L.FirstPull, 1, true)
+		or (L.FirstPullUk and msg:find(L.FirstPullUk, 1, true))
 		or msg:find("summon forth your next challenge", 1, true)
 		or msg:find("призовет вашего нового противника", 1, true)
 		or msg:find("вашого нового супротивника", 1, true) then

@@ -867,8 +867,9 @@ do
 
 	local function translateUkMessage(msg)
 		if type(msg) ~= "string" then return msg end
-		local ru = DBM_UkMonsterText and DBM_UkMonsterText[msg]
-		if ru then return ru end
+		local translated = DBM_UkMonsterTextVoiceLines and DBM_UkMonsterTextVoiceLines[msg]
+		translated = translated or (DBM_UkMonsterText and DBM_UkMonsterText[msg])
+		if translated then return translated end
 		for _, entry in ipairs(DBM_UkMonsterTextPatterns or {}) do
 			local name1, name2, name3 = msg:match(entry[1])
 			if name1 then

@@ -299,9 +299,9 @@ end
 mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.ValksRP or msg:find(L.ValksRP) then
+	if msg:find(L.ValksRP, 1, true) then
 		timerCombatStart:Start()
-	elseif msg == L.AnubRP or msg:find(L.AnubRP) then
+	elseif msg:find(L.AnubRP, 1, true) or (L.AnubRPUk and msg:find(L.AnubRPUk, 1, true)) then
 		timerAnubRoleplay:Start()
 	end
 end

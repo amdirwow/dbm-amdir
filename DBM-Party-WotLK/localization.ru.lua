@@ -916,7 +916,7 @@ L:SetMiscLocalization({
 	Ghoul			= "Гнівна вовка",		--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Незграбне поганище",		--creature id 37069
 	WitchDoctor		= "Воскресений відьмак",	--creature id 36941
-	Wave1			= "^ Бігти нікуди.",
+	Wave1			= "Бігти нікуди.",
 	Wave2			= "Підкоріться смерті, що леденить!",
 	Wave3			= "Ви у пастці!",
 	Wave4			= "Як довго ви зможете чинити опір?"
