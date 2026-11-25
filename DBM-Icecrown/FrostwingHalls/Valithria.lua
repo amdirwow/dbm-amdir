@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Valithria", "DBM-Icecrown", 4)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250929220131")
+mod:SetRevision("20261125000000")
 mod:SetCreatureID(36789)
 mod:SetEncounterID(854)
 mod:SetUsedIcons(8)
@@ -41,9 +41,11 @@ local timerPortalsClose		= mod:NewTimer(10, "TimerPortalsClose", 72483, nil, nil
 local timerHealerBuff		= mod:NewBuffFadesTimer(40, 70873, nil, nil, nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
 local timerGutSpray			= mod:NewBuffFadesTimer(12, 70633, nil, "Tank|Healer", nil, 5)
 local timerCorrosion		= mod:NewBuffFadesTimer(6, 70751, nil, false, nil, 3)
-local timerBlazingSkeleton	= mod:NewNextTimer(50, 70933, "TimerBlazingSkeleton", nil, nil, 1, 17204)
-local timerAbom				= mod:NewNextCountTimer(50, 70922, "TimerAbom", nil, nil, 1)
-local timerSuppressers		= mod:NewNextCountTimer(60, 70935, nil, nil, nil, 1)
+local timerBlazingSkeleton	= mod:NewNextCountTimer(55, 70933, "TimerBlazingSkeleton", nil, nil, 1, 17204)
+local timerAbom				= mod:NewNextCountTimer(59, 70922, "TimerAbom", nil, nil, 1)
+local timerSuppressers		= mod:NewNextCountTimer(59, 70935, nil, nil, nil, 1)
+local timerZombie			= mod:NewNextCountTimer(30, 71031, nil, nil, nil, 1)
+local timerArchmage			= mod:NewNextCountTimer(29, 71076, nil, nil, nil, 1)
 
 local soundSpecWarnSuppressers	= mod:NewSound(70935)
 
@@ -51,75 +53,39 @@ local berserkTimer			= mod:NewBerserkTimer(420)
 
 mod:AddSetIconOption("SetIconOnBlazingSkeleton", 70933, true, 5, {8})
 
-mod.vb.BlazingSkeletonTimer = 60
-mod.vb.AbomSpawn = 0
-mod.vb.AbomTimer = 60
-mod.vb.SuppressersWave = 0
 mod.vb.portalCount = 0
 local portalNameN = GetSpellInfo(71305)
 local portalNameH = GetSpellInfo(71987)
 
-local function Suppressers(self)
-	self.vb.SuppressersWave = self.vb.SuppressersWave + 1
-	if self.vb.SuppressersWave == 2 then
-		timerSuppressers:Stop()
-		timerSuppressers:Start(58, self.vb.SuppressersWave)
-		specWarnSuppressers:Cancel()
-		specWarnSuppressers:Schedule(58)
-		soundSpecWarnSuppressers:Schedule(58, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
-		self:Unschedule(Suppressers)
-		self:Schedule(58, Suppressers, self)
-	elseif self.vb.SuppressersWave == 3 then
-		timerSuppressers:Stop()
-		timerSuppressers:Start(56, self.vb.SuppressersWave)
-		specWarnSuppressers:Cancel()
-		specWarnSuppressers:Schedule(56)
-		soundSpecWarnSuppressers:Schedule(56, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
-		self:Unschedule(Suppressers)
-		self:Schedule(56, Suppressers, self)
-	elseif self.vb.SuppressersWave == 4 then
-		timerSuppressers:Stop()
-		timerSuppressers:Start(50, self.vb.SuppressersWave)
-		specWarnSuppressers:Cancel()
-		specWarnSuppressers:Schedule(50)
-		soundSpecWarnSuppressers:Schedule(50, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
-		self:Unschedule(Suppressers)
-		self:Schedule(50, Suppressers, self)
-	elseif self.vb.SuppressersWave > 4 then -- using dummy values since I have no Warmane VODs past 4 waves.
-		timerSuppressers:Stop()
-		timerSuppressers:Start(50, self.vb.SuppressersWave)
-		specWarnSuppressers:Cancel()
-		specWarnSuppressers:Schedule(50)
-		soundSpecWarnSuppressers:Schedule(50, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
-		self:Unschedule(Suppressers)
-		self:Schedule(50, Suppressers, self)
-	end
-end
+-- AzerothCore (npc_the_lich_king_controller): on engage the Lich King casts the
+-- "Summon Timer" auras at 5/10/15/20/30s. Every aura except Suppresser also force-casts
+-- a spawn immediately. Periodic amplitudes come from Spell.dbc; spell_dreamwalker_decay_periodic_timer_aura
+-- subtracts 1s (5s for skeleton) from the periodic timer on every tick, but the amplitude
+-- itself never changes, so after the first period the interval stays constant.
+--   Abomination  70915: 5,  +60, then every 59
+--   Suppressers  70912: 10 (no instant spawn) +60 = 70, then every 59
+--   Zombie       70914: 15, +30, then every 30 (no decay)
+--   Archmage     70916: 20, +30, then every 29
+--   Skeleton     70913: 30, +60, then every 55
+local waves = {
+	Abom		= {timer = timerAbom,				first = 5,	second = 60, rest = 59},
+	Suppressers	= {timer = timerSuppressers,		first = 70,	second = 59, rest = 59},
+	Zombie		= {timer = timerZombie,				first = 15,	second = 30, rest = 30},
+	Archmage	= {timer = timerArchmage,			first = 20,	second = 30, rest = 29},
+	Skeleton	= {timer = timerBlazingSkeleton,	first = 30,	second = 60, rest = 55},
+}
 
-local function StartBlazingSkeletonTimer(self)
-	timerBlazingSkeleton:Start(self.vb.BlazingSkeletonTimer)
-	self:Schedule(self.vb.BlazingSkeletonTimer, StartBlazingSkeletonTimer, self)
-	if self.vb.BlazingSkeletonTimer >= 10 then--Keep it from dropping below 5
-		self.vb.BlazingSkeletonTimer = self.vb.BlazingSkeletonTimer - 5
+local function WaveSpawned(self, key)
+	local w = waves[key]
+	local count = (self.vb[key.."Count"] or 0) + 1
+	self.vb[key.."Count"] = count
+	if key == "Suppressers" then
+		specWarnSuppressers:Show()
+		soundSpecWarnSuppressers:Play("Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
 	end
-end
-
-local function StartAbomTimer(self)
-	self.vb.AbomSpawn = self.vb.AbomSpawn + 1
-	if self.vb.AbomSpawn == 1 then
-		timerAbom:Start(self.vb.AbomTimer, self.vb.AbomSpawn + 1)--Timer is 60 seconds after first early abom, it's set to 60 on combat start.
-		self:Schedule(self.vb.AbomTimer, StartAbomTimer, self)
-		self.vb.AbomTimer = self.vb.AbomTimer - 5--Right after second abom timer starts, change it from 60 to 55.
-	elseif self.vb.AbomSpawn == 2 or self.vb.AbomSpawn == 3 then
-		timerAbom:Start(self.vb.AbomTimer, self.vb.AbomSpawn + 1)--Start first and second 55 second timer (third and fourth abom spawn)
-		self:Schedule(self.vb.AbomTimer, StartAbomTimer, self)
-	elseif self.vb.AbomSpawn >= 4 then--after 4th abom, the timer starts subtracting again.
-		timerAbom:Start(self.vb.AbomTimer, self.vb.AbomSpawn + 1)--Start third 55 second timer before subtracting from it again.
-		self:Schedule(self.vb.AbomTimer, StartAbomTimer, self)
-		if self.vb.AbomTimer >= 10 then--Keep it from dropping below 5
-			self.vb.AbomTimer = self.vb.AbomTimer - 5--Rest of timers after 3rd 55 second timer will be 5 less than previous until they come every 5 seconds.
-		end
-	end
+	local nextIn = count == 1 and w.second or w.rest
+	w.timer:Start(nextIn, count + 1)
+	self:Schedule(nextIn, WaveSpawned, self, key)
 end
 
 local function Portals(self)
@@ -137,8 +103,6 @@ local function Portals(self)
 --	self:Schedule(45.4, Portals, self)--This will never be perfect, since it's never same. 45-48sec variations
 end
 
--- archmage (all times relative to combat start): 45, 75
--- zombie: 65,
 function mod:OnCombatStart(delay)
 	if self:IsHeroic() then
 		berserkTimer:Start(-delay)
@@ -147,18 +111,11 @@ function mod:OnCombatStart(delay)
 	timerNextPortal:Start(nil, 1) -- Hardcode 1 on combatStart, there's no need to calculate self.vb.portalCount+1
 	warnPortalSoon:Schedule(40)
 --	self:Schedule(45.4, Portals, self)--This will never be perfect, since it's never same. 45-48sec variations
-	self.vb.BlazingSkeletonTimer = 60
-	self.vb.AbomTimer = 60
-	self.vb.AbomSpawn = 0
-	timerBlazingSkeleton:Start(53-delay)
-	self:Schedule(53-delay, StartBlazingSkeletonTimer, self)
-	timerAbom:Start(22-delay, 1) -- Hardcode 1 on combatStart, there's no need to calculate self.vb.AbomSpawn+1
-	self:Schedule(22-delay, StartAbomTimer, self)
-	self.vb.SuppressersWave = 1
-	timerSuppressers:Start(28-delay, self.vb.SuppressersWave)
-	specWarnSuppressers:Schedule(28)
-	soundSpecWarnSuppressers:Schedule(28, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\suppressersSpawned.mp3")
-	self:Schedule(28, Suppressers, self)
+	for key, w in pairs(waves) do
+		self.vb[key.."Count"] = 0
+		w.timer:Start(w.first - delay, 1)
+		self:Schedule(w.first - delay, WaveSpawned, self, key)
+	end
 end
 
 function mod:SPELL_CAST_START(args)
