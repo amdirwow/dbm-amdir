@@ -237,6 +237,19 @@ local function RemoveImmunes(self)
 	end
 end
 
+-- One Val'kyr wave can produce several triggers spread over >5s (25-man periodic summons at +1/+2/+3s,
+-- each Val'kyr starts searching 2.5s after spawn and then flies to the target, retrying on failure).
+-- Server reschedules EVENT_SUMMON_VALKYR every 45s (Defile can only push it ~1.5s), so anything within 25s is the same wave.
+local lastValkyrWave = 0
+local function IsNewValkyrWave()
+	local now = GetTime()
+	if now - lastValkyrWave > 25 then
+		lastValkyrWave = now
+		return true
+	end
+	return false
+end
+
 local function StartValkyrWave(self)
 	table.wipe(valkyrTargets)
 	grabIcon = 2
@@ -320,6 +333,7 @@ function mod:OnCombatStart(delay)
 	self.vb.warned_preP2 = false
 	self.vb.warned_preP3 = false
 	self.vb.ragingSpiritCount = 0
+	lastValkyrWave = 0
 	NextPhase(self, delay)
 	table.wipe(shamblingHorrorsGUIDs)
 	table.wipe(iceSpheresGUIDs)
@@ -586,7 +600,7 @@ function mod:SPELL_SUMMON(args)
 	local spellId = args.spellId
 	local destCID = self:GetCIDFromGUID(args.destGUID)
 	if destCID == 36609 then -- Val'kyr Shadowguard
-		if self:AntiSpam(5, 4) then
+		if IsNewValkyrWave() then
 			StartValkyrWave(self)
 		end
 		if self.Options.ShowFrame then
@@ -690,7 +704,7 @@ function mod:UNIT_ENTERING_VEHICLE(uId)
 	DBM:Debug("UNIT_ENTERING_VEHICLE Val'kyr check for "..  unitName .. " (" .. uId .. "): UnitInVehicle is returning " .. (UnitInVehicle(uId) or "nil") .. " and UnitInRange is returning " .. (UnitInRange(uId) or "nil") .. " with distance: " .. DBM.RangeCheck:GetDistance(uId) .."yd. Checking if it is already cached: " .. (valkyrTargets[unitName] and "true" or "nil."), 3)
 --		DBM:Debug(unitName .. " (" .. uId .. ") has entered a vehicle. Confirming API: " .. (UnitInVehicle(uId) or "nil"))
 	if UnitInVehicle(uId) and not valkyrTargets[unitName] then	  -- if person is in a vehicle and not already announced (API is probably unneeded, need more logs to confirm. Cache check is required to prevent this event from multifiring for the same raid member with more than one uId)
-		if self:AntiSpam(5, 4) then
+		if IsNewValkyrWave() then
 			StartValkyrWave(self)
 		end
 		valkyrGrabWarning:Show(DBM:GetUnitRoleIcon(uId), unitName, DBM:IconNumToTexture(grabIcon)) -- roleIcon, name, raid target icon
@@ -801,7 +815,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName)
 --	if spellName == soulshriek and mod:LatencyCheck() then
 --		self:SendSync("SoulShriek", UnitGUID(uId))
-	if (spellName == GetSpellInfo(74361) or spellName == GetSpellInfo(69037)) and self:AntiSpam(5, 4) then -- Spell-based fallback for 10-man and older cores.
+	if (spellName == GetSpellInfo(74361) or spellName == GetSpellInfo(69037)) and IsNewValkyrWave() then -- Spell-based fallback for 10-man and older cores.
 		StartValkyrWave(self)
 	end
 end
